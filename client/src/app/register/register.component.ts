@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
       this.cancel();
     }, error => {
       console.log(error);
-      this.toastr.error("Invalid credentials");
+      this.toastr.error("Invalid Credentials");
     })
   }
 
