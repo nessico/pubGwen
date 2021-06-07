@@ -14,6 +14,7 @@ namespace API.Extensions
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
+
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
@@ -23,7 +24,7 @@ namespace API.Extensions
                     };
                 });
 
-        return services;
-        } 
+            return services;
+        }
     }
 }
