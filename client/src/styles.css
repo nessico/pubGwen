@@ -1,5 +1,9 @@
-
-
+br {
+  content: "";
+  margin: 2em;
+  display: block;
+  font-size: 24%;
+}
 
 .tab-panel {
   border: 1px solid #ddd;

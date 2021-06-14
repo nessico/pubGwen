@@ -6,10 +6,13 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidationErrors,
   ValidatorFn,
   Validators,
+  FormArray,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-register',
@@ -18,8 +21,13 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
+  registerForm!: FormGroup;
   maxDate!: Date;
   validationErrors: string[] = [];
+  bsConfig: Partial<BsDatepickerConfig> = {
+    containerClass: 'theme-dark-blue',
+    maxDate: this.getAge(),
+  };
 
   constructor(
     private accountService: AccountService,
@@ -29,35 +37,49 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-   
+    this.initializeForm();
     this.maxDate = new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
 
+  initializeForm(): void {
+    this.registerForm = this.fb.group(
+      {
+        gender: ['male'],
+        username: ['', Validators.required],
+        knownAs: ['', Validators.required],
+        dateOfBirth: ['', Validators.required],
+        address: this.fb.group({
+          street: [''],
+          city: [''],
+          state: [''],
+          zip: [''],
+        }),
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(8),
+          ],
+        ],
+        confirmPassword: ['', Validators.required],
+      },
+      { validator: this.matchPass }
+    );
+  }
 
-    registerForm = this.fb.group({
-      gender: ['male'],
-      username: ['', Validators.required],
-      knownAs: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
-      city: ['', Validators.required],
-      country: ['', Validators.required],
-      password: [
-        '',
-        [Validators.required, Validators.minLength(4), Validators.maxLength(8)],
-      ],
-    });
-  
+  private getAge(): Date {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    return yesterday;
+  }
 
-  matchValues(matchTo: string): ValidatorFn {
-    return (control: AbstractControl) => {
-      return control?.value ===
-        (control?.parent?.controls as { [key: string]: AbstractControl })[
-          matchTo
-        ].value
-        ? null
-        : { isMatching: true };
-    };
+  private matchPass(formGroup: FormGroup): ValidationErrors | null {
+    return formGroup.get('password')?.value ===
+      formGroup.get('confirmPassword')?.value
+      ? null
+      : { isMatching: true };
   }
 
   register() {

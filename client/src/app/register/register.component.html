@@ -1,15 +1,12 @@
-<form
-  [formGroup]="registerForm"
-  (ngSubmit)="registerForm.valid && register()"
-  autocomplete="off"
->
+<form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
   <h2 class="text-center text-primary">Sign up</h2>
   <hr />
 
   <div class="form-group">
     <label class="control-label" style="margin-right: 10px">I am a: </label>
     <label class="radio-inline">
-      <input type="radio" value="male" formControlName="gender" /> Male
+      <input type="radio" value="male" formControlName="gender" />
+      Male
     </label>
     <label class="radio-inline">
       <input
@@ -21,25 +18,201 @@
       Female
     </label>
   </div>
+  <br />
 
-  <input formControlName='username'  />
-  <input formControlName="knownAs" />
-  <input formControlName="dateOfBirth" />
-  <input formControlName="city" />
-  <input formControlName="country" />
-  <input formControlName="password" />
+  <div
+    class="form-group"
+    [ngClass]="{
+      'has-error':
+        registerForm.get('knownAs')?.errors &&
+        registerForm.get('knownAs')?.touched
+    }"
+  >
+    <input
+      type="text"
+      placeholder="Your name"
+      class="form-control"
+      formControlName="knownAs"
+    />
+    <span
+      class="text-danger"
+      *ngIf="
+        registerForm.get('knownAs')?.hasError('required') &&
+        registerForm.get('knownAs')?.touched
+      "
+      >Your name is required</span
+    >
+  </div>
+  <br />
 
-  <div class="row" *ngIf="validationErrors.length > 0">
-    <ul class="text-danger">
-      <li *ngFor="let error of validationErrors">
-        {{ error }}
-      </li>
-    </ul>
-  </div> 
+  <div
+    class="form-group"
+    [ngClass]="{
+      'has-error':
+        registerForm.get('username')?.errors &&
+        registerForm.get('username')?.touched
+    }"
+  >
+    <input
+      type="text"
+      placeholder="Username"
+      class="form-control"
+      formControlName="username"
+    />
+    <span
+      class="text-danger"
+      *ngIf="
+        registerForm.get('username')?.hasError('required') &&
+        registerForm.get('username')?.touched
+      "
+      >Username is required</span
+    >
+  </div>
+  <br />
+
+  <div
+    class="form-group"
+    [ngClass]="{
+      'has-error':
+        registerForm.get('password')?.errors &&
+        registerForm.get('password')?.touched
+    }"
+  >
+    <input
+      type="password"
+      placeholder="Password"
+      class="form-control"
+      formControlName="password"
+    />
+    <span
+      class="text-danger"
+      *ngIf="
+        registerForm.get('password')?.hasError('required') &&
+        registerForm.get('password')?.touched
+      "
+      >Password is required</span
+    >
+    <span
+      class="text-danger"
+      *ngIf="
+        registerForm.get('password')?.hasError('minlength') &&
+        registerForm.get('password')?.touched
+      "
+      >Password must be at least 4 characters</span
+    >
+    <span
+      class="text-danger"
+      *ngIf="
+        registerForm.get('password')?.hasError('maxlength') &&
+        registerForm.get('password')?.touched
+      "
+      >Password cannot exceed 8 characters</span
+    >
+  </div>
+  <br />
+  <div
+    class="form-group"
+    [ngClass]="{
+      'has-error':
+        (registerForm.get('confirmPassword')?.errors ||
+          registerForm?.hasError('isMatching')) &&
+        registerForm.get('confirmPassword')?.touched
+    }"
+  >
+    <input
+      type="password"
+      placeholder="Confirm Password"
+      class="form-control"
+      formControlName="confirmPassword"
+    />
+    <span
+      class="text-danger"
+      *ngIf="
+        registerForm?.hasError('isMatching') &&
+        registerForm.get('confirmPassword')?.touched
+      "
+      >Password must be matching</span
+    >
+  </div>
+  <br />
+
+  <div
+    class="form-group"
+    [ngClass]="{
+      'has-error':
+        registerForm.get('dateOfBirth')?.errors &&
+        registerForm.get('dateOfBirth')?.touched
+    }"
+  >
+    <input
+      type="text"
+      placeholder="Date of birth"
+      class="form-control"
+      bsDatepicker
+      [bsConfig]="bsConfig"
+      formControlName="dateOfBirth"
+    />
+    <span
+      class="text-danger"
+      *ngIf="
+        registerForm.get('dateOfBirth')?.hasError('required') &&
+        registerForm.get('dateOfBirth')?.touched
+      "
+      >Must be at least 18 years old</span
+    >
+  </div>
+  <br />
+  <div
+    class="form-group"
+    [ngClass]="{
+      'has-error':
+        registerForm.get('city')?.errors && registerForm.get('city')?.touched
+    }"
+  >
+    <input
+      type="text"
+      placeholder="City"
+      class="form-control"
+      formControlName="city"
+    />
+    <span
+      class="text-danger"
+      *ngIf="
+        registerForm.get('city')?.hasError('required') &&
+        registerForm.get('city')?.touched
+      "
+      >City is required</span
+    >
+  </div>
+  <br />
+  <div
+    class="form-group"
+    [ngClass]="{
+      'has-error':
+        registerForm.get('country')?.errors &&
+        registerForm.get('country')?.touched
+    }"
+  >
+    <input
+      type="text"
+      placeholder="Country"
+      class="form-control"
+      formControlName="country"
+    />
+    <span
+      class="text-danger"
+      *ngIf="
+        registerForm.get('country')?.hasError('required') &&
+        registerForm.get('country')?.touched
+      "
+      >Country is required</span
+    >
+  </div>
+  <br />
 
   <div class="form-group text-center">
     <button
-      [disabled]="!registerForm.valid"
+      [disabled]="registerForm.invalid"
       class="btn btn-success mr-2"
       type="submit"
     >
