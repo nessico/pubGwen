@@ -23,10 +23,10 @@ export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
   registerForm!: FormGroup;
   maxDate!: Date;
+  minDate!: Date;
   validationErrors: string[] = [];
   bsConfig: Partial<BsDatepickerConfig> = {
     containerClass: 'theme-dark-blue',
-    maxDate: this.getAge(),
   };
 
   constructor(
@@ -38,7 +38,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
+    this.minDate = new Date();
     this.maxDate = new Date();
+    this.minDate.setFullYear(this.minDate.getFullYear() - 100);
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
 
@@ -49,12 +51,8 @@ export class RegisterComponent implements OnInit {
         username: ['', Validators.required],
         knownAs: ['', Validators.required],
         dateOfBirth: ['', Validators.required],
-        address: this.fb.group({
-          street: [''],
-          city: [''],
-          state: [''],
-          zip: [''],
-        }),
+        city: ['', Validators.required],
+        country: ['', Validators.required],
         password: [
           '',
           [
@@ -67,12 +65,6 @@ export class RegisterComponent implements OnInit {
       },
       { validator: this.matchPass }
     );
-  }
-
-  private getAge(): Date {
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    return yesterday;
   }
 
   private matchPass(formGroup: FormGroup): ValidationErrors | null {
