@@ -1,5 +1,91 @@
+<div class="text-center mt-3">
+  <h2>Designers - {{ pagination?.totalItems }} found</h2>
+</div>
+
+<div class="container">
+  <form
+    #form="ngForm"
+    class="row row-cols-lg-auto g-3 align-items-center"
+    (ngSubmit)="loadMembers()"
+    autocomplete="off"
+  >
+    <label> Age from:</label>
+    <div class="col-12">
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          style="width: 70px"
+          name="minAge"
+          [(ngModel)]="userParams.minAge"
+        />
+      </div>
+    </div>
+
+    <label>Age to: </label>
+    <div class="col-12">
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          style="width: 70px"
+          name="maxAge"
+          [(ngModel)]="userParams.maxAge"
+        />
+      </div>
+    </div>
+
+    <label>Show: </label>
+    <div class="col-12">
+      <div class="form-group">
+        <select
+          name="gender"
+          style="width: 130px"
+          [(ngModel)]="userParams.gender"
+          class="form-control"
+        >
+          <option *ngFor="let gender of genderList" [value]="gender.value">
+            {{ gender.display }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Apply Filters</button>
+    </div>
+    <div class="col-12">
+      <button (click)="resetFilters()" class="btn btn-info" type="submit">
+        Reset Filters
+      </button>
+    </div>
+  </form>
+</div>
+
+<br />
+<br />
+
 <div class="row">
-  <div *ngFor="let member of members$ | async" class="col-2">
+  <div *ngFor="let member of members" class="col-2">
     <app-member-card [member]="member"></app-member-card>
   </div>
+</div>
+<br />
+<br />
+<!-- appear at center of page with flex box -->
+<div class="d-flex justify-content-center" *ngIf="pagination">
+  <!--ngmodel for 2 way binding to receive current page &  update current page -->
+  <!-- [] binds to property () binds to event -->
+  <pagination
+    [boundaryLinks]="true"
+    [totalItems]="pagination.totalItems"
+    [itemsPerPage]="pagination.itemsPerPage"
+    [(ngModel)]="pagination.currentPage"
+    (pageChanged)="pageChanged($event)"
+    previousText="&lsaquo;"
+    nextText="&rsaquo;"
+    firstText="&laquo;"
+    lastText="&raquo;"
+  >
+  </pagination>
 </div>

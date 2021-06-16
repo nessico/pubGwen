@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PaginatedResult } from '../_models/pagination';
+import { UserParams } from '../_models/userParams';
 
 @Injectable({
   providedIn: 'root',
@@ -12,32 +13,24 @@ import { PaginatedResult } from '../_models/pagination';
 export class MembersService {
   baseUrl = environment.apiUrl;
   members: Member[] = [];
-  //store pagination results
-  paginatedResult: PaginatedResult<Member[]> = new PaginatedResult<Member[]>();
 
   constructor(private http: HttpClient) {}
 
-  getMembers(page?: number, itemsPerPage?: number) {
-    let params = new HttpParams();
+  //https://valor-software.com/ngx-bootstrap/pagination
+  //passed pagination parameters from paginatedResult
+  getMembers(userParams: UserParams) {
+    let params = this.getPaginationHeaders(
+      userParams.pageNumber,
+      userParams.pageSize
+    );
 
-    if (page !== null && itemsPerPage !== null) {
-      params = params.append('pageNumber', page!.toString());
-      params = params.append('pageNumber', itemsPerPage!.toString());
-    }
+    params = params.append('minAge', userParams.minAge.toString());
+    params = params.append('maxAge', userParams.maxAge.toString());
+    params = params.append('gender', userParams.gender);
+
     //Observing will get the response back and we will have to get the body ourselves with pipe
-    return this.http
-      .get<Member[]>(this.baseUrl + 'users', { observe: 'response', params })
-      .pipe(
-        map((response) => {
-          this.paginatedResult.result = response.body;
-          if (response.headers.get('Pagination') !== null) {
-            this.paginatedResult.pagination = JSON.parse(
-              response.headers.get('Pagination')
-            );
-          }
-          return this.paginatedResult;
-        })
-      );
+    //Observing response -> passed the params -> passed into a pipe -> specify our response mapping
+    return this.getPaginatedResult<Member[]>(this.baseUrl + 'users', params);
   }
 
   getMember(username: any) {
@@ -61,5 +54,32 @@ export class MembersService {
 
   deletePhoto(photoId: number) {
     return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
+  }
+
+  private getPaginatedResult<T>(url: any, params: any) {
+    const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
+    return this.http.get<T>(url, { observe: 'response', params }).pipe(
+      map((response: any) => {
+        paginatedResult.result = response.body;
+        if (response.headers.get('Pagination') !== null) {
+          paginatedResult.pagination = JSON.parse(
+            response.headers.get('Pagination')
+          );
+        }
+        return paginatedResult;
+      })
+    );
+  }
+
+  private getPaginationHeaders(pageNumber: number, pageSize: number) {
+    //lets us serialize our parameters and take cares of adding it onto the query string
+    let params = new HttpParams();
+
+    //passing page number & page size to the params
+
+    params = params.append('pageNumber', pageNumber.toString());
+    params = params.append('pageSize', pageSize.toString());
+
+    return params;
   }
 }
