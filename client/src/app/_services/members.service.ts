@@ -27,6 +27,7 @@ export class MembersService {
     params = params.append('minAge', userParams.minAge.toString());
     params = params.append('maxAge', userParams.maxAge.toString());
     params = params.append('gender', userParams.gender);
+    params = params.append('orderBy', userParams.orderBy);
 
     //Observing will get the response back and we will have to get the body ourselves with pipe
     //Observing response -> passed the params -> passed into a pipe -> specify our response mapping

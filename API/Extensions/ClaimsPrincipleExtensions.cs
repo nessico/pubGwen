@@ -5,9 +5,16 @@ namespace API.Extensions
 {
     public static class ClaimsPrincipleExtensions
     {
+        //get unique name property from token
         public static string GetUsername(this ClaimsPrincipal user)
         {
-            return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return user.FindFirst(ClaimTypes.Name)?.Value;
+        }
+
+        //get unique id property from token
+        public static int GetUserId(this ClaimsPrincipal user)
+        {
+            return int.Parse(user.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         }
     }
 }

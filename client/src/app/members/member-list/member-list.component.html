@@ -59,33 +59,58 @@
         Reset Filters
       </button>
     </div>
+
+    <div class="col-12">
+      <button
+        type="button"
+        class="btn btn-primary btn-sm"
+        name="orderBy"
+        (click)="loadMembers()"
+        btnRadio="lastActive"
+        [(ngModel)]="userParams.orderBy"
+      >
+        Last Active
+      </button>
+    </div>
+    <div class="col-12">
+      <button
+        type="button"
+        class="btn btn-primary btn-sm"
+        name="orderBy"
+        (click)="loadMembers()"
+        btnRadio="created"
+        [(ngModel)]="userParams.orderBy"
+      >
+        Newest Members
+      </button>
+    </div>
   </form>
-</div>
 
-<br />
-<br />
+  <br />
+  <br />
 
-<div class="row">
-  <div *ngFor="let member of members" class="col-2">
-    <app-member-card [member]="member"></app-member-card>
+  <div class="row">
+    <div *ngFor="let member of members" class="col-2">
+      <app-member-card [member]="member"></app-member-card>
+    </div>
   </div>
-</div>
-<br />
-<br />
-<!-- appear at center of page with flex box -->
-<div class="d-flex justify-content-center" *ngIf="pagination">
-  <!--ngmodel for 2 way binding to receive current page &  update current page -->
-  <!-- [] binds to property () binds to event -->
-  <pagination
-    [boundaryLinks]="true"
-    [totalItems]="pagination.totalItems"
-    [itemsPerPage]="pagination.itemsPerPage"
-    [(ngModel)]="pagination.currentPage"
-    (pageChanged)="pageChanged($event)"
-    previousText="&lsaquo;"
-    nextText="&rsaquo;"
-    firstText="&laquo;"
-    lastText="&raquo;"
-  >
-  </pagination>
+  <br />
+  <br />
+  <!-- appear at center of page with flex box -->
+  <div class="d-flex justify-content-center" *ngIf="pagination">
+    <!--ngmodel for 2 way binding to receive current page &  update current page -->
+    <!-- [] binds to property () binds to event -->
+    <pagination
+      [boundaryLinks]="true"
+      [totalItems]="pagination.totalItems"
+      [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage"
+      (pageChanged)="pageChanged($event)"
+      previousText="&lsaquo;"
+      nextText="&rsaquo;"
+      firstText="&laquo;"
+      lastText="&raquo;"
+    >
+    </pagination>
+  </div>
 </div>
