@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Member } from '../_models/member';
-import { environment } from 'src/environments/environment';
-import { of } from 'rxjs';
+import { of, pipe } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { PaginatedResult } from '../_models/pagination';
 import { UserParams } from '../_models/userParams';
 import { AccountService } from './account.service';
 import { User } from '../_models/user';
+import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +53,7 @@ export class MembersService {
       return of(response);
     }
 
-    let params = this.getPaginationHeaders(
+    let params = getPaginationHeaders(
       userParams.pageNumber,
       userParams.pageSize
     );
@@ -64,10 +65,11 @@ export class MembersService {
 
     //Observing will get the response back and we will have to get the body ourselves with pipe
     //Observing response -> passed the params -> passed into a pipe -> specify our response mapping
-    return this.getPaginatedResult<Member[]>(
+    //caching at map
+    return getPaginatedResult<Member[]>(
       this.baseUrl + 'users',
-      params
-      //caching
+      params,
+      this.http
     ).pipe(
       map((response) => {
         this.memberCache.set(Object.values(userParams).join('-'), response);
@@ -76,7 +78,7 @@ export class MembersService {
     );
   }
 
-  getMember(username: any) {
+  getMember(username: string) {
     //spread operator
     const member = [...this.memberCache.values()]
       .reduce((arr, elem) => arr.concat(elem.result), [])
@@ -110,38 +112,12 @@ export class MembersService {
   }
 
   getLikes(predicate: string, pageNumber: any, pageSize: any) {
-    let params = this.getPaginationHeaders(pageNumber, pageSize);
+    let params = getPaginationHeaders(pageNumber, pageSize);
     params = params.append('predicate', predicate);
-    return this.getPaginatedResult<Partial<Member[]>>(
+    return getPaginatedResult<Partial<Member[]>>(
       this.baseUrl + 'likes',
-      params
+      params,
+      this.http
     );
-  }
-
-  private getPaginatedResult<T>(url: any, params: any) {
-    const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
-    return this.http.get<T>(url, { observe: 'response', params }).pipe(
-      map((response: any) => {
-        paginatedResult.result = response.body;
-        if (response.headers.get('Pagination') !== null) {
-          paginatedResult.pagination = JSON.parse(
-            response.headers.get('Pagination')
-          );
-        }
-        return paginatedResult;
-      })
-    );
-  }
-
-  private getPaginationHeaders(pageNumber: number, pageSize: number) {
-    //lets us serialize our parameters and take cares of adding it onto the query string
-    let params = new HttpParams();
-
-    //passing page number & page size to the params
-
-    params = params.append('pageNumber', pageNumber.toString());
-    params = params.append('pageSize', pageSize.toString());
-
-    return params;
   }
 }
