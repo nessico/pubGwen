@@ -60,7 +60,7 @@ namespace API.Data
 
         //get messages for both side of conversation
         //also mark read messages by getting it from memory -> map to Dto
-        //have to: execute request & get it out to a list and then work with the messgaes
+        //have to: execute request & get it out to a list and then work with the messages
         public async Task<IEnumerable<MessageDto>> GetMessageThread(string currentUsername, string recipientUsername)
         {
             var messages = await _context.Messages
