@@ -21,3 +21,7 @@
 .chat-img {
   float: right;
 }
+
+.text-success {
+  color: lightgreen;
+}

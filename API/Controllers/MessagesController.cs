@@ -24,39 +24,6 @@ namespace API.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<MessageDto>> CreateMessage(CreateMessageDto createMessageDto)
-        {
-            var username = User.GetUsername();
-
-            if (username == createMessageDto.RecipientUsername.ToLower())
-                return BadRequest("You cannot send messages to yourself");
-
-            //get hold of both user (sender & recipient) to populate message when first created and return dto
-
-            var sender = await _userRepository.GetUserByUsernameAsync(username);
-            var recipient = await _userRepository.GetUserByUsernameAsync(createMessageDto.RecipientUsername);
-
-            if (recipient == null) return NotFound();
-
-            //creating message 
-            var message = new Message
-            {
-                Sender = sender,
-                Recipient = recipient,
-                SenderUsername = sender.UserName,
-                RecipientUsername = recipient.UserName,
-                Content = createMessageDto.Content
-            };
-
-            _messageRepository.AddMessage(message);
-
-            if (await _messageRepository.SaveAllAsync()) return Ok(_mapper.Map<MessageDto>(message));
-
-            return BadRequest("Failed to send message");
-
-        }
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessagesForUser([FromQuery] MessageParams messageParams)
         {
