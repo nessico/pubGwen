@@ -1,6 +1,6 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { map } from "rxjs/operators";
-import { PaginatedResult } from "../_models/pagination";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { PaginatedResult } from '../_models/pagination';
 
 export function getPaginatedResult<T>(url: any, params: any, http: HttpClient) {
   const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
@@ -19,10 +19,10 @@ export function getPaginatedResult<T>(url: any, params: any, http: HttpClient) {
 
 export function getPaginationHeaders(pageNumber: number, pageSize: number) {
   //lets us serialize our parameters and take cares of adding it onto the query string
+
   let params = new HttpParams();
 
-  //passing page number & page size to the params
-
+  //passing page number & page size to the param
   params = params.append('pageNumber', pageNumber.toString());
   params = params.append('pageSize', pageSize.toString());
 

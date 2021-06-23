@@ -12,11 +12,12 @@ namespace API.SignalR
 {
     public class MessageHub : Hub
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IHubContext<PresenceHub> _presenceHub;
         private readonly PresenceTracker _tracker;
-        public MessageHub(IMapper mapper, IUnitOfWork unitOfWork, IHubContext<PresenceHub> presenceHub, PresenceTracker tracker)
+        private readonly IUnitOfWork _unitOfWork;
+        public MessageHub(IMapper mapper, IUnitOfWork unitOfWork, IHubContext<PresenceHub> presenceHub,
+            PresenceTracker tracker)
         {
             _unitOfWork = unitOfWork;
             _tracker = tracker;
@@ -51,12 +52,12 @@ namespace API.SignalR
 
         public async Task SendMessage(CreateMessageDto createMessageDto)
         {
+
+            //get hold of both user (sender & recipient) to populate message when first created and return dto
             var username = Context.User.GetUsername();
 
             if (username == createMessageDto.RecipientUsername.ToLower())
                 throw new HubException("You cannot send messages to yourself");
-
-            //get hold of both user (sender & recipient) to populate message when first created and return dto
 
             var sender = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
             var recipient = await _unitOfWork.UserRepository.GetUserByUsernameAsync(createMessageDto.RecipientUsername);
@@ -83,7 +84,7 @@ namespace API.SignalR
             }
             else
             {
-                var connections = await _tracker.GetConnectionForUser(recipient.UserName);
+                var connections = await _tracker.GetConnectionsForUser(recipient.UserName);
                 if (connections != null)
                 {
                     await _presenceHub.Clients.Clients(connections).SendAsync("NewMessageReceived",

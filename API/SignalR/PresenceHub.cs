@@ -1,7 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using API.Extensions;
+using API.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 
 namespace API.SignalR
@@ -9,13 +11,12 @@ namespace API.SignalR
     [Authorize]
     public class PresenceHub : Hub
     {
+        //SignalR has to use query string, they can't send authentication headers
         private readonly PresenceTracker _tracker;
         public PresenceHub(PresenceTracker tracker)
         {
             _tracker = tracker;
         }
-
-        //SignalR has to use query string, they can't send authentication headers
         public override async Task OnConnectedAsync()
         {
             var isOnline = await _tracker.UserConnected(Context.User.GetUsername(), Context.ConnectionId);
@@ -23,7 +24,7 @@ namespace API.SignalR
                 await Clients.Others.SendAsync("UserIsOnline", Context.User.GetUsername());
 
             var currentUsers = await _tracker.GetOnlineUsers();
-            await Clients.All.SendAsync("GetOnlineUsers", currentUsers);
+            await Clients.Caller.SendAsync("GetOnlineUsers", currentUsers);
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
@@ -35,6 +36,5 @@ namespace API.SignalR
 
             await base.OnDisconnectedAsync(exception);
         }
-
     }
 }

@@ -20,17 +20,18 @@ namespace API.Controllers
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessagesForUser([FromQuery] MessageParams messageParams)
+        public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessagesForUser([FromQuery]
+            MessageParams messageParams)
         {
             messageParams.Username = User.GetUsername();
 
             var messages = await _unitOfWork.MessageRepository.GetMessagesForUser(messageParams);
 
-            Response.AddPaginationHeader(messages.CurrentPage, messages.PageSize, messages.TotalCount, messages.TotalPages);
+            Response.AddPaginationHeader(messages.CurrentPage, messages.PageSize,
+                messages.TotalCount, messages.TotalPages);
 
             return messages;
         }
@@ -42,13 +43,15 @@ namespace API.Controllers
 
             var message = await _unitOfWork.MessageRepository.GetMessage(id);
 
-            if (message.Sender.UserName != username && message.Recipient.UserName != username) return Unauthorized();
+            if (message.Sender.UserName != username && message.Recipient.UserName != username)
+                return Unauthorized();
 
             if (message.Sender.UserName == username) message.SenderDeleted = true;
 
-            if (message.RecipientUsername == username) message.RecipientDeleted = true;
+            if (message.Recipient.UserName == username) message.RecipientDeleted = true;
 
-            if (message.SenderDeleted && message.RecipientDeleted) _unitOfWork.MessageRepository.DeleteMessage(message);
+            if (message.SenderDeleted && message.RecipientDeleted)
+                _unitOfWork.MessageRepository.DeleteMessage(message);
 
             if (await _unitOfWork.Complete()) return Ok();
 

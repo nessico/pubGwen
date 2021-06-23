@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Helpers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API.SignalR
 {
@@ -8,7 +10,8 @@ namespace API.SignalR
     {
         //user will get a connection id
         //lock so dict won't be shared so concurrent users can't update at the same time
-        private static readonly Dictionary<string, List<string>> OnlineUsers = new Dictionary<string, List<string>>();
+        private static readonly Dictionary<string, List<string>> OnlineUsers =
+            new Dictionary<string, List<string>>();
 
         public Task<bool> UserConnected(string username, string connectionId)
         {
@@ -25,8 +28,10 @@ namespace API.SignalR
                     isOnline = true;
                 }
             }
+
             return Task.FromResult(isOnline);
         }
+
         public Task<bool> UserDisconnected(string username, string connectionId)
         {
             bool isOffline = false;
@@ -41,10 +46,9 @@ namespace API.SignalR
                     isOffline = true;
                 }
             }
+
             return Task.FromResult(isOffline);
-
         }
-
 
         public Task<string[]> GetOnlineUsers()
         {
@@ -57,7 +61,7 @@ namespace API.SignalR
             return Task.FromResult(onlineUsers);
         }
 
-        public Task<List<string>> GetConnectionForUser(string username)
+        public Task<List<string>> GetConnectionsForUser(string username)
         {
             List<string> connectionIds;
             lock (OnlineUsers)
