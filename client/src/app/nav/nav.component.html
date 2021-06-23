@@ -27,6 +27,11 @@
           >Errors</a
         >
       </li>
+      <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
+        <a class="nav-link" routerLink="/admin" routerLinkActive="active"
+          >Admin</a
+        >
+      </li>
     </ul>
 
     <div
@@ -42,7 +47,7 @@
         class="dropdown-toggle text-light px-2"
         style="text-decoration: none"
         dropdownToggle
-        >Welcome {{ user.knownAs | titlecase }}
+        >Welcome {{ user.knownAs || user.username | titlecase }}
       </a>
       <div class="dropdown-menu mt-3" *dropdownMenu>
         <a class="dropdown-item" routerLink="/member/edit">Edit profile</a>
