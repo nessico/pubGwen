@@ -1,3 +1,4 @@
+using System;
 using API.Data;
 using API.Helpers;
 using API.Interfaces;
@@ -22,7 +23,7 @@ namespace API.Extensions
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+                options.UseNpgsql(config.GetConnectionString("awsProd"));
             });
             return services;
         }
