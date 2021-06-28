@@ -23,7 +23,7 @@ namespace API.Extensions
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseNpgsql(config.GetConnectionString("awsProd"));
+                options.UseNpgsql(config.GetConnectionString("DefaultConnection"));
             });
             return services;
         }

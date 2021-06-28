@@ -21,17 +21,12 @@
             >Messages</a
           >
         </li>
+        <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active"
+            >Admin</a
+          >
+        </li>
       </ng-container>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/errors" routerLinkActive="active"
-          >Errors</a
-        >
-      </li>
-      <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
-        <a class="nav-link" routerLink="/admin" routerLinkActive="active"
-          >Admin</a
-        >
-      </li>
     </ul>
 
     <div
