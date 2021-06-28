@@ -23,7 +23,26 @@ namespace API.Extensions
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseNpgsql(config.GetConnectionString("DefaultConnection"));
+                var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                // Depending on if in development or production, use either AWS or default connection
+                // For AWS/Github Code Pipeline LESSSS GOO!!
+                if (env == "Development")
+                {
+                    // Use connection string from file.
+                    options.UseNpgsql(config.GetConnectionString("DefaultConnection"));
+                }
+                else
+                {
+                    //use AWS connection string
+                    string dbname = Environment.GetEnvironmentVariable("RDS_DB_NAME");
+                    string username = Environment.GetEnvironmentVariable("RDS_USERNAME");
+                    string password = Environment.GetEnvironmentVariable("RDS_PASSWORD");
+                    string hostname = Environment.GetEnvironmentVariable("RDS_HOSTNAME");
+                    string port = Environment.GetEnvironmentVariable("RDS_PORT");
+
+                    string awsConnection = "Server=" + hostname + ";Database=" + dbname + ";User ID=" + username + ";Password=" + password + ";";
+                    options.UseNpgsql(awsConnection);
+                }
             });
             return services;
         }

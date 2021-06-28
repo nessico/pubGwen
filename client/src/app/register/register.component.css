@@ -3,5 +3,6 @@ body {
 }
 
 .btn-default {
-  color: #253544;
+  background-color: #253544;
+  color: white;
 }
