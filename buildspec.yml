@@ -1,0 +1,29 @@
+web: dotnet exec API/API.dll
+
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      dotnet: 5.0
+
+  pre_build:
+    commands:
+      - echo Restore started on `date`
+      - dotnet restore API/API.csproj
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - dotnet build API/API.csproj
+      - echo Test started on `date`
+      - dotnet test API/API.csproj
+
+  post_build:
+    commands:
+      - echo Publish started on `date`
+      - dotnet publish -c Release -r linux-x64 -o API API/API.csproj
+
+artifacts:
+  files:
+    - ./**/*
