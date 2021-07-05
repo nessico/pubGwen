@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
-using API.Entities;
+using Core.Entities;
 using API.Extensions;
-using API.Helpers;
-using API.Interfaces;
+using Core.Specifications;
+using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Core.Entities.Employee;
 
 namespace API.Controllers
 {
@@ -48,7 +49,7 @@ namespace API.Controllers
             return BadRequest("Failed to like user");
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<LikeDto>>> GetUserLikes([FromQuery] LikesParams likesParams)
+        public async Task<ActionResult<IEnumerable<Like>>> GetUserLikes([FromQuery] LikesParams likesParams)
         {
             likesParams.UserId = User.GetUserId();
             var users = await _unitOfWork.LikesRepository.GetUserLikes(likesParams);

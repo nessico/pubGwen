@@ -1,9 +1,11 @@
 using System;
 using System.Linq;
 using API.DTOs;
-using API.Entities;
-using API.Extensions;
+using Core.Entities;
+
 using AutoMapper;
+using Core.Specifications;
+using Core.Entities.Employee;
 
 namespace API.Helpers
 {
@@ -11,14 +13,14 @@ namespace API.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<AppUser, MemberDto>()
+            CreateMap<AppUser, Member>()
                 .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src =>
                     src.Photos.FirstOrDefault(x => x.IsMain).Url))
                 .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
-            CreateMap<Photo, PhotoDto>();
+            CreateMap<Photo, Photos>();
             CreateMap<MemberUpdateDto, AppUser>();
             CreateMap<RegisterDto, AppUser>();
-            CreateMap<Message, MessageDto>()
+            CreateMap<Message, Messages>()
                 .ForMember(dest => dest.SenderPhotoUrl, opt => opt.MapFrom(src => src.Sender.Photos.FirstOrDefault(x => x.IsMain).Url))
                 .ForMember(dest => dest.RecipientPhotoUrl, opt => opt.MapFrom(src => src.Recipient.Photos.FirstOrDefault(x => x.IsMain).Url));
 

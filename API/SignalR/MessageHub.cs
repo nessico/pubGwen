@@ -2,11 +2,12 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
-using API.Entities;
+using Core.Entities;
 using API.Extensions;
-using API.Interfaces;
+using Core.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.SignalR;
+using Core.Entities.Employee;
 
 namespace API.SignalR
 {
@@ -96,7 +97,7 @@ namespace API.SignalR
 
             if (await _unitOfWork.Complete())
             {
-                await Clients.Group(groupName).SendAsync("NewMessage", _mapper.Map<MessageDto>(message));
+                await Clients.Group(groupName).SendAsync("NewMessage", _mapper.Map<Messages>(message));
             }
         }
 

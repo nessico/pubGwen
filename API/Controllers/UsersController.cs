@@ -2,17 +2,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using API.Data;
+using Infrastructure.Data;
 using API.DTOs;
-using API.Entities;
+using Core.Entities;
 using API.Extensions;
-using API.Helpers;
-using API.Interfaces;
+using Core.Specifications;
+using Core.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Core.Entities.Employee;
 
 namespace API.Controllers
 {
@@ -32,7 +33,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
+        public async Task<ActionResult<IEnumerable<Member>>> GetUsers([FromQuery] UserParams userParams)
         {
             var gender = await _unitOfWork.UserRepository.GetUserGender(User.GetUsername());
             userParams.CurrentUsername = User.GetUsername();
@@ -50,7 +51,7 @@ namespace API.Controllers
 
         // Gives our root the name GetUser
         [HttpGet("{username}", Name = "GetUser")]
-        public async Task<ActionResult<MemberDto>> GetUser(string username)
+        public async Task<ActionResult<Member>> GetUser(string username)
         {
             return await _unitOfWork.UserRepository.GetMemberAsync(username);
         }
@@ -71,7 +72,7 @@ namespace API.Controllers
             return BadRequest("Failed to update user");
         }
         [HttpPost("add-photo")]
-        public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
+        public async Task<ActionResult<Photo>> AddPhoto(IFormFile file)
         {
             var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
@@ -94,7 +95,7 @@ namespace API.Controllers
 
             if (await _unitOfWork.Complete())
             {
-                return CreatedAtRoute("GetUser", new { username = user.UserName }, _mapper.Map<PhotoDto>(photo));
+                return CreatedAtRoute("GetUser", new { username = user.UserName }, _mapper.Map<Photo>(photo));
             }
 
 

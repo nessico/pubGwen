@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
-using API.Entities;
+using Core.Entities;
 using API.Extensions;
-using API.Helpers;
-using API.Interfaces;
+using Core.Specifications;
+using Core.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Core.Entities.Employee;
 
 namespace API.Controllers
 {
@@ -23,7 +24,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessagesForUser([FromQuery]
+        public async Task<ActionResult<IEnumerable<Messages>>> GetMessagesForUser([FromQuery]
             MessageParams messageParams)
         {
             messageParams.Username = User.GetUsername();

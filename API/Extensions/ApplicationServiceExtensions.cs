@@ -1,7 +1,7 @@
 using System;
-using API.Data;
+using Infrastructure.Data;
 using API.Helpers;
-using API.Interfaces;
+using Core.Interfaces;
 using API.Services;
 using API.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +21,7 @@ namespace API.Extensions
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<LogUserActivity>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddDbContext<StoreContext>(options => options.UseNpgsql(config.GetConnectionString("DefaultConnection")));
             services.AddDbContext<DataContext>(options =>
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
