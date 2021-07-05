@@ -19,7 +19,7 @@ namespace Infrastructure.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("API.Entities.AppRole", b =>
+            modelBuilder.Entity("Core.Entities.AppRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,7 +47,7 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("API.Entities.AppUser", b =>
+            modelBuilder.Entity("Core.Entities.AppUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -143,7 +143,7 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("API.Entities.AppUserRole", b =>
+            modelBuilder.Entity("Core.Entities.AppUserRole", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
@@ -158,7 +158,7 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("API.Entities.Connection", b =>
+            modelBuilder.Entity("Core.Entities.Connection", b =>
                 {
                     b.Property<string>("ConnectionId")
                         .HasColumnType("text");
@@ -176,7 +176,7 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("Connections");
                 });
 
-            modelBuilder.Entity("API.Entities.Group", b =>
+            modelBuilder.Entity("Core.Entities.Group", b =>
                 {
                     b.Property<string>("Name")
                         .HasColumnType("text");
@@ -186,7 +186,7 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("Groups");
                 });
 
-            modelBuilder.Entity("API.Entities.Message", b =>
+            modelBuilder.Entity("Core.Entities.Message", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -229,7 +229,7 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("API.Entities.Photo", b =>
+            modelBuilder.Entity("Core.Entities.Photo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -255,7 +255,7 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("API.Entities.UserLike", b =>
+            modelBuilder.Entity("Core.Entities.UserLike", b =>
                 {
                     b.Property<int>("SourceUserId")
                         .HasColumnType("integer");
@@ -356,15 +356,15 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("API.Entities.AppUserRole", b =>
+            modelBuilder.Entity("Core.Entities.AppUserRole", b =>
                 {
-                    b.HasOne("API.Entities.AppRole", "Role")
+                    b.HasOne("Core.Entities.AppRole", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Entities.AppUser", "User")
+                    b.HasOne("Core.Entities.AppUser", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -375,22 +375,22 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Entities.Connection", b =>
+            modelBuilder.Entity("Core.Entities.Connection", b =>
                 {
-                    b.HasOne("API.Entities.Group", null)
+                    b.HasOne("Core.Entities.Group", null)
                         .WithMany("Connections")
                         .HasForeignKey("GroupName");
                 });
 
-            modelBuilder.Entity("API.Entities.Message", b =>
+            modelBuilder.Entity("Core.Entities.Message", b =>
                 {
-                    b.HasOne("API.Entities.AppUser", "Recipient")
+                    b.HasOne("Core.Entities.AppUser", "Recipient")
                         .WithMany("MessagesReceived")
                         .HasForeignKey("RecipientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("API.Entities.AppUser", "Sender")
+                    b.HasOne("Core.Entities.AppUser", "Sender")
                         .WithMany("MessagesSent")
                         .HasForeignKey("SenderId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -401,9 +401,9 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("API.Entities.Photo", b =>
+            modelBuilder.Entity("Core.Entities.Photo", b =>
                 {
-                    b.HasOne("API.Entities.AppUser", "AppUser")
+                    b.HasOne("Core.Entities.AppUser", "AppUser")
                         .WithMany("Photos")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -412,15 +412,15 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("API.Entities.UserLike", b =>
+            modelBuilder.Entity("Core.Entities.UserLike", b =>
                 {
-                    b.HasOne("API.Entities.AppUser", "LikedUser")
+                    b.HasOne("Core.Entities.AppUser", "LikedUser")
                         .WithMany("LikedByUsers")
                         .HasForeignKey("LikedUserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("API.Entities.AppUser", "SourceUser")
+                    b.HasOne("Core.Entities.AppUser", "SourceUser")
                         .WithMany("LikedUsers")
                         .HasForeignKey("SourceUserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -433,7 +433,7 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("API.Entities.AppRole", null)
+                    b.HasOne("Core.Entities.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -442,7 +442,7 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("API.Entities.AppUser", null)
+                    b.HasOne("Core.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -451,7 +451,7 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("API.Entities.AppUser", null)
+                    b.HasOne("Core.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -460,19 +460,19 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("API.Entities.AppUser", null)
+                    b.HasOne("Core.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("API.Entities.AppRole", b =>
+            modelBuilder.Entity("Core.Entities.AppRole", b =>
                 {
                     b.Navigation("UserRoles");
                 });
 
-            modelBuilder.Entity("API.Entities.AppUser", b =>
+            modelBuilder.Entity("Core.Entities.AppUser", b =>
                 {
                     b.Navigation("LikedByUsers");
 
@@ -487,7 +487,7 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("UserRoles");
                 });
 
-            modelBuilder.Entity("API.Entities.Group", b =>
+            modelBuilder.Entity("Core.Entities.Group", b =>
                 {
                     b.Navigation("Connections");
                 });

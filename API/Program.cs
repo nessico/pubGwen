@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Infrastructure.Data;
 using Core.Entities;
+using Core.Entities.Employee;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,13 +22,17 @@ namespace API
             var host = CreateHostBuilder(args).Build();
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
+            var loggerFactory = services.GetRequiredService<ILoggerFactory>();
             try
             {
                 var context = services.GetRequiredService<DataContext>();
+                var storeContext = services.GetRequiredService<StoreContext>();
                 var userManager = services.GetRequiredService<UserManager<AppUser>>();
                 var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
                 await context.Database.MigrateAsync();
-                await Seed.SeedUsers(userManager, roleManager);
+                await storeContext.Database.MigrateAsync();
+                await EmployeeContextSeed.SeedUsers(userManager, roleManager);
+                await StoreContextSeed.SeedAsync(storeContext, loggerFactory);
             }
             catch (Exception ex)
             {

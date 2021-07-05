@@ -1,11 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Infrastructure.Data;
 
 namespace Infrastructure.Data.Migrations
 {
-    public partial class PostGresInitial : Migration
+    public partial class InitialEmp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
