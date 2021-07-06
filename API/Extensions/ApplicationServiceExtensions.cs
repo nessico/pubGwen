@@ -7,6 +7,9 @@ using API.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using API.Errors;
 
 namespace API.Extensions
 {
@@ -23,6 +26,24 @@ namespace API.Extensions
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
             services.AddScoped<LogUserActivity>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.Configure<ApiBehaviorOptions>(options =>
+           {
+               options.InvalidModelStateResponseFactory = actionContext =>
+               {
+                   var errors = actionContext.ModelState
+                       .Where(e => e.Value.Errors.Count > 0)
+                       .SelectMany(x => x.Value.Errors)
+                       .Select(x => x.ErrorMessage).ToArray();
+
+                   var errorResponse = new ApiValidationErrorResponse
+                   {
+                       Errors = errors
+                   };
+
+                   return new BadRequestObjectResult(errorResponse);
+               };
+           });
+
             //Default connection goes to a Docker PostgreSQL localhost server
             services.AddDbContext<StoreContext>(options => options.UseNpgsql(config.GetConnectionString("DefaultConnection")));
             services.AddDbContext<DataContext>(options =>

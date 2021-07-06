@@ -3,6 +3,7 @@ using Infrastructure.Data;
 using Core.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using API.Errors;
 
 namespace API.Controllers
 {
@@ -26,7 +27,7 @@ namespace API.Controllers
         {
             var thing = _context.Users.Find(-1);
 
-            if (thing == null) return NotFound();
+            if (thing == null) return NotFound(new ApiResponse(400));
 
             return Ok(thing);
         }
@@ -44,7 +45,13 @@ namespace API.Controllers
         [HttpGet("bad-request")]
         public ActionResult<string> GetBadRequest()
         {
-            return BadRequest();
+            return BadRequest(new ApiResponse(400));
+        }
+
+        [HttpGet("bad-request/{id}")]
+        public ActionResult GetNotFoundRequest(int id)
+        {
+            return Ok();
         }
     }
 }
