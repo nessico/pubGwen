@@ -3,6 +3,8 @@ using System;
 using System.Threading.Tasks;
 using Core.Entities;
 using System.Runtime.CompilerServices;
+using Core.Specifications;
+using System.Threading;
 
 namespace Core.Interfaces
 {
@@ -10,5 +12,7 @@ namespace Core.Interfaces
     {
         Task<T> GetByIdAsync(int id);
         Task<IReadOnlyList<T>> ListAllAsync();
+        Task<T> GetEntityWithSpec(ISpecification<T> spec);
+        Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
     }
 }

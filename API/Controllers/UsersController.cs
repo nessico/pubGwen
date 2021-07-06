@@ -6,7 +6,7 @@ using Infrastructure.Data;
 using API.DTOs;
 using Core.Entities;
 using API.Extensions;
-using Core.Specifications;
+using Core.Employee.Parameters;
 using Core.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;

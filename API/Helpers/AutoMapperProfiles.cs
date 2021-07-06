@@ -2,9 +2,8 @@ using System;
 using System.Linq;
 using API.DTOs;
 using Core.Entities;
-
 using AutoMapper;
-using Core.Specifications;
+using Core.Employee.Parameters;
 using Core.Entities.Employee;
 
 namespace API.Helpers

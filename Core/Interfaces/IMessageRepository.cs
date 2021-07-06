@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Entities.Employee;
 using Core.Entities;
-using Core.Specifications;
+using Core.Employee.Parameters;
 
 namespace Core.Interfaces
 {

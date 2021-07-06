@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace Core.Specifications
+namespace Core.Employee.Parameters
 {
     //Take <T> types of any entity
     public class PagedList<T> : List<T>

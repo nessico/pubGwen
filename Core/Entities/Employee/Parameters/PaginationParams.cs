@@ -1,4 +1,4 @@
-namespace Core.Specifications
+namespace Core.Employee.Parameters
 {
     public class PaginationParams
     {
