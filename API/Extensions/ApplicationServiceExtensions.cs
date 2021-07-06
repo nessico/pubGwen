@@ -20,14 +20,16 @@ namespace API.Extensions
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
             services.AddScoped<LogUserActivity>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            //Default connection goes to a Docker PostgreSQL localhost server
             services.AddDbContext<StoreContext>(options => options.UseNpgsql(config.GetConnectionString("DefaultConnection")));
             services.AddDbContext<DataContext>(options =>
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-                // Depending on if in development or production, use either AWS or default connection
-                // For AWS/Github Code Pipeline LESSSS GOO!!
+                // Depending on if in development or production, use either AWS RDS or localhost
+                // For AWS/Github Code Pipeline
                 if (env == "Development")
                 {
                     // Use connection string from file.
