@@ -1,6 +1,6 @@
-<h2 align="center">Welcome to Gwen`s  Wedding Boutiques 👋</h2>
+<h3 align="center">Welcome to Gwen`s  Wedding Boutiques 👋</h3>
 
-###✨ [Demo](http://gwenecbl1.us-east-2.elasticbeanstalk.com)
+### ✨ [Demo](http://gwenecbl1.us-east-2.elasticbeanstalk.com)
 May be down due to the cost of hosting on AWS
 
 
@@ -14,6 +14,7 @@ May be down due to the cost of hosting on AWS
 - Pagination, sorting, and filtering for store items and employees with IQueryables
 
 ## Tech
+
 - PayPal API for payment processing
 - Cloudinary API for media management
 - SignalR API for real-time online presence, live chat, and notifications
@@ -24,7 +25,8 @@ May be down due to the cost of hosting on AWS
 - Angular and BootStrap modules for styling, e.g. toastr, ngx-bootstrap
 - MS SQL Server for database management -> migrated to PostGreSQL PgAdmin for deployment costs
 
--
+--
+
 - Identity and Role Management using ASPNET.Identity with hashed and salted passwords for users
 - JWT for user authentication, SSL to encrypt incoming user information
 - Angular route/auth guards, client-side form validation, API-side data annotations validation, DTOs to encapsulate properties from client
@@ -55,6 +57,7 @@ Implemented design patterns:
 | Unit Of Work | api |
 | Observable |  client  for async pipe , use $ at end of varname to identify it as observable|
 | ? |  Http Client|
+| service locator| api |
 | Dependency Injection| api and client|
 | Promise | client async send message in message.service.ts cant sub to a promise |
 | Specification | GenericRepository with specific pattern to avoid leaky abstractions|
