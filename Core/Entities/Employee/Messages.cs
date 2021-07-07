@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Core.Entities.Employee
 {
+    //Object to populate client side
     public class Messages
     {
         public int Id { get; set; }

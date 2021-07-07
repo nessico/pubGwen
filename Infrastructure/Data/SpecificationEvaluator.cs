@@ -16,6 +16,7 @@ namespace Infrastructure.Data
             var query = inputQuery;
 
             //Get a product where the product is equal to the criteria, spec.Criteria replaces p => p.ProductTypeId == id
+            //Spec follows BaseSpecification.cs for sorting, filtering, pagination
             if (spec.Criteria != null)
             {
                 query = query.Where(spec.Criteria);
@@ -29,6 +30,11 @@ namespace Infrastructure.Data
             if (spec.OrderByDescending != null)
             {
                 query = query.OrderByDescending(spec.OrderByDescending);
+            }
+
+            if (spec.isPagingEnabled)
+            {
+                query = query.Skip(spec.Skip).Take(spec.Take);
             }
 
 
