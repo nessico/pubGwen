@@ -20,7 +20,6 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  @Output() cancelRegister = new EventEmitter();
   registerForm!: FormGroup;
 
   maxDate!: Date;
@@ -89,7 +88,5 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  cancel() {
-    this.cancelRegister.emit(false);
-  }
+
 }
