@@ -4,6 +4,14 @@
 May be down due to the cost of hosting on AWS
 
 
+# Table of contents
+
+* [Features](#Features)
+* [Tech](#Tech)
+* [Architecture](#Architecture)
+* [Design Patterns](#Design-Patterns)
+* [Install](#Install)
+
 ## Features
 > E-Commerce full-stack application built on .NET and Angular, deployed on AWS
 
@@ -32,7 +40,7 @@ May be down due to the cost of hosting on AWS
 - Angular route/auth guards, client-side form validation, API-side data annotations validation, DTOs to encapsulate properties from client
 - etc... 
 
-## Architecture and Design Patterns
+## Architecture
 > Follows Domain-Driven Design (DDD) and SOLID principles:
 
 Adhered to Microsoft`s Clean Architecture:
@@ -47,7 +55,7 @@ Adhered to Microsoft`s Clean Architecture:
 		
 ![](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/media/image5-7.png)
 
-
+## Design Patterns
 Implemented design patterns:
 
 | Pattern | Description |
