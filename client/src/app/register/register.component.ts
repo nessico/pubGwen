@@ -22,6 +22,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
   registerForm!: FormGroup;
+
   maxDate!: Date;
   minDate!: Date;
   validationErrors: string[] = [];
@@ -57,8 +58,11 @@ export class RegisterComponent implements OnInit {
           '',
           [
             Validators.required,
-            Validators.minLength(4),
+            Validators.minLength(6),
             Validators.maxLength(8),
+            Validators.pattern(
+              '(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{1,}'
+            ),
           ],
         ],
         confirmPassword: ['', Validators.required],
