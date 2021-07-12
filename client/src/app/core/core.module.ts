@@ -8,8 +8,9 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { SharedModule } from '../shared/shared.module';
 import { HasRoleDirective } from './_directives/has-role.directive';
-import { EmployeeModule } from '../employee/employee.module';
+
 import { AppRoutingModule } from '../app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -20,10 +21,12 @@ import { AppRoutingModule } from '../app-routing.module';
     NotFoundComponent,
     ServerErrorComponent,
     TestErrorsComponent,
+   
   ],
   imports: [CommonModule, SharedModule, AppRoutingModule],
   exports: [
     NavComponent,
+    HasRoleDirective,
     ConfirmDialogComponent,
     RolesModalComponent,
     NotFoundComponent,
