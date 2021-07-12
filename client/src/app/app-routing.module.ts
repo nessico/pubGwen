@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminPanelComponent } from './admin/admin-panel.component';
-import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { ServerErrorComponent } from './errors/server-error/server-error.component';
-import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { AdminPanelComponent } from './employee/admin/admin-panel.component';
+import { NotFoundComponent } from './core/errors/not-found/not-found.component';
+import { ServerErrorComponent } from './core/errors/server-error/server-error.component';
+import { TestErrorsComponent } from './core/errors/test-errors/test-errors.component';
 import { HomeComponent } from './home/home.component';
-import { ListsComponent } from './lists/lists.component';
-import { LoginComponent } from './login/login.component';
-import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { MemberEditComponent } from './members/member-edit/member-edit.component';
-import { MemberListComponent } from './members/member-list/member-list.component';
-import { MessagesComponent } from './messages/messages.component';
-import { RegisterComponent } from './register/register.component';
-import { AdminGuard } from './_guards/admin.guard';
-import { AuthGuard } from './_guards/auth.guard';
-import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
-import { MemberDetailedResolver } from './_resolvers/member-detailed.resolver';
+import { ListsComponent } from './employee/lists/lists.component';
+import { LoginComponent } from './employee/login/login.component';
+import { MemberDetailComponent } from './employee/members/member-detail/member-detail.component';
+import { MemberEditComponent } from './employee/members/member-edit/member-edit.component';
+import { MemberListComponent } from './employee/members/member-list/member-list.component';
+import { MessagesComponent } from './employee/messages/messages.component';
+import { RegisterComponent } from './employee/register/register.component';
+import { AdminGuard } from './core/_guards/admin.guard';
+import { AuthGuard } from './core/_guards/auth.guard';
+import { PreventUnsavedChangesGuard } from './core/_guards/prevent-unsaved-changes.guard';
+import { MemberDetailedResolver } from './core/_resolvers/member-detailed.resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
