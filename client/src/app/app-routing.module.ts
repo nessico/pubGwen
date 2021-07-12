@@ -16,9 +16,14 @@ import { AdminGuard } from './core/_guards/admin.guard';
 import { AuthGuard } from './core/_guards/auth.guard';
 import { PreventUnsavedChangesGuard } from './core/_guards/prevent-unsaved-changes.guard';
 import { MemberDetailedResolver } from './core/_resolvers/member-detailed.resolver';
+import { ShopComponent } from './shop/shop.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  {
+    path: 'shop',
+    component: ShopComponent
+  },
   {
     path: 'login',
     component: LoginComponent,

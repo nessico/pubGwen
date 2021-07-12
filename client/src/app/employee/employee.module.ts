@@ -30,6 +30,18 @@ import { AppRoutingModule } from '../app-routing.module';
     MemberMessagesComponent,
   ],
   imports: [CommonModule, CoreModule, SharedModule, AppRoutingModule],
-  exports: [],
+  exports: [
+    AdminPanelComponent,
+    UserManagementComponent,
+    LoginComponent,
+    ListsComponent,
+    MemberListComponent,
+    MemberDetailComponent,
+    MessagesComponent,
+    MemberCardComponent,
+    MemberEditComponent,
+    PhotoEditorComponent,
+    MemberMessagesComponent,
+  ],
 })
 export class EmployeeModule {}

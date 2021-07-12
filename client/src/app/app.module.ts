@@ -22,13 +22,10 @@ import { MemberMessagesComponent } from './employee/members/member-messages/memb
 import { LoginComponent } from './employee/login/login.component';
 import { CoreModule } from './core/core.module';
 import { EmployeeModule } from './employee/employee.module';
+import { ShopModule } from './shop/shop.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    RegisterComponent,
-  ],
+  declarations: [AppComponent, HomeComponent, RegisterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,7 +34,8 @@ import { EmployeeModule } from './employee/employee.module';
     CoreModule,
     SharedModule,
     NgxSpinnerModule,
-    EmployeeModule
+    EmployeeModule,
+    ShopModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
