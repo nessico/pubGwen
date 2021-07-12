@@ -2,32 +2,38 @@
   <div class="row">
     <section class="col-3">
       <h5 class="text-warning ml-3 my-2">Sort</h5>
-      <select class="form-select mb-2">
-        <option selected>Alphabetical</option>
-        <option>Price: Low to High</option>
-        <option>Price: High to Low</option>
+      <select class="form-select mb-2" (change)="onSortSelected($event)">
+        <option *ngFor="let sort of sortOptions" [value]="sort.value">
+          {{ sort.name }}
+        </option>
       </select>
 
       <h5 class="text-warning ml-3 my-2">Brands</h5>
       <ul class="list-group my-3">
-        <li class="list-group-item active" aria-current="true">
-          An active item
+        <li
+          class="list-group-item"
+          *ngFor="let brand of brands"
+          [class.active]="brand.id === this.brandIdSelected"
+          [value]="brand.id"
+          (click)="onBrandSelected(brand.id)"
+          aria-current="true"
+        >
+          {{ brand.name }}
         </li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
       </ul>
 
       <h5 class="text-warning ml-3 my-2">Types</h5>
       <ul class="list-group my-3">
-        <li class="list-group-item active" aria-current="true">
-          An active item
+        <li
+          class="list-group-item"
+          *ngFor="let type of types"
+          [class.active]="type.id === this.typeIdSelected"
+          [value]="type.id"
+          (click)="onTypeSelected(type.id)"
+          aria-current="true"
+        >
+          {{ type.name }}
         </li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
       </ul>
     </section>
 
