@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { User } from '../../shared/_models/user';
+import { User } from '../../shared/_models/employeeModels/user';
 import { AccountService } from '../../employee/_services/account.service';
 
 @Component({

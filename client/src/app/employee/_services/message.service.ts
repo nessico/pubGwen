@@ -4,9 +4,9 @@ import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Group } from 'src/app/shared/_models/group';
-import { Message } from 'src/app/shared/_models/message';
-import { User } from 'src/app/shared/_models/user';
+import { Group } from 'src/app/shared/_models/employeeModels/group';
+import { Message } from 'src/app/shared/_models/employeeModels/message';
+import { User } from 'src/app/shared/_models/employeeModels/user';
 import { BusyService } from './busy.service';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 

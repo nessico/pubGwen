@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Message } from 'src/app/shared/_models/message';
+import { Message } from 'src/app/shared/_models/employeeModels/message';
 import { MembersService } from 'src/app/employee/_services/members.service';
 import { MessageService } from 'src/app/employee/_services/message.service';
 

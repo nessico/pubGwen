@@ -8,13 +8,13 @@ import {
   NgxGalleryOptions,
 } from '@kolkov/ngx-gallery';
 import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
-import { Member } from 'src/app/shared/_models/member';
-import { Message } from 'src/app/shared/_models/message';
+import { Member } from 'src/app/shared/_models/employeeModels/member';
+import { Message } from 'src/app/shared/_models/employeeModels/message';
 import { MembersService } from 'src/app/employee/_services/members.service';
 import { MessageService } from 'src/app/employee/_services/message.service';
 import { AccountService } from 'src/app/employee/_services/account.service';
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/shared/_models/user';
+import { User } from 'src/app/shared/_models/employeeModels/user';
 import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 

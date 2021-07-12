@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { User } from 'src/app/shared/_models/user';
+import { User } from 'src/app/shared/_models/employeeModels/user';
 ``;
 
 
