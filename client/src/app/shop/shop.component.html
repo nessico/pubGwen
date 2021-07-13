@@ -46,22 +46,26 @@
         ></app-paging-header>
         <form class="row row-cols-lg-auto g-3 align-items-center mt-2">
           <div class="col-auto">
-            <div class="form-group">
-              <input
-                class="form-control"
-                style="width: 300px"
-                placeholder="Search"
-                type="text"
-              />
-            </div>
+            <input
+              (keyup.enter)="onSearch()"
+              class="form-control"
+              style="width: 300px"
+              placeholder="Search"
+              type="text"
+              #search
+            />
           </div>
 
           <div class="col-auto">
-            <button class="btn btn-outline-primary my-2">Search</button>
+            <button (click)="onSearch()" class="btn btn-outline-primary my-2">
+              Search
+            </button>
           </div>
 
-          <div class="col-auto">
-            <button class="btn btn-outline-success my-2">Reset</button>
+        <div class="col-auto">
+            <button (click)="onReset()" class="btn btn-outline-success my-2">
+              Reset
+            </button>
           </div>
         </form>
       </div>

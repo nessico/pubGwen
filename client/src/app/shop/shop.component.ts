@@ -3,8 +3,9 @@ import { IType } from './../shared/_models/shopModels/productType';
 
 import { IBrand } from './../shared/_models/shopModels/productBrand';
 import { ShopService } from './shop.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { IProduct } from '../shared/_models/shopModels/product';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-shop',
@@ -12,6 +13,7 @@ import { IProduct } from '../shared/_models/shopModels/product';
   styleUrls: ['./shop.component.scss'],
 })
 export class ShopComponent implements OnInit {
+  @ViewChild('search', { static: true }) searchTerm!: ElementRef;
   products!: IProduct[];
   brands!: IBrand[];
   types!: IType[];
@@ -79,6 +81,17 @@ export class ShopComponent implements OnInit {
 
   onSortSelected(event: any) {
     this.shopParams.sort = event.target.value.toString();
+    this.getProducts();
+  }
+
+  onSearch() {
+    this.shopParams.search = this.searchTerm.nativeElement.value;
+    this.getProducts();
+  }
+
+  onReset() {
+    this.searchTerm.nativeElement.value = '';
+    this.shopParams = new ShopParams();
     this.getProducts();
   }
 
