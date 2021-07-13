@@ -11,9 +11,11 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TimeagoModule } from 'ngx-timeago';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PagingHeaderComponent } from './components/shopComponents/paging-header/paging-header.component';
+import { PagerComponent } from './components/shopComponents/pager/pager.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [PagingHeaderComponent, PagerComponent],
   imports: [
     CommonModule,
     BsDropdownModule.forRoot(),
@@ -44,6 +46,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModalModule,
     FormsModule,
     ReactiveFormsModule,
+    PagingHeaderComponent,
+    PagerComponent,
   ],
 })
 export class SharedModule {}
