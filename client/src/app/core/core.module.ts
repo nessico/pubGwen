@@ -9,8 +9,8 @@ import { TestErrorsComponent } from './errors/test-errors/test-errors.component'
 import { SharedModule } from '../shared/shared.module';
 import { HasRoleDirective } from './_directives/has-role.directive';
 
-import { AppRoutingModule } from '../app-routing.module';
 import { HomeModule } from '../home/home.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -23,7 +23,7 @@ import { HomeModule } from '../home/home.module';
     ServerErrorComponent,
     TestErrorsComponent,
   ],
-  imports: [CommonModule, SharedModule, AppRoutingModule, HomeModule],
+  imports: [CommonModule, SharedModule, RouterModule, HomeModule],
   exports: [
     NavComponent,
     HasRoleDirective,

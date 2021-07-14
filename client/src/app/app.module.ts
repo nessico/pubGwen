@@ -1,3 +1,4 @@
+import { ShopRoutingModule } from './shop/shop-routing.module';
 import { HomeModule } from './home/home.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './core/_interceptors/loading.interceptor';
 import { CoreModule } from './core/core.module';
 import { EmployeeModule } from './employee/employee.module';
-import { ShopModule } from './shop/shop.module';
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent],
@@ -26,8 +26,8 @@ import { ShopModule } from './shop/shop.module';
     SharedModule,
     NgxSpinnerModule,
     EmployeeModule,
-    ShopModule,
     HomeModule,
+    ShopRoutingModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

@@ -13,8 +13,8 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
-import { AppRoutingModule } from '../app-routing.module';
 import { HomeModule } from '../home/home.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { HomeModule } from '../home/home.module';
     PhotoEditorComponent,
     MemberMessagesComponent,
   ],
-  imports: [CommonModule, CoreModule, SharedModule, AppRoutingModule, HomeModule],
+  imports: [CommonModule, CoreModule, SharedModule, RouterModule, HomeModule],
   exports: [
     AdminPanelComponent,
     UserManagementComponent,

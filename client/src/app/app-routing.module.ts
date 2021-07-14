@@ -23,11 +23,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   {
     path: 'shop',
-    component: ShopComponent
-  },
-  {
-    path: 'shop/:id',
-    component: ProductDetailsComponent,
+    loadChildren: () =>
+      import('./shop/shop.module').then((mod) => mod.ShopModule),
   },
   {
     path: 'login',
