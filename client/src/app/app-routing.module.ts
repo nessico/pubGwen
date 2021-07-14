@@ -16,23 +16,25 @@ import { AdminGuard } from './core/_guards/admin.guard';
 import { AuthGuard } from './core/_guards/auth.guard';
 import { PreventUnsavedChangesGuard } from './core/_guards/prevent-unsaved-changes.guard';
 import { MemberDetailedResolver } from './core/_resolvers/member-detailed.resolver';
-import { ShopComponent } from './shop/shop.component';
-import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
+
   {
     path: 'shop',
     loadChildren: () =>
       import('./shop/shop.module').then((mod) => mod.ShopModule),
+    data: { breadcrumb: 'Shop' },
   },
   {
     path: 'login',
     component: LoginComponent,
+    data: { breadcrumb: 'Login' },
   },
   {
     path: 'register',
     component: RegisterComponent,
+    data: { breadcrumb: 'Register' },
   },
   {
     path: '',
@@ -42,30 +44,60 @@ const routes: Routes = [
       {
         path: 'members',
         component: MemberListComponent,
+        data: { breadcrumb: 'Members' },
       },
       {
         path: 'members/:username',
         component: MemberDetailComponent,
         resolve: { member: MemberDetailedResolver },
+        data: { breadcrumb: { alias: 'memberDetails' } },
       },
       {
         path: 'member/edit',
         component: MemberEditComponent,
         canDeactivate: [PreventUnsavedChangesGuard],
+        data: { breadcrumb: 'Edit' },
       },
-      { path: 'lists', component: ListsComponent },
-      { path: 'messages', component: MessagesComponent },
+      {
+        path: 'lists',
+        component: ListsComponent,
+        data: { breadcrumb: 'Members' },
+      },
+
+      {
+        path: 'messages',
+        component: MessagesComponent,
+        data: { breadcrumb: 'Messages' },
+      },
       {
         path: 'admin',
         component: AdminPanelComponent,
         canActivate: [AdminGuard],
+        data: { breadcrumb: 'Admin' },
       },
     ],
   },
-  { path: 'errors', component: TestErrorsComponent },
-  { path: 'not-found', component: NotFoundComponent },
-  { path: 'server-error', component: ServerErrorComponent },
-  { path: '**', component: NotFoundComponent, pathMatch: 'full' },
+  {
+    path: 'errors',
+    component: TestErrorsComponent,
+    data: { breadcrumb: 'Test Errors' },
+  },
+  {
+    path: 'not-found',
+    component: NotFoundComponent,
+    data: { breadcrumb: 'Not Found' },
+  },
+  {
+    path: 'server-error',
+    component: ServerErrorComponent,
+    data: { breadcrumb: 'Server Error' },
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    pathMatch: 'full',
+    data: { breadcrumb: 'Not Found' },
+  },
 ];
 
 @NgModule({

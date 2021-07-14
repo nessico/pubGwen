@@ -1,3 +1,4 @@
+import { BreadcrumbModule } from 'xng-breadcrumb'
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -32,6 +33,7 @@ import { PagerComponent } from './components/shopComponents/pager/pager.componen
     ModalModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+
   ],
   exports: [
     BsDropdownModule,
@@ -48,6 +50,7 @@ import { PagerComponent } from './components/shopComponents/pager/pager.componen
     ReactiveFormsModule,
     PagingHeaderComponent,
     PagerComponent,
+   
   ],
 })
 export class SharedModule {}

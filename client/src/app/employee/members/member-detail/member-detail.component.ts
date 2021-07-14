@@ -1,3 +1,4 @@
+import { BreadcrumbService } from 'xng-breadcrumb';
 import { PresenceService } from './../../_services/presence.service';
 import { OnDestroy, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
@@ -39,7 +40,8 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     private accountService: AccountService,
     private router: Router,
     private memberService: MembersService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private bcService: BreadcrumbService
   ) {
     this.accountService.currentUser$
       .pipe(take(1))
@@ -68,6 +70,9 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
       },
     ];
     this.galleryImages = this.getImages();
+
+    this.bcService.set('@memberDetails', this.member.knownAs);
+ 
   }
 
   getImages(): NgxGalleryImage[] {

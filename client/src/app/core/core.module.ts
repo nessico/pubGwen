@@ -1,3 +1,4 @@
+import { BreadcrumbModule } from 'xng-breadcrumb';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from './nav/nav.component';
@@ -24,7 +25,13 @@ import { SectionHeaderComponent } from './section-header/section-header.componen
     TestErrorsComponent,
     SectionHeaderComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule, HomeModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule,
+    HomeModule,
+    BreadcrumbModule,
+  ],
   exports: [
     NavComponent,
     HasRoleDirective,
