@@ -1,4 +1,4 @@
-import { BreadcrumbModule } from 'xng-breadcrumb'
+import { BreadcrumbModule } from 'xng-breadcrumb';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -14,6 +14,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PagingHeaderComponent } from './components/shopComponents/paging-header/paging-header.component';
 import { PagerComponent } from './components/shopComponents/pager/pager.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [PagingHeaderComponent, PagerComponent],
@@ -33,7 +34,7 @@ import { PagerComponent } from './components/shopComponents/pager/pager.componen
     ModalModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-
+    CarouselModule.forRoot(),
   ],
   exports: [
     BsDropdownModule,
@@ -50,7 +51,7 @@ import { PagerComponent } from './components/shopComponents/pager/pager.componen
     ReactiveFormsModule,
     PagingHeaderComponent,
     PagerComponent,
-   
+    CarouselModule,
   ],
 })
 export class SharedModule {}

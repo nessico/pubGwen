@@ -2,8 +2,8 @@
   <div class="row">
     <section class="col-3">
       <ng-container *ngIf="types && brands">
-        <h5 class="text-warning ml-3 my-2">Sort</h5>
-        <select class="form-select mb-2" (change)="onSortSelected($event)">
+        <h5 class="text-warning ml-3 my-2 mt-4">Sort</h5>
+        <select class="form-select my-3" (change)="onSortSelected($event)">
           <option *ngFor="let sort of sortOptions" [value]="sort.value">
             {{ sort.name }}
           </option>
@@ -47,7 +47,7 @@
           [pageSize]="this.shopParams.pageSize"
         ></app-paging-header>
         <form
-          class="row row-cols-lg-auto g-3 align-items-center mt-2"
+          class="row row-cols-lg-auto g-3 align-items-center"
           *ngIf="products"
         >
           <div class="col-auto">

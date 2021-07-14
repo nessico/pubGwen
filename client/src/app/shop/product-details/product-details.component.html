@@ -1,42 +1,44 @@
-<div class="row" *ngIf="product">
-  <div class="col-6">
-    <img
-      src="{{ product.pictureUrl }}"
-      alt="{{ product.name }}"
-      class="img-fluid w-100"
-    />
-  </div>
-  <div class="col-6">
-    <h3>{{ product.name }}</h3>
-    <p>{{ product.price | currency }}</p>
-    <div class="row row-cols-lg-auto g-2 align-items-center mt-2">
-      <div class="col-auto">
-        <i
-          class="fa fa-minus-circle text-warning"
-          style="cursor: pointer; font-size: 2em"
-        ></i>
-      </div>
+<div class="container">
+  <div class="row" *ngIf="product">
+    <div class="col-6">
+      <img
+        src="{{ product.pictureUrl }}"
+        alt="{{ product.name }}"
+        class="img-fluid w-100"
+      />
+    </div>
+    <div class="col-6">
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.price | currency }}</p>
+      <div class="row row-cols-lg-auto g-2 align-items-center mt-2">
+        <div class="col-auto">
+          <i
+            class="fa fa-minus-circle text-warning"
+            style="cursor: pointer; font-size: 2em"
+          ></i>
+        </div>
 
-      <div class="col-auto">
-        <span class="font-weight-bold" style="font-size: 1.5em">2</span>
-      </div>
+        <div class="col-auto">
+          <span class="font-weight-bold" style="font-size: 1.5em">2</span>
+        </div>
 
-      <div class="col-auto">
-        <i
-          class="fa fa-plus-circle text-warning"
-          style="cursor: pointer; font-size: 2em"
-        ></i>
-      </div>
+        <div class="col-auto">
+          <i
+            class="fa fa-plus-circle text-warning"
+            style="cursor: pointer; font-size: 2em"
+          ></i>
+        </div>
 
-      <div class="col-auto px-4">
-        <button class="btn btn-outline-secondary btn-lg">Add to Cart</button>
+        <div class="col-auto px-4">
+          <button class="btn btn-outline-secondary btn-lg">Add to Cart</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row mt-5">
-    <div class="col-12 ml-3">
-      <h4>Description</h4>
-      <p>{{ product.description }}</p>
+    <div class="row mt-5">
+      <div class="col-12 ml-3">
+        <h4>Description</h4>
+        <p>{{ product.description }}</p>
+      </div>
     </div>
   </div>
 </div>
