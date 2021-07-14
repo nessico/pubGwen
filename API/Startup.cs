@@ -25,6 +25,10 @@ namespace API
         {
             //DbContext, repositories, misc services
             services.AddApplicationServices(_config);
+            services.AddSingleton<ConnectionMultiplexer>(c => {
+                var configuration = ConfigurationOptions. Parse(_config.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
             services.AddControllers();
             services.AddCors();
             services.AddIdentityServices(_config);
