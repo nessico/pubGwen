@@ -7,7 +7,7 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Member } from '../../shared/_models/employeeModels/member';
-import { MembersService } from '../../employee/_services/members.service';
+import { MembersService } from '../../employee/employeeServices/members.service';
 
 @Injectable({
   providedIn: 'root',

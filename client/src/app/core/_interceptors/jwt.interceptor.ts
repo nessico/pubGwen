@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AccountService } from '../../employee/_services/account.service';
+import { AccountService } from '../../employee/employeeServices/account.service';
 import { User } from '../../shared/_models/employeeModels/user';
 import { take } from 'rxjs/operators';
 

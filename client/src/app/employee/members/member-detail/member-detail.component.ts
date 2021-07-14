@@ -1,5 +1,5 @@
 import { BreadcrumbService } from 'xng-breadcrumb';
-import { PresenceService } from './../../_services/presence.service';
+import { PresenceService } from '../../employeeServices/presence.service';
 import { OnDestroy, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -11,9 +11,9 @@ import {
 import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Member } from 'src/app/shared/_models/employeeModels/member';
 import { Message } from 'src/app/shared/_models/employeeModels/message';
-import { MembersService } from 'src/app/employee/_services/members.service';
-import { MessageService } from 'src/app/employee/_services/message.service';
-import { AccountService } from 'src/app/employee/_services/account.service';
+import { MembersService } from 'src/app/employee/employeeServices/members.service';
+import { MessageService } from 'src/app/employee/employeeServices/message.service';
+import { AccountService } from 'src/app/employee/employeeServices/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/shared/_models/employeeModels/user';
 import { take } from 'rxjs/operators';

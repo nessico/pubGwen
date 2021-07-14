@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Group } from 'src/app/shared/_models/employeeModels/group';
 import { Message } from 'src/app/shared/_models/employeeModels/message';
 import { User } from 'src/app/shared/_models/employeeModels/user';
-import { BusyService } from './busy.service';
+import { BusyService } from '../../core/services/busy.service';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
 @Injectable({

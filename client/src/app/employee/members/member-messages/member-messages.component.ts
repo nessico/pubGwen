@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Message } from 'src/app/shared/_models/employeeModels/message';
-import { MembersService } from 'src/app/employee/_services/members.service';
-import { MessageService } from 'src/app/employee/_services/message.service';
+import { MembersService } from 'src/app/employee/employeeServices/members.service';
+import { MessageService } from 'src/app/employee/employeeServices/message.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

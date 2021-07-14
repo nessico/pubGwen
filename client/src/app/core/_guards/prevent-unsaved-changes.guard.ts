@@ -7,7 +7,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MemberEditComponent } from '../../employee/members/member-edit/member-edit.component';
-import { ConfirmService } from '../../employee/_services/confirm.service';
+import { ConfirmService } from '../../employee/employeeServices/confirm.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from './shared/_models/employeeModels/user';
 import { environment } from 'src/environments/environment';
-import { AccountService } from './employee/_services/account.service';
-import { PresenceService } from './employee/_services/presence.service';
+import { AccountService } from './employee/employeeServices/account.service';
+import { PresenceService } from './employee/employeeServices/presence.service';
 
 @Component({
   selector: 'app-root',

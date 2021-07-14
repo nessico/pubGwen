@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from '../../shared/_models/employeeModels/message';
 import { Pagination } from '../../shared/_models/employeeModels/pagination';
-import { ConfirmService } from '../_services/confirm.service';
-import { MessageService } from '../_services/message.service';
+import { ConfirmService } from '../employeeServices/confirm.service';
+import { MessageService } from '../employeeServices/message.service';
 
 @Component({
   selector: 'app-messages',
