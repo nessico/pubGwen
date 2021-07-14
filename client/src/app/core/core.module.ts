@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HasRoleDirective } from './_directives/has-role.directive';
 
 import { AppRoutingModule } from '../app-routing.module';
+import { HomeModule } from '../home/home.module';
 
 
 @NgModule({
@@ -21,9 +22,8 @@ import { AppRoutingModule } from '../app-routing.module';
     NotFoundComponent,
     ServerErrorComponent,
     TestErrorsComponent,
-   
   ],
-  imports: [CommonModule, SharedModule, AppRoutingModule],
+  imports: [CommonModule, SharedModule, AppRoutingModule, HomeModule],
   exports: [
     NavComponent,
     HasRoleDirective,

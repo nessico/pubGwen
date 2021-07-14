@@ -14,6 +14,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { HomeModule } from '../home/home.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { AppRoutingModule } from '../app-routing.module';
     PhotoEditorComponent,
     MemberMessagesComponent,
   ],
-  imports: [CommonModule, CoreModule, SharedModule, AppRoutingModule],
+  imports: [CommonModule, CoreModule, SharedModule, AppRoutingModule, HomeModule],
   exports: [
     AdminPanelComponent,
     UserManagementComponent,

@@ -17,12 +17,17 @@ import { AuthGuard } from './core/_guards/auth.guard';
 import { PreventUnsavedChangesGuard } from './core/_guards/prevent-unsaved-changes.guard';
 import { MemberDetailedResolver } from './core/_resolvers/member-detailed.resolver';
 import { ShopComponent } from './shop/shop.component';
+import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   {
     path: 'shop',
     component: ShopComponent
+  },
+  {
+    path: 'shop/:id',
+    component: ProductDetailsComponent,
   },
   {
     path: 'login',

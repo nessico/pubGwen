@@ -1,10 +1,10 @@
+import { HomeModule } from './home/home.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './employee/register/register.component';
 import { SharedModule } from './shared/shared.module';
 import { ErrorInterceptor } from './core/_interceptors/error.interceptor';
@@ -16,7 +16,7 @@ import { EmployeeModule } from './employee/employee.module';
 import { ShopModule } from './shop/shop.module';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, RegisterComponent],
+  declarations: [AppComponent, RegisterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,6 +27,7 @@ import { ShopModule } from './shop/shop.module';
     NgxSpinnerModule,
     EmployeeModule,
     ShopModule,
+    HomeModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
