@@ -8,19 +8,17 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
-
   constructor(private toastr: ToastrService) {}
 
   ngOnInit(): void {}
 
-
-
   learnMore() {
-    this.toastr.info('Ada, Pa$$w0rd </br> Admin, adminPa$$w0rd', 'Try:', {
-      enableHtml: true,
-    });
+    this.toastr.info(
+      'Ada, Pa$$w0rd </br> Admin, adminPa$$w0rd',
+      'Try Logins:',
+      {
+        enableHtml: true,
+      }
+    );
   }
-
-
 }
