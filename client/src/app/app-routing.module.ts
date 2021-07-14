@@ -16,6 +16,10 @@ import { AdminGuard } from './core/_guards/admin.guard';
 import { AuthGuard } from './core/_guards/auth.guard';
 import { PreventUnsavedChangesGuard } from './core/_guards/prevent-unsaved-changes.guard';
 import { MemberDetailedResolver } from './core/_resolvers/member-detailed.resolver';
+import { ShopComponent } from './shop/shop.component';
+import { ProductDetailsComponent } from './shop/product-details/product-details.component';
+import { BreadcrumbService } from 'xng-breadcrumb';
+import { Resolver } from 'dns';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
@@ -24,7 +28,7 @@ const routes: Routes = [
     path: 'shop',
     loadChildren: () =>
       import('./shop/shop.module').then((mod) => mod.ShopModule),
-    data: { breadcrumb: 'Shop' },
+    data: { breadcrumb: 'Shop', skip: false },
   },
   {
     path: 'login',
@@ -49,8 +53,10 @@ const routes: Routes = [
       {
         path: 'members/:username',
         component: MemberDetailComponent,
-        resolve: { member: MemberDetailedResolver },
         data: { breadcrumb: { alias: 'memberDetails' } },
+        resolve: {
+          member: MemberDetailedResolver,
+        },
       },
       {
         path: 'member/edit',
@@ -61,7 +67,7 @@ const routes: Routes = [
       {
         path: 'lists',
         component: ListsComponent,
-        data: { breadcrumb: 'Members' },
+        data: { breadcrumb: 'Lists' },
       },
 
       {

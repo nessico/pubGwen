@@ -43,16 +43,18 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private bcService: BreadcrumbService
   ) {
-    this.accountService.currentUser$
-      .pipe(take(1))
-      .subscribe((user) => (this.user = user));
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.accountService.currentUser$.pipe(take(1)).subscribe((user) => {
+      this.user = user;
+    });
+
+    this.bcService.set('@memberDetails', '');
   }
 
   ngOnInit(): void {
     //guaranteeing route will have member in it
     this.route.data.subscribe((data) => {
       this.member = data.member;
+      this.bcService.set('@memberDetails', this.member.knownAs);
     });
 
     this.route.queryParams.subscribe((params) => {
@@ -70,9 +72,6 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
       },
     ];
     this.galleryImages = this.getImages();
-
-    this.bcService.set('@memberDetails', this.member.knownAs);
- 
   }
 
   getImages(): NgxGalleryImage[] {
