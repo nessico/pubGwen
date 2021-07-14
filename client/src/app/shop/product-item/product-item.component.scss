@@ -1,7 +1,18 @@
-.btn-group {
-  width: 100%;
+.bottomRight {
+  position: absolute;
+  bottom: 5px;
+  right: -15px;
 }
 
-.btn {
-  width: 50%;
+.productImage {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.imgContainer:hover .productImage {
+  opacity: 0.3;
 }

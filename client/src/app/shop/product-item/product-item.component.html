@@ -1,32 +1,30 @@
 <div class="card h-100 shadow-sm">
-  <img
-    src="{{ product.pictureUrl }}"
-    alt="{{ product.name }}"
-    class="img-fluid bg-light rounded"
-  />
+  <div class="image position-relative imgContainer" style="cursor: pointer">
+    <a routerLink="/shop/{{ product.id }}">
+      <img
+        src="{{ product.pictureUrl }}"
+        alt="{{ product.name }}"
+        class="img-fluid bg-light rounded productImage"
+      />
+    </a>
+    <div class="bottomRight">
+      <button
+        type="button"
+        class="btn fa fa-shopping-cart fa-lg mx-3"
+        style="background-color: transparent"
+      ></button>
+    </div>
+  </div>
   <div class="card-body d-flex flex-column">
     <a
       href="#"
       routerLink="/shop/{{ product.id }}"
       style="text-decoration: none"
-  >
+    >
       <h6 class="text-uppercase">{{ product.name }}</h6>
     </a>
     <span class="mb-4">{{ product.price | currency }} </span>
 
-    <div class="btn-group mt-auto">
-      <button
-        type="button"
-        class="btn btn-outline-secondary fa fa-shopping-cart mx-2"
-      ></button>
-      <button
-        type="button"
-        routerLink="/shop/{{ product.id }}"
-        class="btn btn-outline-secondary"
-      >
-        View
-      </button>
-    </div>
     <small class="text-muted">{{ product.productBrand }} </small>
   </div>
 </div>
