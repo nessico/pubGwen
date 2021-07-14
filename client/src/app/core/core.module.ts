@@ -11,7 +11,7 @@ import { HasRoleDirective } from './_directives/has-role.directive';
 
 import { HomeModule } from '../home/home.module';
 import { RouterModule } from '@angular/router';
-
+import { SectionHeaderComponent } from './section-header/section-header.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
     NotFoundComponent,
     ServerErrorComponent,
     TestErrorsComponent,
+    SectionHeaderComponent,
   ],
   imports: [CommonModule, SharedModule, RouterModule, HomeModule],
   exports: [
@@ -32,6 +33,7 @@ import { RouterModule } from '@angular/router';
     NotFoundComponent,
     ServerErrorComponent,
     TestErrorsComponent,
+    SectionHeaderComponent,
   ],
 })
 export class CoreModule {}
