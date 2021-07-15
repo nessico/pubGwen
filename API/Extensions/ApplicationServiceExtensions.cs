@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using API.Errors;
+using StackExchange.Redis;
 
 namespace API.Extensions
 {
@@ -17,6 +18,11 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
+            services.AddSingleton<IConnectionMultiplexer>(c =>
+          {
+              var configuration = ConfigurationOptions.Parse(config.GetConnectionString("Redis"), true);
+              return ConnectionMultiplexer.Connect(configuration);
+          });
             services.AddSingleton<PresenceTracker>();
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<ITokenService, TokenService>();
@@ -70,6 +76,7 @@ namespace API.Extensions
                     options.UseNpgsql(awsConnection);
                 }
             });
+
             return services;
         }
     }
