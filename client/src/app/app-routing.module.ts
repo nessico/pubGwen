@@ -31,6 +31,12 @@ const routes: Routes = [
     data: { breadcrumb: 'Shop', skip: false },
   },
   {
+    path: 'basket',
+    loadChildren: () =>
+      import('./basket/basket.module').then((mod) => mod.BasketModule),
+    data: { breadcrumb: 'Basket', skip: false },
+  },
+  {
     path: 'login',
     component: LoginComponent,
     data: { breadcrumb: 'Login' },
