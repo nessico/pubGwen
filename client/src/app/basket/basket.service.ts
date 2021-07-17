@@ -69,8 +69,14 @@ export class BasketService {
 
   incrementItemQuantity(item: IBasketItem) {
     const basket = this.getCurrentBasketValue();
+    const foundItemIndex = basket!.items.findIndex((x) => x.id === item.id);
+    basket!.items[foundItemIndex].quantity++;
+    this.setBasket(basket!);
+  }
+
+  decrementItemQuantity(item: IBasketItem) {
+    const basket = this.getCurrentBasketValue();
     const foundItemIndex = basket?.items.findIndex((x) => x.id === item.id);
-    basket!.items[foundItemIndex!].quantity++;
     if (basket!.items[foundItemIndex!].quantity > 1) {
       basket!.items[foundItemIndex!].quantity--;
     } else {
