@@ -1,4 +1,8 @@
-import { Basket, IBasketItem } from './../shared/_models/shopModels/basket';
+import {
+  Basket,
+  IBasketItem,
+  IBasketTotals,
+} from './../shared/_models/shopModels/basket';
 import { IProduct } from './../shared/_models/shopModels/product';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -12,12 +16,14 @@ import { IBasket } from '../shared/_models/shopModels/basket';
 })
 export class BasketService {
   //BehaviorSubject - observable that allows for multi-casting of the observable itself and allows for multiple subscribers
-  //Since it's private, you'll need a public property (basket$) to be accessible by other components
-  //basket$ observable
+  //Since it's private, you'll need a public property (basket$,etc) to be accessible by other components
+  //basket$,etc is observable
 
   baseUrl = environment.apiUrl;
   private basketSource = new BehaviorSubject<IBasket | null>(null);
   basket$ = this.basketSource.asObservable();
+  private basketTotalSource = new BehaviorSubject<IBasketTotals | null>(null);
+  basketTotal$ = this.basketTotalSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +33,7 @@ export class BasketService {
     return this.http.get<IBasket>(this.baseUrl + 'basket?id=' + id).pipe(
       map((basket: IBasket) => {
         this.basketSource.next(basket);
-        console.log(this.getCurrentBasketValue());
+        this.calculateTotals();
       })
     );
   }
@@ -36,7 +42,7 @@ export class BasketService {
     return this.http.post<IBasket>(this.baseUrl + 'basket', basket).subscribe(
       (response: IBasket) => {
         this.basketSource.next(response);
-        console.log(response);
+        this.calculateTotals();
       },
       (error) => {
         console.log(error);
@@ -59,6 +65,16 @@ export class BasketService {
   //to get current value of basket without subscribing
   getCurrentBasketValue() {
     return this.basketSource.value;
+  }
+
+  //calculate total inside basket and set it to the basket$ Behavior Subject
+  //a is count, b is item, given initial val of 0
+  private calculateTotals() {
+    const basket = this.getCurrentBasketValue();
+    const shipping = 0;
+    const subtotal = basket!.items.reduce((a, b) => b.price * b.quantity + a, 0);
+    const total = subtotal + shipping;
+    this.basketTotalSource.next({ shipping, total, subtotal });
   }
 
   //creates a basket if user doesn't currently have a basket
