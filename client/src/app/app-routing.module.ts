@@ -1,3 +1,4 @@
+import { CheckoutComponent } from './checkout/checkout.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminPanelComponent } from './employee/admin/admin-panel.component';
@@ -35,6 +36,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./basket/basket.module').then((mod) => mod.BasketModule),
     data: { breadcrumb: 'Basket', skip: false },
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    data: { breadcrumb: 'Checkout' },
   },
   {
     path: 'login',
