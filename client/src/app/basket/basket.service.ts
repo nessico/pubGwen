@@ -67,12 +67,51 @@ export class BasketService {
     return this.basketSource.value;
   }
 
+  incrementItemQuantity(item: IBasketItem) {
+    const basket = this.getCurrentBasketValue();
+    const foundItemIndex = basket?.items.findIndex((x) => x.id === item.id);
+    basket!.items[foundItemIndex!].quantity++;
+    if (basket!.items[foundItemIndex!].quantity > 1) {
+      basket!.items[foundItemIndex!].quantity--;
+    } else {
+      this.removeItemFromBasket(item);
+    }
+  }
+
+  removeItemFromBasket(item: IBasketItem) {
+    const basket = this.getCurrentBasketValue();
+    if (basket!.items.some((x) => x.id === item.id)) {
+      basket!.items = basket!.items.filter((i) => i.id !== item.id);
+      if (basket!.items.length > 0) {
+        this.setBasket(basket!);
+      } else {
+        this.deleteBasket(basket);
+      }
+    }
+  }
+
+  deleteBasket(basket: IBasket | null) {
+    return this.http.delete(this.baseUrl + 'basket?id=' + basket!.id).subscribe(
+      () => {
+        this.basketSource.next(null);
+        this.basketTotalSource.next(null);
+        localStorage.removeItem('basket_id');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   //calculate total inside basket and set it to the basket$ Behavior Subject
   //a is count, b is item, given initial val of 0
   private calculateTotals() {
     const basket = this.getCurrentBasketValue();
     const shipping = 0;
-    const subtotal = basket!.items.reduce((a, b) => b.price * b.quantity + a, 0);
+    const subtotal = basket!.items.reduce(
+      (a, b) => b.price * b.quantity + a,
+      0
+    );
     const total = subtotal + shipping;
     this.basketTotalSource.next({ shipping, total, subtotal });
   }
