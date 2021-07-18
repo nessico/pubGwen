@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Member } from 'src/app/shared/_models/employeeModels/member';
 import { MembersService } from '../../employeeServices/members.service';
 
-
 @Component({
   selector: 'app-member-card',
   templateUrl: './member-card.component.html',
@@ -22,7 +21,7 @@ export class MemberCardComponent implements OnInit {
 
   addLike(member: Member) {
     this.memberService.addLike(member.username).subscribe(() => {
-      this.toastr.success('You have liked ' + member.knownAs);
+      this.toastr.success('You have liked ' + member.DisplayName);
     });
   }
 }

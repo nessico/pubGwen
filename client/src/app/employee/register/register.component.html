@@ -33,21 +33,21 @@
           class="form-group"
           [ngClass]="{
             'has-error':
-              registerForm.get('knownAs')?.errors &&
-              registerForm.get('knownAs')?.touched
+              registerForm.get('DisplayName')?.errors &&
+              registerForm.get('DisplayName')?.touched
           }"
         >
           <input
             type="text"
             placeholder="Your name"
             class="form-control"
-            formControlName="knownAs"
+            formControlName="DisplayName"
           />
           <label
             class="text-danger"
             *ngIf="
-              registerForm.get('knownAs')?.hasError('required') &&
-              registerForm.get('knownAs')?.touched
+              registerForm.get('DisplayName')?.hasError('required') &&
+              registerForm.get('DisplayName')?.touched
             "
             >Your name is required</label
           >

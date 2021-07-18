@@ -46,7 +46,7 @@ namespace Infrastructure.Data.Identity
             var likedUsers = users.Select(user => new Like
             {
                 Username = user.UserName,
-                KnownAs = user.KnownAs,
+                DisplayName = user.DisplayName,
                 Age = user.DateOfBirth.CalculateAge(),
                 PhotoUrl = user.Photos.FirstOrDefault(p => p.IsMain).Url,
                 Id = user.Id

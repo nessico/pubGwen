@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
       {
         gender: ['male'],
         username: ['', Validators.required],
-        knownAs: ['', Validators.required],
+        DisplayName: ['', Validators.required],
         dateOfBirth: ['', Validators.required],
         city: ['', Validators.required],
         country: ['', Validators.required],
@@ -87,6 +87,4 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
-
-
 }

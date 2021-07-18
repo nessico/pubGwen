@@ -9,7 +9,7 @@ namespace Core.Entities.Identity
     {
 
         //Shared
-        public string KnownAs { get; set; } //Display name
+        public string DisplayName { get; set; } 
 
         //Employee
         public DateTime DateOfBirth { get; set; }

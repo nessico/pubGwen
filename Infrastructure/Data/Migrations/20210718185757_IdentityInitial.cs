@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Infrastructure.Data.Identity.Migrations
+namespace Infrastructure.Data.Migrations
 {
-    public partial class InitialEmp : Migration
+    public partial class IdentityInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,16 +29,14 @@ namespace Infrastructure.Data.Identity.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    DisplayName = table.Column<string>(type: "text", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    KnownAs = table.Column<string>(type: "text", nullable: true),
                     Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     LastActive = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Gender = table.Column<string>(type: "text", nullable: true),
                     Introduction = table.Column<string>(type: "text", nullable: true),
                     LookingFor = table.Column<string>(type: "text", nullable: true),
                     Interests = table.Column<string>(type: "text", nullable: true),
-                    City = table.Column<string>(type: "text", nullable: true),
-                    Country = table.Column<string>(type: "text", nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
