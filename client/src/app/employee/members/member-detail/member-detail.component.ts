@@ -54,7 +54,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     //guaranteeing route will have member in it
     this.route.data.subscribe((data) => {
       this.member = data.member;
-      this.bcService.set('@memberDetails', this.member.DisplayName);
+      this.bcService.set('@memberDetails', this.member.displayName);
     });
 
     this.route.queryParams.subscribe((params) => {
@@ -109,7 +109,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
 
   addLike(member: Member) {
     this.memberService.addLike(member.username).subscribe(() => {
-      this.toastr.success('You have liked ' + member.DisplayName);
+      this.toastr.success('You have liked ' + member.displayName);
     });
   }
 

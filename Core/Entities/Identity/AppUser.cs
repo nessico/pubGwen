@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+
 using Microsoft.AspNetCore.Identity;
 
 namespace Core.Entities.Identity
@@ -8,10 +9,9 @@ namespace Core.Entities.Identity
     public class AppUser : IdentityUser<int>
     {
 
-        //Shared
-        public string DisplayName { get; set; } 
+        public string DisplayName { get; set; }
+        public Address Address { get; set; }
 
-        //Employee
         public DateTime DateOfBirth { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;
@@ -29,7 +29,6 @@ namespace Core.Entities.Identity
         public ICollection<Message> MessagesReceived { get; set; }
         public ICollection<AppUserRole> UserRoles { get; set; }
 
-        //Customer
 
     }
 }

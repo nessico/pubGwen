@@ -4,7 +4,7 @@
       <div class="card">
         <img
           src="{{ member.photoUrl || './assets/user.png' }}"
-          alt="{{ member.DisplayName }}"
+          alt="{{ member.displayName }}"
           class="card-img-top img-thumbnail"
         />
         <div class="card-body">
@@ -47,7 +47,7 @@
     <div class="col-8">
       <tabset class="member-tabset" #memberTabs>
         <tab
-          heading="About {{ member.DisplayName }}"
+          heading="About {{ member.displayName }}"
           (selectTab)="onTabActivated($event)"
         >
           <h4>Description</h4>
