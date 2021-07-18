@@ -1,4 +1,5 @@
 using System;
+using Core.Entities.Identity;
 
 namespace Core.Entities
 {

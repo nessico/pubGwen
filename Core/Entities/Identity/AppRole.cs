@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace Core.Entities
+namespace Core.Entities.Identity
 {
     public class AppRole : IdentityRole<int>
     {

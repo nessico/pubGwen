@@ -1,9 +1,10 @@
 using System;
 using Infrastructure.Data;
-using Core.Entities;
+using Core.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using API.Errors;
+using Core.Entities;
 
 namespace API.Controllers
 {

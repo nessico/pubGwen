@@ -4,12 +4,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Infrastructure.Data;
 using API.DTOs;
-using Core.Entities;
+
 using Core.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Core.Entities.Identity;
 
 namespace API.Controllers
 {

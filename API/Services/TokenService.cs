@@ -10,6 +10,7 @@ using Core.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Core.Entities.Identity;
 
 namespace API.Services
 {

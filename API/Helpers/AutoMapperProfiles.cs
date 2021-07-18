@@ -5,6 +5,7 @@ using Core.Entities;
 using AutoMapper;
 using Core.Employee.Parameters;
 using Core.Entities.Employee;
+using Core.Entities.Identity;
 
 namespace API.Helpers
 {

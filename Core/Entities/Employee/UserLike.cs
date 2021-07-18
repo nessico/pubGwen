@@ -1,3 +1,5 @@
+using Core.Entities.Identity;
+
 namespace Core.Entities
 {
     //Joint entity for user and userlike

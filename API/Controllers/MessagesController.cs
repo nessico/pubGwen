@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using Core.Entities;
+using Core.Entities.Identity;
 using API.Extensions;
 using Core.Employee.Parameters;
 using Core.Interfaces;
