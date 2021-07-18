@@ -19,8 +19,6 @@ namespace Core.Entities.Identity
         public string Introduction { get; set; }
         public string LookingFor { get; set; }
         public string Interests { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; }
 
         //self referencing relationship, acts like a join table
@@ -32,6 +30,6 @@ namespace Core.Entities.Identity
         public ICollection<AppUserRole> UserRoles { get; set; }
 
         //Customer
-        public Address Address { get; set; }
+
     }
 }

@@ -3,7 +3,7 @@ using Core.Entities;
 using Core.Specifications;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Data.Identity
 {
     public class SpecificationEvaluator<TEntity> where TEntity : BaseEntity
     {

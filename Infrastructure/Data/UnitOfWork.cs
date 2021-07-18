@@ -4,13 +4,13 @@ using Core.Interfaces;
 using AutoMapper;
 
 
-namespace Infrastructure.Data
+namespace Infrastructure.Data.Identity
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IMapper _mapper;
-        private readonly DataContext _context;
-        public UnitOfWork(DataContext context, IMapper mapper)
+        private readonly IdentityDataContext _context;
+        public UnitOfWork(IdentityDataContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

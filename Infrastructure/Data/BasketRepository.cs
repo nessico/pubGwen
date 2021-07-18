@@ -5,7 +5,7 @@ using System.Text.Json;
 using StackExchange.Redis;
 using System;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Data.Identity
 {
     //Redis database, NoSQL won't need Entity Framework
     public class BasketRepository : IBasketRepository

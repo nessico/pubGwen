@@ -10,14 +10,14 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Core.Entities.Employee;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Data.Identity
 
 {
     public class MessageRepository : IMessageRepository
     {
-        private readonly DataContext _context;
+        private readonly IdentityDataContext _context;
         private readonly IMapper _mapper;
-        public MessageRepository(DataContext context, IMapper mapper)
+        public MessageRepository(IdentityDataContext context, IMapper mapper)
         {
             _mapper = mapper;
             _context = context;

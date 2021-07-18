@@ -2,7 +2,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Infrastructure.Data;
+using Infrastructure.Data.Identity;
 using API.DTOs;
 
 using Core.Interfaces;

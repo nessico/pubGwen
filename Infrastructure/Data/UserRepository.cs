@@ -11,13 +11,13 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Core.Entities.Employee;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Data.Identity
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DataContext _context;
+        private readonly IdentityDataContext _context;
         private readonly IMapper _mapper;
-        public UserRepository(DataContext context, IMapper mapper)
+        public UserRepository(IdentityDataContext context, IMapper mapper)
         {
             _mapper = mapper;
             _context = context;
@@ -69,7 +69,7 @@ namespace Infrastructure.Data
                 .Include(p => p.Photos)
                 .SingleOrDefaultAsync(x => x.UserName == username);
         }
-        
+
         public async Task<string> GetUserGender(string username)
         {
             return await _context.Users

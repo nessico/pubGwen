@@ -4,7 +4,7 @@ using Core.Entities;
 using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Data.Identity
 {
     //Our repository interacts with our store context
     //Then controller uses repository methods to retrieve data from database
@@ -34,7 +34,7 @@ namespace Infrastructure.Data
 
         public async Task<IReadOnlyList<Product>> GetProductsAsync()
         {
-            
+
 
             return await _context.Products
             .Include(p => p.ProductType)

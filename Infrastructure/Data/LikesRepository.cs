@@ -8,14 +8,14 @@ using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Core.Entities.Employee;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Data.Identity
 {
 
     //joint query
     public class LikesRepository : ILikesRepository
     {
-        private readonly DataContext _context;
-        public LikesRepository(DataContext context)
+        private readonly IdentityDataContext _context;
+        public LikesRepository(IdentityDataContext context)
         {
             _context = context;
         }
@@ -49,7 +49,6 @@ namespace Infrastructure.Data
                 KnownAs = user.KnownAs,
                 Age = user.DateOfBirth.CalculateAge(),
                 PhotoUrl = user.Photos.FirstOrDefault(p => p.IsMain).Url,
-                City = user.City,
                 Id = user.Id
             });
 

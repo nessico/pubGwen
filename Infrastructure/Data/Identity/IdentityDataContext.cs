@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Data.Identity
 {
-    public class DataContext : IdentityDbContext<AppUser, AppRole, int,
+    public class IdentityDataContext : IdentityDbContext<AppUser, AppRole, int,
     IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
-        public DataContext(DbContextOptions options) : base(options)
+        public IdentityDataContext(DbContextOptions options) : base(options)
         {
         }
 

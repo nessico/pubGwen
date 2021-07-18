@@ -1,5 +1,5 @@
 using System;
-using Infrastructure.Data;
+using Infrastructure.Data.Identity;
 using API.Helpers;
 using Core.Interfaces;
 using API.Services;
@@ -53,7 +53,7 @@ namespace API.Extensions
 
             //Default connection goes to a Docker PostgreSQL localhost server
             services.AddDbContext<StoreContext>(options => options.UseNpgsql(config.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<DataContext>(options =>
+            services.AddDbContext<IdentityDataContext>(options =>
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
                 // Depending on if in development or production, use either AWS RDS or localhost

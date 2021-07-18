@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Infrastructure.Data;
+using Infrastructure.Data.Identity;
 using Core.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -22,7 +22,7 @@ namespace API
             var loggerFactory = services.GetRequiredService<ILoggerFactory>();
             try
             {
-                var context = services.GetRequiredService<DataContext>();
+                var context = services.GetRequiredService<IdentityDataContext>();
                 var storeContext = services.GetRequiredService<StoreContext>();
                 var userManager = services.GetRequiredService<UserManager<AppUser>>();
                 var roleManager = services.GetRequiredService<RoleManager<AppRole>>();

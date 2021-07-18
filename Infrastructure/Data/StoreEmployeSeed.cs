@@ -9,7 +9,7 @@ using Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Data.Identity
 {
     public class StoreEmployeeSeed
     {

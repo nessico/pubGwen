@@ -2,7 +2,7 @@ using System.Reflection;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Data
+namespace Infrastructure.Data.Identity
 {
     public class StoreContext : DbContext
     {
