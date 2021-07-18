@@ -39,8 +39,9 @@ const routes: Routes = [
   },
   {
     path: 'checkout',
-    component: CheckoutComponent,
-    data: { breadcrumb: 'Checkout' },
+    loadChildren: () =>
+      import('./checkout/checkout.module').then((mod) => mod.CheckoutModule),
+    data: { breadcrumb: 'Checkout', skip: false },
   },
   {
     path: 'login',
