@@ -1,0 +1,1 @@
+(self.webpackChunkclient=self.webpackChunkclient||[]).push([[434],{8434:(e,n,t)=>{"use strict";t.r(n),t.d(n,{ShopModule:()=>i});var c=t(9021),r=t(942),s=t(5425),u=t(1116),l=t(7368);let i=(()=>{class e{}return e.\u0275fac=function(n){return new(n||e)},e.\u0275mod=l.oAB({type:e}),e.\u0275inj=l.cJS({imports:[[u.ez,c.Bz,s.m,r.W]]}),e})()}}]);
