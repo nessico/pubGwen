@@ -22,7 +22,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/99.jpg",
+        "Url": "https://randomuser.me/api/portraits/women/99.jpg",
         "IsMain": true
       }
     ]
@@ -50,7 +50,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/36.jpg",
+        "Url": "https://randomuser.me/api/portraits/women/36.jpg",
         "IsMain": true
       }
     ]
@@ -78,7 +78,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/9.jpg",
+        "Url": "https://randomuser.me/api/portraits/women/9.jpg",
         "IsMain": true
       }
     ]
@@ -106,7 +106,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/77.jpg",
+        "Url": "https://randomuser.me/api/portraits/women/77.jpg",
         "IsMain": true
       }
     ]
@@ -134,7 +134,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/30.jpg",
+        "Url": "https://randomuser.me/api/portraits/women/30.jpg",
         "IsMain": true
       }
     ]
@@ -162,7 +162,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/59.jpg",
+        "Url": "https://randomuser.me/api/portraits/women/59.jpg",
         "IsMain": true
       }
     ]
@@ -190,7 +190,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/76.jpg",
+        "Url": "https://randomuser.me/api/portraits/women/76.jpg",
         "IsMain": true
       }
     ]
@@ -218,7 +218,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/women/5.jpg",
+        "Url": "https://randomuser.me/api/portraits/women/5.jpg",
         "IsMain": true
       }
     ]
@@ -246,7 +246,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/83.jpg",
+        "Url": "https://randomuser.me/api/portraits/men/83.jpg",
         "IsMain": true
       }
     ]
@@ -274,7 +274,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/27.jpg",
+        "Url": "https://randomuser.me/api/portraits/men/27.jpg",
         "IsMain": true
       }
     ]
@@ -302,7 +302,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/78.jpg",
+        "Url": "https://randomuser.me/api/portraits/men/78.jpg",
         "IsMain": true
       }
     ]
@@ -330,7 +330,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/53.jpg",
+        "Url": "https://randomuser.me/api/portraits/men/53.jpg",
         "IsMain": true
       }
     ]
@@ -358,7 +358,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/88.jpg",
+        "Url": "https://randomuser.me/api/portraits/men/88.jpg",
         "IsMain": true
       }
     ]
@@ -386,7 +386,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/43.jpg",
+        "Url": "https://randomuser.me/api/portraits/men/43.jpg",
         "IsMain": true
       }
     ]
@@ -414,7 +414,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/22.jpg",
+        "Url": "https://randomuser.me/api/portraits/men/22.jpg",
         "IsMain": true
       }
     ]
@@ -442,7 +442,7 @@
     ],
     "Photos": [
       {
-        "url": "https://randomuser.me/api/portraits/men/43.jpg",
+        "Url": "https://randomuser.me/api/portraits/men/43.jpg",
         "IsMain": true
       }
     ]
