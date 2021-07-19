@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Infrastructure.Data.Identity.Migrations
+namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20210705043544_StoreCreate")]
+    [Migration("20210719011336_StoreCreate")]
     partial class StoreCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data.Identity
 {
-    public class StoreEmployeeSeed
+    public class IdentityDataContextSeed
     {
         public static async Task SeedUsers(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
@@ -19,9 +19,11 @@ namespace Infrastructure.Data.Identity
 
             if (await userManager.Users.AnyAsync()) return;
 
+        
             var userData = await System.IO.File.ReadAllTextAsync("../Infrastructure/Data/SeedData/UserSeedData.json");
             var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
             if (users == null) return;
+        
 
             var roles = new List<AppRole>
             {

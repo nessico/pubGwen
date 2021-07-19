@@ -28,7 +28,7 @@ namespace API
                 var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
                 await context.Database.MigrateAsync();
                 await storeContext.Database.MigrateAsync();
-                await StoreEmployeeSeed.SeedUsers(userManager, roleManager);
+                await IdentityDataContextSeed.SeedUsers(userManager, roleManager);
                 await StoreContextSeed.SeedAsync(storeContext, loggerFactory);
             }
             catch (Exception ex)

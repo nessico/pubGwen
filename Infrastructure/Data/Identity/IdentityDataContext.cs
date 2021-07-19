@@ -34,13 +34,6 @@ namespace Infrastructure.Data.Identity
             .HasForeignKey(ur => ur.UserId)
             .IsRequired();
 
-            builder.Entity<Address>()
-            .HasOne(u => u.AppUser)
-            .WithOne(u => u.Address)
-            .HasForeignKey<Address>(u => u.AppUserId)
-            .OnDelete(DeleteBehavior.Cascade)
-            .IsRequired();
-
 
             builder.Entity<AppRole>()
             .HasMany(ur => ur.UserRoles)
