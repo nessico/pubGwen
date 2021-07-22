@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
-
 using Microsoft.AspNetCore.Identity;
-using Newtonsoft.Json;
+
 
 namespace Core.Entities.Identity
 {
@@ -21,7 +19,6 @@ namespace Core.Entities.Identity
         public string LookingFor { get; set; }
         public string Interests { get; set; }
 
-
         public Address Address { get; set; }
         public ICollection<Photo> Photos { get; set; }
 
@@ -35,4 +32,6 @@ namespace Core.Entities.Identity
 
 
     }
+   
+
 }

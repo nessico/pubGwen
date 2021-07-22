@@ -1,3 +1,4 @@
+using System.Net.Sockets;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -14,6 +15,7 @@ using Core.Entities.Identity;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using API.Dtos;
+using API.Extensions;
 
 namespace API.Controllers
 {
@@ -100,7 +102,7 @@ namespace API.Controllers
             return new UserDto
             {
                 Email = user.Email,
-                 Token = await _tokenService.CreateToken(user),
+                Token = await _tokenService.CreateToken(user),
                 DisplayName = user.DisplayName
             };
 
@@ -111,16 +113,30 @@ namespace API.Controllers
         [HttpGet("address")]
         public async Task<ActionResult<AddressDto>> GetUserAddress()
         {
-            var email = HttpContext.User?.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
-
-
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.FindByEmailWithAddressAsync(User);
 
             return _mapper.Map<AddressDto>(user.Address);
+
+        }
+
+        [Authorize]
+        [HttpPut("address")]
+        public async Task<ActionResult<AddressDto>> UpdateUserAddress(AddressDto address)
+        {
+            var user = await _userManager.FindByEmailWithAddressAsync(User);
+
+            user.Address = _mapper.Map<Address>(address);
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded) return Ok(_mapper.Map<AddressDto>(user.Address));
+
+            return BadRequest("Problem updating the user");
         }
 
 
-        
+
+
 
         //Ensure email is unique
         [HttpGet("emailexists")]

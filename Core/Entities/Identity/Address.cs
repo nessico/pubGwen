@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities.Identity
 {
+ 
     public class Address
     {
         public int Id { get; set; }
@@ -12,9 +13,8 @@ namespace Core.Entities.Identity
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
-
-        public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
+        public int AppUserId { get; set; }
 
     }
 }

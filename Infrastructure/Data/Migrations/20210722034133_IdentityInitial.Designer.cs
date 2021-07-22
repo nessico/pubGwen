@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(IdentityDataContext))]
-    [Migration("20210719214154_IdentityInitial")]
+    [Migration("20210722034133_IdentityInitial")]
     partial class IdentityInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,7 +79,8 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("AppUserId")
+                        .IsUnique();
 
                     b.ToTable("Address");
                 });
@@ -397,8 +398,8 @@ namespace Infrastructure.Data.Migrations
             modelBuilder.Entity("Core.Entities.Identity.Address", b =>
                 {
                     b.HasOne("Core.Entities.Identity.AppUser", "AppUser")
-                        .WithMany("Address")
-                        .HasForeignKey("AppUserId")
+                        .WithOne("Address")
+                        .HasForeignKey("Core.Entities.Identity.Address", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

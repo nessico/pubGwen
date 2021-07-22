@@ -77,7 +77,8 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("AppUserId")
+                        .IsUnique();
 
                     b.ToTable("Address");
                 });
@@ -395,8 +396,8 @@ namespace Infrastructure.Data.Migrations
             modelBuilder.Entity("Core.Entities.Identity.Address", b =>
                 {
                     b.HasOne("Core.Entities.Identity.AppUser", "AppUser")
-                        .WithMany("Address")
-                        .HasForeignKey("AppUserId")
+                        .WithOne("Address")
+                        .HasForeignKey("Core.Entities.Identity.Address", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
