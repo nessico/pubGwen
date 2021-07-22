@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Infrastructure.Data.Identity;
 using API.DTOs;
-
+using API.Errors;
 using Core.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
@@ -27,7 +27,6 @@ namespace API.Controllers
             _userManager = userManager;
             _mapper = mapper;
             _tokenService = tokenService;
-
         }
 
         [HttpPost("register")]
@@ -35,10 +34,14 @@ namespace API.Controllers
         {
             if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
 
+            if (EmailExists(registerDto.Email).Result.Value)
+            {
+                return new BadRequestObjectResult(new ApiValidationErrorResponse { Errors = new[] { "Email address is in use" } });
+            }
+
             var user = _mapper.Map<AppUser>(registerDto);
 
             user.UserName = registerDto.Username.ToLower();
-
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
@@ -51,9 +54,10 @@ namespace API.Controllers
             return new UserDto
             {
                 Username = user.UserName,
+                Email = user.Email,
                 Token = await _tokenService.CreateToken(user),
                 DisplayName = user.DisplayName,
-                Gender = user.Gender
+                Gender = user.Gender,
             };
         }
 
@@ -62,10 +66,10 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _userManager.Users
-                .Include(p => p.Photos)
-                .SingleOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
+              .Include(p => p.Photos)
+              .SingleOrDefaultAsync(x => x.Email == loginDto.Email.ToLower());
 
-            if (user == null) return Unauthorized("Invalid username");
+            if (user == null) return Unauthorized(new ApiResponse(401));
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
@@ -73,6 +77,7 @@ namespace API.Controllers
 
             return new UserDto
             {
+                Email = user.Email,
                 Username = user.UserName,
                 Token = await _tokenService.CreateToken(user),
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
@@ -81,6 +86,14 @@ namespace API.Controllers
             };
         }
 
+
+
+        //Ensure email is unique
+        [HttpGet("emailexists")]
+        public async Task<ActionResult<bool>> EmailExists([FromQuery] string email)
+        {
+            return await _userManager.FindByEmailAsync(email) != null;
+        }
         //Ensure username is unique
         private async Task<bool> UserExists(string username)
         {
