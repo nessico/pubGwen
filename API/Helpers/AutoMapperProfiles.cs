@@ -6,6 +6,7 @@ using AutoMapper;
 using Core.Employee.Parameters;
 using Core.Entities.Employee;
 using Core.Entities.Identity;
+using API.Dtos;
 
 namespace API.Helpers
 {
@@ -27,6 +28,9 @@ namespace API.Helpers
             CreateMap<Message, Messages>()
                 .ForMember(dest => dest.SenderPhotoUrl, opt => opt.MapFrom(src => src.Sender.Photos.FirstOrDefault(x => x.IsMain).Url))
                 .ForMember(dest => dest.RecipientPhotoUrl, opt => opt.MapFrom(src => src.Recipient.Photos.FirstOrDefault(x => x.IsMain).Url));
+            CreateMap<Address, AddressDto>().ReverseMap();
+
+
 
         }
     }
