@@ -9,11 +9,11 @@
           <p style="font-weight: 600; font-family: sans-serif; color: #333">
             Welcome Back.
           </p>
-          <p>Login in with your username and password</p>
+          <p>Login in with your email and password</p>
           <div class="form">
             <input
               name="username"
-              [(ngModel)]="model.username"
+              [(ngModel)]="model.email"
               class="form-control me-2"
               type="text"
               placeholder="Username"
@@ -35,7 +35,7 @@
           <button
             button
             class="btn btn-success"
-            [disabled]="!model.username || !model.password"
+            [disabled]="!model.email || !model.password"
             type="submit"
           >
             Sign in

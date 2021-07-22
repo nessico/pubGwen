@@ -53,8 +53,8 @@ namespace API.Controllers
 
             return new UserDto
             {
-                Username = user.UserName,
                 Email = user.Email,
+                Username = user.UserName,
                 Token = await _tokenService.CreateToken(user),
                 DisplayName = user.DisplayName,
                 Gender = user.Gender,

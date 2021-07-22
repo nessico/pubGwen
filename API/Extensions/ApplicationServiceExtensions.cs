@@ -2,6 +2,7 @@ using System;
 using Infrastructure.Data.Identity;
 using API.Helpers;
 using Core.Interfaces;
+using Infrastructure.Services;
 using API.Services;
 using API.SignalR;
 using Microsoft.EntityFrameworkCore;
