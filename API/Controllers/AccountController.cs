@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Core.Entities.Identity;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using API.Dtos;
 
 namespace API.Controllers
 {
@@ -86,7 +89,38 @@ namespace API.Controllers
             };
         }
 
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult<UserDto>> GetCurrentUser()
+        {
+            var email = HttpContext.User?.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
 
+            var user = await _userManager.FindByEmailAsync(email);
+
+            return new UserDto
+            {
+                Email = user.Email,
+                 Token = await _tokenService.CreateToken(user),
+                DisplayName = user.DisplayName
+            };
+
+        }
+
+
+        [Authorize]
+        [HttpGet("address")]
+        public async Task<ActionResult<AddressDto>> GetUserAddress()
+        {
+            var email = HttpContext.User?.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
+
+
+            var user = await _userManager.FindByEmailAsync(email);
+
+            return _mapper.Map<AddressDto>(user.Address);
+        }
+
+
+        
 
         //Ensure email is unique
         [HttpGet("emailexists")]
