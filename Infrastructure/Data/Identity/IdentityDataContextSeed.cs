@@ -8,7 +8,7 @@ using Core.Entities.Identity;
 using Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using System.IO;
 
 namespace Infrastructure.Data.Identity
 {
@@ -20,12 +20,12 @@ namespace Infrastructure.Data.Identity
 
             if (await userManager.Users.AnyAsync()) return;
 
-            
+
             var userData = await System.IO.File.ReadAllTextAsync("../Infrastructure/Data/SeedData/UserSeedData.json");
-            var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
-       
+            var users = JsonSerializer.Deserialize<List<AppUser>>(userData) ;
+
             if (users == null) return;
-        
+
 
             var roles = new List<AppRole>
             {
@@ -45,6 +45,7 @@ namespace Infrastructure.Data.Identity
                 await userManager.CreateAsync(user, "Pa$$w0rd");
                 await userManager.AddToRoleAsync(user, "Member");
             }
+       
 
             var admin = new AppUser
             {

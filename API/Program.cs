@@ -29,6 +29,7 @@ namespace API
                 await context.Database.MigrateAsync();
                 await storeContext.Database.MigrateAsync();
                 await IdentityDataContextSeed.SeedUsers(userManager, roleManager);
+                await IdentityUserAddressSeed.SeedAsync(context, loggerFactory);
                 await StoreContextSeed.SeedAsync(storeContext, loggerFactory);
             }
             catch (Exception ex)

@@ -23,7 +23,7 @@ namespace Infrastructure.Data.Identity
                     foreach (var item in brands)
                     {
                         context.ProductBrands.Add(item);
-                    }
+                    }   
 
                     await context.SaveChangesAsync();
                 }

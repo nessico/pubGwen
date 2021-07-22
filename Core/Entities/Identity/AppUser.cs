@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 
 
@@ -10,7 +12,6 @@ namespace Core.Entities.Identity
     {
 
         public string DisplayName { get; set; }
-
         public string Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
@@ -20,6 +21,7 @@ namespace Core.Entities.Identity
         public string Interests { get; set; }
 
         public Address Address { get; set; }
+
         public ICollection<Photo> Photos { get; set; }
 
         //self referencing relationship, acts like a join table
@@ -31,7 +33,8 @@ namespace Core.Entities.Identity
         public ICollection<AppUserRole> UserRoles { get; set; }
 
 
-    }
-   
 
+
+
+    }
 }

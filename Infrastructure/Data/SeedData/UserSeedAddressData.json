@@ -1,0 +1,146 @@
+[
+  {
+    "AppUserId": 1,
+    "FirstName": "Ada",
+    "LastName": "Craft",
+    "Street": "824 Grace Court",
+    "City": "Manchester",
+    "State": "North Dakota",
+    "ZipCode": "166"
+  },
+  {
+    "AppUserId": 2,
+    "FirstName": "Mia",
+    "LastName": "Kelly",
+    "Street": "696 Bridge Street",
+    "City": "Riviera",
+    "State": "Kentucky",
+    "ZipCode": "8559"
+  },
+  {
+    "AppUserId": 3,
+    "FirstName": "Melba",
+    "LastName": "Nunez",
+    "Street": "383 Provost Street",
+    "City": "Rehrersburg",
+    "State": "Maryland",
+    "ZipCode": "4675"
+  },
+  {
+    "AppUserId": 4,
+    "FirstName": "Nita",
+    "LastName": "Bowers",
+    "Street": "147 Williams Place",
+    "City": "Bordelonville",
+    "State": "Florida",
+    "ZipCode": "6019"
+  },
+  {
+    "AppUserId": 5,
+    "FirstName": "Angelique",
+    "LastName": "Hale",
+    "Street": "182 Doone Court",
+    "City": "Bawcomville",
+    "State": "American Samoa",
+    "ZipCode": "4106"
+  },
+  {
+    "AppUserId": 6,
+    "FirstName": "Kaye",
+    "LastName": "Tran",
+    "Street": "422 Powell Street",
+    "City": "Harrodsburg",
+    "State": "North Carolina",
+    "ZipCode": "4213"
+  },
+  {
+    "AppUserId": 7,
+    "FirstName": "Fern",
+    "LastName": "Melton",
+    "Street": "176 Orient Avenue",
+    "City": "Cowiche",
+    "State": "Georgia",
+    "ZipCode": "7134"
+  },
+  {
+    "AppUserId": 8,
+    "FirstName": "Milagros",
+    "LastName": "Hobbs",
+    "Street": "532 Hawthorne Street",
+    "City": "Brecon",
+    "State": "Virginia",
+    "ZipCode": "4552"
+  },
+  {
+    "AppUserId": 9,
+    "FirstName": "Lee",
+    "LastName": "Delaney",
+    "Street": "760 Beach Place",
+    "City": "Wakarusa",
+    "State": "California",
+    "ZipCode": "6526"
+  },
+  {
+    "AppUserId": 10,
+    "FirstName": "Kent",
+    "LastName": "Rich",
+    "Street": "966 Cozine Avenue",
+    "City": "Faywood",
+    "State": "New Hampshire",
+    "ZipCode": "3576"
+  },
+  {
+    "AppUserId": 11,
+    "FirstName": "Curry",
+    "LastName": "Hays",
+    "Street": "841 Brevoort Place",
+    "City": "Statenville",
+    "State": "Utah",
+    "ZipCode": "5397"
+  },
+  {
+    "AppUserId": 12,
+    "FirstName": "Schneider",
+    "LastName": "Todd",
+    "Street": "420 Keen Court",
+    "City": "Noblestown",
+    "State": "Idaho",
+    "ZipCode": "5894"
+  },
+  {
+    "AppUserId": 13,
+    "FirstName": "Morrow",
+    "LastName": "Frank",
+    "Street": "119 Garnet Street",
+    "City": "Katonah",
+    "State": "Mississippi",
+    "ZipCode": "1879"
+  },
+  {
+    "AppUserId": 14,
+    "FirstName": "Lowery",
+    "LastName": "Nieves",
+    "Street": "969 Bergen Place",
+    "City": "Coventry",
+    "State": "Connecticut",
+    "ZipCode": "2936"
+  },
+  {
+    "AppUserId": 15,
+    "FirstName": "Boyer",
+    "LastName": "Golden",
+    "Street": "769 Rockaway Avenue",
+    "City": "Twilight",
+    "State": "Delaware",
+    "ZipCode": "3949"
+  },
+  {
+    "AppUserId": 16,
+    "FirstName": "Washington",
+    "LastName": "Nolan",
+    "Street": "191 Clymer Street",
+    "City": "Witmer",
+    "State": "Washington",
+    "ZipCode": "3903"
+  }
+]

@@ -21,6 +21,7 @@ namespace Infrastructure.Data.Identity
         public DbSet<Message> Messages { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Connection> Connections { get; set; }
+        public DbSet<Address> Address { get; set; }
 
         //configuring userlikes in EF
         protected override void OnModelCreating(ModelBuilder builder)
