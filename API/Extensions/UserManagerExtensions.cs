@@ -8,6 +8,7 @@ namespace API.Extensions
 {
     public static class UserManagerExtensions
     {
+        //get properties from token
         public static async Task<AppUser> FindByEmailWithAddressAsync(this UserManager<AppUser> input, ClaimsPrincipal user)
         {
             var email = user.FindFirstValue(ClaimTypes.Email);
