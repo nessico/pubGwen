@@ -138,6 +138,7 @@ namespace API.Controllers
         }
 
 
+
         //Ensure email is unique
         [HttpGet("emailexists")]
         public async Task<ActionResult<bool>> EmailExists([FromQuery] string email)

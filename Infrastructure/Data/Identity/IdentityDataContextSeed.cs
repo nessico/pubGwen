@@ -22,7 +22,7 @@ namespace Infrastructure.Data.Identity
 
 
             var userData = await System.IO.File.ReadAllTextAsync("../Infrastructure/Data/SeedData/UserSeedData.json");
-            var users = JsonSerializer.Deserialize<List<AppUser>>(userData) ;
+            var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
 
             if (users == null) return;
 
@@ -45,14 +45,16 @@ namespace Infrastructure.Data.Identity
                 await userManager.CreateAsync(user, "Pa$$w0rd");
                 await userManager.AddToRoleAsync(user, "Member");
             }
-       
+
 
             var admin = new AppUser
             {
-                UserName = "admin"
+                UserName = "admin",
+                DisplayName = "admin",
+                Email = "admin@test.com"
             };
 
-            await userManager.CreateAsync(admin, "adminPa$$w0rd");
+            await userManager.CreateAsync(admin, "Pa$$w0rd");
             await userManager.AddToRolesAsync(admin, new[] { "Admin", "Moderator" });
         }
     }

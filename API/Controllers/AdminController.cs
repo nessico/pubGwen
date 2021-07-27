@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities.Identity;
@@ -28,12 +29,39 @@ namespace API.Controllers
                 {
                     u.Id,
                     Username = u.UserName,
+                    Email = u.Email,
                     Roles = u.UserRoles.Select(r => r.Role.Name).ToList()
                 })
                 .ToListAsync();
 
             return Ok(users);
         }
+
+
+        [Authorize(Policy = "RequireAdminRole")]
+        [HttpGet("users-with-address")]
+        public async Task<ActionResult> GetUsersWithAddress()
+        {
+            var userList = await _userManager.Users
+            .Include(u => u.Address)
+
+            .Include(p => p.Photos)
+            .Select(u => new
+            {
+                u.Id,
+                Email = u.Email,
+                Username = u.UserName,
+                DisplayName = u.DisplayName,
+                Address = u.Address,
+                Photos = u.Photos.FirstOrDefault(x => x.IsMain).Url,
+            })
+            .ToListAsync();
+
+            return Ok(userList);
+        }
+
+
+
 
         [HttpPost("edit-roles/{username}")]
         public async Task<ActionResult> EditRoles(string username, [FromQuery] string roles)
