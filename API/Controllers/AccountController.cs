@@ -104,7 +104,7 @@ namespace API.Controllers
                 Email = user.Email,
                 Username = user.UserName,
                 Token = await _tokenService.CreateToken(user),
-                PhotoUrl = user.Photos.FirstOrDefault()?.Url,
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
                 DisplayName = user.DisplayName,
                 Gender = user.Gender
             };
