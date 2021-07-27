@@ -14,6 +14,11 @@ namespace API.Helpers
     {
         public AutoMapperProfiles()
         {
+            //CreateMap<TSource, TDestination>();
+            //e.g. If you have data annotations:
+            //Entity -> DTO concerns validation data coming out of the server
+            //DTO -> Entity concerns validation data coming into server 
+
             CreateMap<Product, ProductToReturnDto>()
                 .ForMember(d => d.ProductBrand, o => o.MapFrom(s => s.ProductBrand.Name))
                 .ForMember(d => d.ProductType, o => o.MapFrom(s => s.ProductType.Name))
@@ -29,6 +34,8 @@ namespace API.Helpers
                 .ForMember(dest => dest.SenderPhotoUrl, opt => opt.MapFrom(src => src.Sender.Photos.FirstOrDefault(x => x.IsMain).Url))
                 .ForMember(dest => dest.RecipientPhotoUrl, opt => opt.MapFrom(src => src.Recipient.Photos.FirstOrDefault(x => x.IsMain).Url));
             CreateMap<Address, AddressDto>().ReverseMap();
+            CreateMap<CustomerBasketDto, CustomerBasket>();
+            CreateMap<BasketItemDto, BasketItem>();
 
 
 
