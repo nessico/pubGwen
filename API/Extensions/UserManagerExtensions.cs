@@ -19,7 +19,9 @@ namespace API.Extensions
         {
             var email = user.FindFirstValue(ClaimTypes.Email);
 
-            return await input.Users.SingleOrDefaultAsync(x => x.Email == email);
+            return await input.Users
+            .Include(P => P.Photos)
+            .SingleOrDefaultAsync(x => x.Email == email);
         }
     }
 }

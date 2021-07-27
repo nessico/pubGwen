@@ -18,7 +18,7 @@ namespace API.Extensions
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.Http,
-                    Scheme = "bearer",
+                    Scheme = "Bearer",
                     Reference = new OpenApiReference
                     {
                         Type = ReferenceType.SecurityScheme,

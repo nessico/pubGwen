@@ -16,6 +16,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using API.Dtos;
 using API.Extensions;
+using System.Collections.Generic;
 
 namespace API.Controllers
 {
@@ -95,15 +96,17 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
-            var email = HttpContext.User?.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
+            var user = await _userManager.FindByEmailFromClaimsPrinciple(User);
 
-            var user = await _userManager.FindByEmailAsync(email);
 
             return new UserDto
             {
                 Email = user.Email,
+                Username = user.UserName,
                 Token = await _tokenService.CreateToken(user),
-                DisplayName = user.DisplayName
+                PhotoUrl = user.Photos.FirstOrDefault()?.Url,
+                DisplayName = user.DisplayName,
+                Gender = user.Gender
             };
 
         }
@@ -133,8 +136,6 @@ namespace API.Controllers
 
             return BadRequest("Problem updating the user");
         }
-
-
 
 
         //Ensure email is unique
