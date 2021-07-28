@@ -1,6 +1,6 @@
 using Core.Entities.Identity;
 
-namespace Core.Entities
+namespace Core.Entities.Member
 {
     //Joint entity for user and userlike
     public class UserLike

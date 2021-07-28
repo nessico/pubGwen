@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Core.Entities.Employee;
+using Core.Entities.Member;
 using Core.Entities;
-using Core.Employee.Parameters;
+using Core.Entities.Member.Parameters;
 using Core.Entities.Identity;
 
 namespace Core.Interfaces

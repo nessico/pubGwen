@@ -3,8 +3,8 @@ using System.Linq;
 using API.DTOs;
 using Core.Entities;
 using AutoMapper;
-using Core.Employee.Parameters;
-using Core.Entities.Employee;
+using Core.Entities.Member.Parameters;
+using Core.Entities.Member;
 using Core.Entities.Identity;
 using API.Dtos;
 

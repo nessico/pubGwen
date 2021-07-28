@@ -1,6 +1,6 @@
 using System;
 
-namespace Core.Employee.Parameters
+namespace Core.Entities.Member.Parameters
 {
     public static class DateTimeExtensions
     {

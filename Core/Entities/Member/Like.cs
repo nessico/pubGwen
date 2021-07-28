@@ -1,4 +1,4 @@
-namespace Core.Entities.Employee
+namespace Core.Entities.Member
 {
     public class Like
     {
@@ -7,6 +7,6 @@ namespace Core.Entities.Employee
         public int Age { get; set; }
         public string DisplayName { get; set; }
         public string PhotoUrl { get; set; }
-       
+
     }
 }

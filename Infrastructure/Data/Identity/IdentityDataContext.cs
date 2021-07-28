@@ -1,6 +1,6 @@
 using System;
-using Core.Entities;
 using Core.Entities.Identity;
+using Core.Entities.Member;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

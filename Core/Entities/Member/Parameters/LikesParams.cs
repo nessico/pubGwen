@@ -1,4 +1,4 @@
-namespace Core.Employee.Parameters
+namespace Core.Entities.Member.Parameters
 {
     public class LikesParams : PaginationParams
     {

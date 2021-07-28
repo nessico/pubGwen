@@ -4,11 +4,11 @@ using API.DTOs;
 using Core.Entities;
 using Core.Entities.Identity;
 using API.Extensions;
-using Core.Employee.Parameters;
+using Core.Entities.Member.Parameters;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Core.Entities.Employee;
+using Core.Entities.Member;
 
 namespace API.Controllers
 {

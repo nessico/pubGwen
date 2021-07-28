@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Core.Entities.Employee
+namespace Core.Entities.Member
 {
     public class Member
     {

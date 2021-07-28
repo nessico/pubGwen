@@ -7,14 +7,14 @@ using Core.Entities.Identity;
 using API.DTOs;
 using Core.Entities;
 using API.Extensions;
-using Core.Employee.Parameters;
+using Core.Entities.Member.Parameters;
 using Core.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Core.Entities.Employee;
+using Core.Entities.Member;
 
 namespace API.Controllers
 {

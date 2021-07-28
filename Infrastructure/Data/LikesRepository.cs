@@ -3,10 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Entities.Identity;
-using Core.Employee.Parameters;
+using Core.Entities.Member.Parameters;
 using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Core.Entities.Employee;
+using Core.Entities.Member;
 
 namespace Infrastructure.Data.Identity
 {

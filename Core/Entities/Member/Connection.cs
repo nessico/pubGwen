@@ -1,4 +1,4 @@
-namespace Core.Entities
+namespace Core.Entities.Member
 {
     public class Connection
     {

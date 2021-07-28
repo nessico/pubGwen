@@ -7,7 +7,7 @@ using API.Extensions;
 using Core.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.SignalR;
-using Core.Entities.Employee;
+using Core.Entities.Member;
 
 namespace API.SignalR
 {

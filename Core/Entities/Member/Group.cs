@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Core.Entities
+namespace Core.Entities.Member
 {
     public class Group
     {
