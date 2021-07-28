@@ -14,6 +14,7 @@ import { AdminPanelComponent } from './admin/admin-panel.component';
 import { AdminGuard } from '../core/_guards/admin.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {

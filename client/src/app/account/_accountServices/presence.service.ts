@@ -54,7 +54,7 @@ export class PresenceService {
         .info(displayName + ' has sent you a new message!')
         .onTap.pipe(take(1))
         .subscribe(() =>
-          this.router.navigateByUrl('/members/' + username + '?tab=3')
+          this.router.navigateByUrl('/account/members/' + username + '?tab=3')
         );
     });
   }
