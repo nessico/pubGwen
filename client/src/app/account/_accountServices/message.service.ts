@@ -4,9 +4,9 @@ import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Group } from 'src/app/shared/_models/accountModels/group';
-import { Message } from 'src/app/shared/_models/accountModels/message';
-import { User } from 'src/app/shared/_models/accountModels/user';
+import { IGroup } from 'src/app/shared/_models/accountModels/group';
+import { IMessage } from 'src/app/shared/_models/accountModels/message';
+import { IUser } from 'src/app/shared/_models/accountModels/user';
 import { BusyService } from '../../core/services/busy.service';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
@@ -17,12 +17,12 @@ export class MessageService {
   baseUrl = environment.apiUrl;
   hubUrl = environment.hubUrl;
   private hubConnection!: HubConnection;
-  private messageThreadSource = new BehaviorSubject<Message[]>([]);
+  private messageThreadSource = new BehaviorSubject<IMessage[]>([]);
   messageThread$ = this.messageThreadSource.asObservable();
 
   constructor(private http: HttpClient, private busyService: BusyService) {}
 
-  createHubConnection(user: User, otherUsername: string) {
+  createHubConnection(user: IUser, otherUsername: string) {
     this.busyService.busy();
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.hubUrl + 'message?user=' + otherUsername, {
@@ -46,7 +46,7 @@ export class MessageService {
       });
     });
 
-    this.hubConnection.on('UpdatedGroup', (group: Group) => {
+    this.hubConnection.on('UpdatedGroup', (group: IGroup) => {
       if (group.connections.some((x) => x.username === otherUsername)) {
         this.messageThread$.pipe(take(1)).subscribe((messages) => {
           messages.forEach((message) => {
@@ -70,7 +70,7 @@ export class MessageService {
   getMessages(pageNumber: any, pageSize: any, container: any) {
     let params = getPaginationHeaders(pageNumber, pageSize);
     params = params.append('Container', container);
-    return getPaginatedResult<Message[]>(
+    return getPaginatedResult<IMessage[]>(
       this.baseUrl + 'messages',
       params,
       this.http
@@ -78,7 +78,7 @@ export class MessageService {
   }
 
   getMessageThread(username: string) {
-    return this.http.get<Message[]>(
+    return this.http.get<IMessage[]>(
       this.baseUrl + 'messages/thread/' + username
     );
   }

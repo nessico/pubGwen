@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { take } from 'rxjs/operators';
-import { Member } from 'src/app/shared/_models/accountModels/member';
-import { Photo } from 'src/app/shared/_models/accountModels/photo';
-import { User } from 'src/app/shared/_models/accountModels/user';
+import { IMember } from 'src/app/shared/_models/accountModels/member';
+import { IPhoto } from 'src/app/shared/_models/accountModels/photo';
+import { IUser } from 'src/app/shared/_models/accountModels/user';
 import { AccountService } from 'src/app/account/_accountServices/account.service';
 import { MembersService } from 'src/app/account/_accountServices/members.service';
 import { environment } from 'src/environments/environment';
@@ -15,11 +15,11 @@ import { environment } from 'src/environments/environment';
 })
 export class PhotoEditorComponent implements OnInit {
   //Receive our member from the parent component
-  @Input() member!: Member;
+  @Input() member!: IMember;
   uploader!: FileUploader;
   hasBaseDropzoneOver = false;
   baseUrl = environment.apiUrl;
-  user!: User;
+  user!: IUser;
 
   constructor(
     private accountService: AccountService,
@@ -38,7 +38,7 @@ export class PhotoEditorComponent implements OnInit {
     this.hasBaseDropzoneOver = e;
   }
 
-  setMainPhoto(photo: Photo) {
+  setMainPhoto(photo: IPhoto) {
     this.memberService.setMainPhoto(photo.id).subscribe(() => {
       this.user.photoUrl = photo.url;
       this.accountService.setCurrentUser(this.user);
@@ -72,7 +72,7 @@ export class PhotoEditorComponent implements OnInit {
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
-        const photo: Photo = JSON.parse(response);
+        const photo: IPhoto = JSON.parse(response);
         // add photos to photo array
         this.member.photos.push(photo);
         if (photo.isMain) {

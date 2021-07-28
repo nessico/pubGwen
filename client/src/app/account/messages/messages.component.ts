@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Message } from '../../shared/_models/accountModels/message';
-import { Pagination } from '../../shared/_models/accountModels/pagination';
+import { IMessage } from '../../shared/_models/accountModels/message';
+import { IPagination } from '../../shared/_models/accountModels/pagination';
 import { ConfirmService } from '../_accountServices/confirm.service';
 import { MessageService } from '../_accountServices/message.service';
 
@@ -10,8 +10,8 @@ import { MessageService } from '../_accountServices/message.service';
   styleUrls: ['./messages.component.scss'],
 })
 export class MessagesComponent implements OnInit {
-  messages: Message[] = [];
-  pagination!: Pagination;
+  messages: IMessage[] = [];
+  pagination!: IPagination;
   container = 'Unread';
   pageNumber = 1;
   pageSize = 100;

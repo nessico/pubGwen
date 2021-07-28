@@ -1,5 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/shared/_models/accountModels/user';
+import { IUser } from 'src/app/shared/_models/accountModels/user';
 import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { environment } from 'src/environments/environment';
@@ -20,7 +20,7 @@ export class PresenceService {
 
   //start hub connection if user is logged in or when user registers
   //stop hub connection if user is logged out
-  createHubConnection(user: User) {
+  createHubConnection(user: IUser) {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.hubUrl + 'presence', {
         accessTokenFactory: () => user.token,

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from 'src/app/shared/_models/accountModels/user';
+import { IUser } from 'src/app/shared/_models/accountModels/user';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class AdminService {
   constructor(private http: HttpClient) {}
 
   getUsersWithRoles() {
-    return this.http.get<Partial<User[]>>(
+    return this.http.get<Partial<IUser[]>>(
       this.baseUrl + 'admin/users-with-roles'
     );
   }

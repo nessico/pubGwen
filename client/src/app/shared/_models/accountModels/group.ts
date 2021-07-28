@@ -1,9 +1,9 @@
-export interface Group {
+export interface IGroup {
   name: string;
-  connections: Connection[];
+  connections: IConnection[];
 }
 
-interface Connection {
+interface IConnection {
   connectionId: string;
   username: string;
 }

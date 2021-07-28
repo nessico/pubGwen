@@ -2,8 +2,8 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
-import { Member } from 'src/app/shared/_models/accountModels/member';
-import { User } from 'src/app/shared/_models/accountModels/user';
+import { IMember } from 'src/app/shared/_models/accountModels/member';
+import { IUser } from 'src/app/shared/_models/accountModels/user';
 import { AccountService } from 'src/app/account/_accountServices/account.service';
 import { MembersService } from 'src/app/account/_accountServices/members.service';
 
@@ -14,8 +14,8 @@ import { MembersService } from 'src/app/account/_accountServices/members.service
 })
 export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm!: NgForm;
-  member!: Member;
-  user!: User;
+  member!: IMember;
+  user!: IUser;
   @HostListener('window:beforeunload', ['$event']) unloadNotification(
     $event: any
   ) {

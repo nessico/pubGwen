@@ -1,6 +1,6 @@
 import { BasketService } from './basket/basket.service';
 import { Component, OnInit } from '@angular/core';
-import { User } from './shared/_models/accountModels/user';
+import { IUser } from './shared/_models/accountModels/user';
 import { environment } from 'src/environments/environment';
 import { AccountService } from './account/_accountServices/account.service';
 import { PresenceService } from './account/_accountServices/presence.service';
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
 
   //user persistence
   setCurrentUser() {
-    const user: User = JSON.parse(localStorage.getItem('user')!);
+    const user: IUser = JSON.parse(localStorage.getItem('user')!);
     if (user) {
       this.accountService.setCurrentUser(user);
       this.presence.createHubConnection(user);

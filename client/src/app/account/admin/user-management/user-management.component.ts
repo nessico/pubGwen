@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RolesModalComponent } from 'src/app/core/modals/roles-modal/roles-modal.component';
-import { User } from 'src/app/shared/_models/accountModels/user';
+import { IUser } from 'src/app/shared/_models/accountModels/user';
 import { AdminService } from 'src/app/account/_accountServices/admin.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { AdminService } from 'src/app/account/_accountServices/admin.service';
   styleUrls: ['./user-management.component.scss'],
 })
 export class UserManagementComponent implements OnInit {
-  users!: Partial<User[]>;
+  users!: Partial<IUser[]>;
   bsModalRef!: BsModalRef;
 
   constructor(
@@ -28,7 +28,7 @@ export class UserManagementComponent implements OnInit {
     });
   }
 
-  openRolesModal(user: User) {
+  openRolesModal(user: IUser) {
     const config = {
       class: 'modal-dialog-centered',
       initialState: {

@@ -4,27 +4,24 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { User } from 'src/app/shared/_models/accountModels/user';
-``;
-
+import { IUser } from 'src/app/shared/_models/accountModels/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
   baseUrl = environment.apiUrl;
-  private currentUserSource = new ReplaySubject<User>(1);
+  private currentUserSource = new ReplaySubject<IUser>(1);
   currentUser$ = this.currentUserSource.asObservable();
   //ReplaySubject is like a buffer object that stores the value in here and anytime a subscribers subscribes a observable, its gonna store the value in it
 
   constructor(private http: HttpClient, private presence: PresenceService) {}
 
   login(model: any) {
-    return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
-      map((response: User) => {
+    return this.http.post<IUser>(this.baseUrl + 'account/login', model).pipe(
+      map((response: IUser) => {
         const user = response;
         if (user) {
-          
           this.setCurrentUser(user);
           this.presence.createHubConnection(user);
         }
@@ -33,8 +30,8 @@ export class AccountService {
   }
 
   register(model: any) {
-    return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
-      map((user: User) => {
+    return this.http.post<IUser>(this.baseUrl + 'account/register', model).pipe(
+      map((user: IUser) => {
         if (user) {
           this.setCurrentUser(user);
           this.presence.createHubConnection(user);
@@ -43,7 +40,7 @@ export class AccountService {
     );
   }
 
-  setCurrentUser(user: User) {
+  setCurrentUser(user: IUser) {
     user.roles = [];
     const roles = this.getDecodedToken(user.token).role;
     Array.isArray(roles) ? (user.roles = roles) : user.roles.push(roles);

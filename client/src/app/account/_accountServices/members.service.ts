@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Member } from 'src/app/shared/_models/accountModels/member';
+import { IMember } from 'src/app/shared/_models/accountModels/member';
 import { of, pipe } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { PaginatedResult } from 'src/app/shared/_models/accountModels/pagination';
 import { UserParams } from 'src/app/shared/_models/accountModels/userParams';
 import { AccountService } from './account.service';
-import { User } from 'src/app/shared/_models/accountModels/user';
+import { IUser } from 'src/app/shared/_models/accountModels/user';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
 @Injectable({
@@ -15,9 +15,9 @@ import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 })
 export class MembersService {
   baseUrl = environment.apiUrl;
-  members: Member[] = [];
+  members: IMember[] = [];
   memberCache = new Map();
-  user!: User;
+  user!: IUser;
   userParams!: UserParams;
 
   constructor(
@@ -66,7 +66,7 @@ export class MembersService {
     //Observing will get the response back and we will have to get the body ourselves with pipe
     //Observing response -> passed the params -> passed into a pipe -> specify our response mapping
     //caching at map
-    return getPaginatedResult<Member[]>(
+    return getPaginatedResult<IMember[]>(
       this.baseUrl + 'users',
       params,
       this.http
@@ -82,15 +82,15 @@ export class MembersService {
     //spread operator
     const member = [...this.memberCache.values()]
       .reduce((arr, elem) => arr.concat(elem.result), [])
-      .find((member: Member) => member.username === username);
+      .find((member: IMember) => member.username === username);
 
     if (member) {
       return of(member);
     }
-    return this.http.get<Member>(this.baseUrl + 'users/' + username);
+    return this.http.get<IMember>(this.baseUrl + 'users/' + username);
   }
 
-  updateMember(member: Member) {
+  updateMember(member: IMember) {
     return this.http.put(this.baseUrl + 'users', member).pipe(
       map(() => {
         const index = this.members.indexOf(member);
@@ -114,7 +114,7 @@ export class MembersService {
   getLikes(predicate: string, pageNumber: any, pageSize: any) {
     let params = getPaginationHeaders(pageNumber, pageSize);
     params = params.append('predicate', predicate);
-    return getPaginatedResult<Partial<Member[]>>(
+    return getPaginatedResult<Partial<IMember[]>>(
       this.baseUrl + 'likes',
       params,
       this.http

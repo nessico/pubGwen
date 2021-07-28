@@ -1,4 +1,4 @@
-import { User } from './user';
+import { IUser } from './user';
 
 export class UserParams {
   gender!: string;
@@ -8,7 +8,7 @@ export class UserParams {
   pageSize = 6;
   orderBy = 'lastActive';
 
-  constructor(user: User) {
+  constructor(user: IUser) {
     this.gender = user.gender === 'female' ? 'male' : 'female';
   }
 }

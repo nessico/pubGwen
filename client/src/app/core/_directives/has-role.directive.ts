@@ -6,7 +6,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { User } from '../../shared/_models/accountModels/user';
+import { IUser } from '../../shared/_models/accountModels/user';
 import { AccountService } from '../../account/_accountServices/account.service';
 
 @Directive({
@@ -14,7 +14,7 @@ import { AccountService } from '../../account/_accountServices/account.service';
 })
 export class HasRoleDirective implements OnInit {
   @Input() appHasRole!: string[];
-  user!: User;
+  user!: IUser;
 
   constructor(
     private viewContainerRef: ViewContainerRef,

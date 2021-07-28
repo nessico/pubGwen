@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Member } from 'src/app/shared/_models/accountModels/member';
-import { Pagination } from 'src/app/shared/_models/accountModels/pagination';
-import { User } from 'src/app/shared/_models/accountModels/user';
+import { IMember } from 'src/app/shared/_models/accountModels/member';
+import { IPagination } from 'src/app/shared/_models/accountModels/pagination';
+import { IUser } from 'src/app/shared/_models/accountModels/user';
 import { UserParams } from 'src/app/shared/_models/accountModels/userParams';
 import { AccountService } from 'src/app/account/_accountServices/account.service';
 import { MembersService } from 'src/app/account/_accountServices/members.service';
@@ -14,10 +14,10 @@ import { MembersService } from 'src/app/account/_accountServices/members.service
   styleUrls: ['./member-list.component.scss'],
 })
 export class MemberListComponent implements OnInit {
-  members!: Member[];
-  pagination!: Pagination;
+  members!: IMember[];
+  pagination!: IPagination;
   userParams!: UserParams;
-  user!: User;
+  user!: IUser;
   genderList = [
     { value: 'male', display: 'Males' },
     { value: 'female', display: 'Females' },

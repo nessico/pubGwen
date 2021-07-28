@@ -9,13 +9,13 @@ import {
   NgxGalleryOptions,
 } from '@kolkov/ngx-gallery';
 import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
-import { Member } from 'src/app/shared/_models/accountModels/member';
-import { Message } from 'src/app/shared/_models/accountModels/message';
+import { IMember } from 'src/app/shared/_models/accountModels/member';
+import { IMessage } from 'src/app/shared/_models/accountModels/message';
 import { MembersService } from 'src/app/account/_accountServices/members.service';
 import { MessageService } from 'src/app/account/_accountServices/message.service';
 import { AccountService } from 'src/app/account/_accountServices/account.service';
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/shared/_models/accountModels/user';
+import { IUser } from 'src/app/shared/_models/accountModels/user';
 import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -26,12 +26,12 @@ import { Router } from '@angular/router';
 })
 export class MemberDetailComponent implements OnInit, OnDestroy {
   @ViewChild('memberTabs', { static: true }) memberTabs!: TabsetComponent;
-  member!: Member;
+  member!: IMember;
   galleryOptions!: NgxGalleryOptions[];
   galleryImages!: NgxGalleryImage[];
   activeTab!: TabDirective;
-  messages: Message[] = [];
-  user!: User;
+  messages: IMessage[] = [];
+  user!: IUser;
 
   constructor(
     public presence: PresenceService,
@@ -107,7 +107,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  addLike(member: Member) {
+  addLike(member: IMember) {
     this.memberService.addLike(member.username).subscribe(() => {
       this.toastr.success('You have liked ' + member.displayName);
     });
