@@ -11,7 +11,7 @@
         <p>Login in with your email and password</p>
       </div>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3 ">
           <input
             formControlName="email"
             class="form-control"
@@ -19,7 +19,7 @@
             placeholder="Email"
             id="emailfloat"
           />
-          <label for="emailfloat">Email</label>
+          <label for="emailfloat" class="text-muted">Email</label>
           <span
             class="text-danger"
             *ngIf="
@@ -46,7 +46,7 @@
             placeholder="Password"
             id="passwordfloat"
           />
-          <label for="passwordfloat">Password</label>
+          <label for="passwordfloat" class="text-muted">Password</label>
           <span
             class="text-danger"
             *ngIf="

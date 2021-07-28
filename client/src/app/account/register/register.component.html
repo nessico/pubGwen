@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row justify-content-center my-2">
-    <div class="col-4">
+  <div class="d-flex justify-content-center">
+    <div class="col-5">
       <form
         [formGroup]="registerForm"
         (ngSubmit)="register()"
@@ -9,8 +9,8 @@
         <h2 class="text-center text-primary">Sign up</h2>
         <hr />
 
-        <div class="form-group">
-          <label class="control-label" style="margin-right: 10px"
+        <div class="form-group mb-3">
+          <label class="control-span" style="margin-right: 10px"
             >I am a:
           </label>
           <label class="radio-inline">
@@ -19,6 +19,7 @@
           </label>
           <label class="radio-inline">
             <input
+              style="margin: 5px"
               type="radio"
               value="female"
               formControlName="gender"
@@ -27,223 +28,219 @@
             Female
           </label>
         </div>
-        <br />
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input
+                formControlName="email"
+                class="form-control"
+                type="email"
+                placeholder="Email"
+                id="emailfloat"
+              />
+              <label for="emailfloat" class="text-muted">Email </label>
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm.get('email')?.hasError('required') &&
+                  registerForm.get('email')?.touched
+                "
+                >Email is required</span
+              >
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm.get('email')?.hasError('pattern') &&
+                  registerForm.get('email')?.touched
+                "
+                >Email must be in a valid format, e.g. example@test.com</span
+              >
+            </div>
 
-        <div
-          class="form-group"
-          [ngClass]="{
-            'has-error':
-              registerForm.get('displayName')?.errors &&
-              registerForm.get('displayName')?.touched
-          }"
-        >
-          <input
-            type="text"
-            placeholder="Your name"
-            class="form-control"
-            formControlName="displayName"
-          />
-          <label
-            class="text-danger"
-            *ngIf="
-              registerForm.get('displayName')?.hasError('required') &&
-              registerForm.get('displayName')?.touched
-            "
-            >Your name is required</label
-          >
-        </div>
-        <br />
+            <div
+              class="form-floating mb-3"
+              [ngClass]="{
+                'has-error':
+                  registerForm.get('username')?.errors &&
+                  registerForm.get('username')?.touched
+              }"
+            >
+              <input
+                type="text"
+                placeholder="Username"
+                class="form-control"
+                formControlName="username"
+                id="usernamefloat"
+              />
+              <label for="usernamefloat" class="text-muted">Username </label>
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm.get('username')?.hasError('required') &&
+                  registerForm.get('username')?.touched
+                "
+                >Username is required</span
+              >
+            </div>
 
-        <div
-          class="form-group"
-          [ngClass]="{
-            'has-error':
-              registerForm.get('username')?.errors &&
-              registerForm.get('username')?.touched
-          }"
-        >
-          <input
-            type="text"
-            placeholder="Username"
-            class="form-control"
-            formControlName="username"
-          />
-          <label
-            class="text-danger"
-            *ngIf="
-              registerForm.get('username')?.hasError('required') &&
-              registerForm.get('username')?.touched
-            "
-            >Username is required</label
-          >
-        </div>
-        <br />
+            <div
+              class="form-floating mb-3"
+              [ngClass]="{
+                'has-error':
+                  registerForm.get('displayName')?.errors &&
+                  registerForm.get('displayName')?.touched
+              }"
+            >
+              <input
+                type="text"
+                placeholder="Your name"
+                class="form-control"
+                formControlName="displayName"
+                id="displayfloat"
+              />
+              <label for="displayfloat" class="text-muted">Display Name </label>
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm.get('displayName')?.hasError('required') &&
+                  registerForm.get('displayName')?.touched
+                "
+                >Display Name is required</span
+              >
+            </div>
 
-        <div
-          class="form-group"
-          [ngClass]="{
-            'has-error':
-              registerForm.get('password')?.errors &&
-              registerForm.get('password')?.touched
-          }"
-        >
-          <input
-            type="password"
-            placeholder="Password"
-            class="form-control"
-            formControlName="password"
-          />
-          <label
-            class="text-danger"
-            *ngIf="
-              registerForm.get('password')?.hasError('required') &&
-              registerForm.get('password')?.touched
-            "
-            >Password is required</label
-          >
-          <label
-            class="text-danger"
-            *ngIf="
-              registerForm.get('password')?.hasError('minlength') &&
-              registerForm.get('password')?.touched
-            "
-            >Password must be at least 6 characters</label
-          >
-          <label
-            class="text-danger"
-            *ngIf="
-              registerForm.get('password')?.hasError('maxlength') &&
-              registerForm.get('password')?.touched
-            "
-            >Password cannot exceed 8 characters</label
-          >
-          <label
-            class="text-danger"
-            *ngIf="
-              registerForm.get('password')?.hasError('pattern') &&
-              registerForm.get('password')?.touched
-            "
-            >Password must contain one upper, one lower, one digit, and one
-            special character</label
-          >
-        </div>
-        <br />
-        <div
-          class="form-group"
-          [ngClass]="{
-            'has-error':
-              (registerForm.get('confirmPassword')?.errors ||
-                registerForm?.hasError('isMatching')) &&
-              registerForm.get('confirmPassword')?.touched
-          }"
-        >
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            class="form-control"
-            formControlName="confirmPassword"
-          />
-          <label
-            class="text-danger"
-            *ngIf="
-              registerForm?.hasError('isMatching') &&
-              registerForm.get('confirmPassword')?.touched
-            "
-            >Password must be matching</label
-          >
-        </div>
-        <br />
+            <div
+              class="form-floating mb-3"
+              [ngClass]="{
+                'has-error':
+                  registerForm.get('dateOfBirth')?.errors &&
+                  registerForm.get('dateOfBirth')?.touched
+              }"
+            >
+              <input
+                type="text"
+                placeholder="Date of birth"
+                class="form-control"
+                bsDatepicker
+                [minDate]="minDate"
+                [maxDate]="maxDate"
+                [bsConfig]="bsConfig"
+                formControlName="dateOfBirth"
+                id="agefloat"
+              />
+              <label for="agefloat" class="text-muted">Date Of Birth </label>
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm.get('dateOfBirth')?.hasError('required') &&
+                  registerForm.get('dateOfBirth')?.touched
+                "
+                >Must be at least 18 years old</span
+              >
+            </div>
+          </div>
 
-        <div
-          class="form-group"
-          [ngClass]="{
-            'has-error':
-              registerForm.get('dateOfBirth')?.errors &&
-              registerForm.get('dateOfBirth')?.touched
-          }"
-        >
-          <input
-            type="text"
-            placeholder="Date of birth"
-            class="form-control"
-            bsDatepicker
-            [minDate]="minDate"
-            [maxDate]="maxDate"
-            [bsConfig]="bsConfig"
-            formControlName="dateOfBirth"
-          />
-          <label
-            class="text-danger"
-            *ngIf="
-              registerForm.get('dateOfBirth')?.hasError('required') &&
-              registerForm.get('dateOfBirth')?.touched
-            "
-            >Must be at least 18 years old</label
-          >
-        </div>
-        <br />
-        <div
-          class="form-group"
-          [ngClass]="{
-            'has-error':
-              registerForm.get('city')?.errors &&
-              registerForm.get('city')?.touched
-          }"
-        >
-          <input
-            type="text"
-            placeholder="City"
-            class="form-control"
-            formControlName="city"
-          />
-          <label
-            class="text-danger"
-            *ngIf="
-              registerForm.get('city')?.hasError('required') &&
-              registerForm.get('city')?.touched
-            "
-            >City is required</label
-          >
-        </div>
-        <br />
-        <div
-          class="form-group"
-          [ngClass]="{
-            'has-error':
-              registerForm.get('country')?.errors &&
-              registerForm.get('country')?.touched
-          }"
-        >
-          <input
-            type="text"
-            placeholder="Country"
-            class="form-control"
-            formControlName="country"
-          />
-          <label
-            class="text-danger"
-            *ngIf="
-              registerForm.get('country')?.hasError('required') &&
-              registerForm.get('country')?.touched
-            "
-            >Country is required</label
-          >
-        </div>
-        <br />
+          <div class="col-md">
+            <div
+              class="form-floating mb-3"
+              [ngClass]="{
+                'has-error':
+                  registerForm.get('password')?.errors &&
+                  registerForm.get('password')?.touched
+              }"
+            >
+              <input
+                type="password"
+                placeholder="Password"
+                class="form-control"
+                formControlName="password"
+                id="passwordfloat"
+              />
+              <label for="passwordfloat" class="text-muted">Password </label>
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm.get('password')?.hasError('required') &&
+                  registerForm.get('password')?.touched
+                "
+                >Password is required</span
+              >
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm.get('password')?.hasError('minlength') &&
+                  registerForm.get('password')?.touched
+                "
+                >Password must be at least 6 characters</span
+              >
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm.get('password')?.hasError('maxlength') &&
+                  registerForm.get('password')?.touched
+                "
+                >Password cannot exceed 8 characters</span
+              >
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm.get('password')?.hasError('pattern') &&
+                  registerForm.get('password')?.touched
+                "
+                >Password must contain one upper, one lower, one digit, and one
+                special character</span
+              >
+            </div>
 
-        <div class="form-group text-center">
+            <div
+              class="form-floating mb-3"
+              [ngClass]="{
+                'has-error':
+                  (registerForm.get('confirmPassword')?.errors ||
+                    registerForm?.hasError('isMatching')) &&
+                  registerForm.get('confirmPassword')?.touched
+              }"
+            >
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                class="form-control"
+                formControlName="confirmPassword"
+                id="confirmfloat"
+              />
+              <label for="confirmfloat" class="text-muted"
+                >Confirm Password
+              </label>
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm?.hasError('isMatching') &&
+                  registerForm.get('confirmPassword')?.touched
+                "
+                >Password must be matching</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mr-2 text-center">
           <button
             [disabled]="registerForm.invalid"
-            class="btn btn-success mr-2"
+            class="btn btn-success btn-lg mr-2"
             type="submit"
           >
             Register
           </button>
-          <button class="btn btn-default mr-2" routerLink="" type="button">
+          <button
+            class="btn btn-default btn-lg"
+            style="margin: 5px"
+            routerLink="/"
+            type="button"
+          >
             Cancel
           </button>
         </div>
       </form>
     </div>
   </div>
-
+</div>
