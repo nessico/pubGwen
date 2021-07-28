@@ -64,7 +64,7 @@
               btn btn-outline-info btn-md btn-rounded btn-navbar
               waves-effect waves-light
             "
-            routerLink="/login"
+            routerLink="/account/login"
           >
             Sign in
           </a>
@@ -77,7 +77,7 @@
             href="#!"
             type="button"
             class="btn btn-md btn-navbar waves-effect"
-            routerLink="/register"
+            routerLink="/account/register"
             style="color: white"
             >Register</a
           >
@@ -102,25 +102,25 @@
         <div class="dropdown-menu mt-3" *dropdownMenu>
           <a
             class="dropdown-item"
-            routerLink="/member/edit"
+            routerLink="/account/member/edit"
             routerLinkActive="active"
             >Edit profile</a
           >
           <div class="dropdown-divider"></div>
           <a
             class="dropdown-item"
-            routerLink="/members"
+            routerLink="/account/members"
             routerLinkActive="active"
             >Matches</a
           >
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" routerLink="/lists" routerLinkActive="active"
+          <a class="dropdown-item" routerLink="/account/lists" routerLinkActive="active"
             >Lists</a
           >
           <div class="dropdown-divider"></div>
           <a
             class="dropdown-item"
-            routerLink="/messages"
+            routerLink="/account/messages"
             routerLinkActive="active"
             >Messages</a
           >
@@ -128,7 +128,7 @@
           <a
             class="dropdown-item"
             *appHasRole="['Admin', 'Moderator']"
-            routerLink="/admin"
+            routerLink="/account/admin"
             routerLinkActive="active"
             >Admin</a
           >

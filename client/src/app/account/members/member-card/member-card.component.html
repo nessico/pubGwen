@@ -8,7 +8,7 @@
     <ul class="list-inline member-icons animate text-center">
       <li class="list-inline-item">
         <button
-          routerLink="/members/{{ member.username }}"
+          routerLink="/account/members/{{ member.username }}"
           class="btn btn-primary"
         >
           <i class="fa fa-user"></i>
@@ -22,7 +22,7 @@
       <li class="list-inline-item">
         <button
           class="btn btn-primary"
-          routerLink="/members/{{ member.username }}"
+          routerLink="/account/members/{{ member.username }}"
           [queryParams]="{ tab: 3 }"
         >
           <i class="fa fa-envelope"></i>

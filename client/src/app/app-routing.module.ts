@@ -44,57 +44,10 @@ const routes: Routes = [
     data: { breadcrumb: 'Checkout', skip: false },
   },
   {
-    path: 'login',
-    component: LoginComponent,
-    data: { breadcrumb: 'Login' },
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    data: { breadcrumb: 'Register' },
-  },
-  {
-    path: '',
-    runGuardsAndResolvers: 'always',
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'members',
-        component: MemberListComponent,
-        data: { breadcrumb: 'Members' },
-      },
-      {
-        path: 'members/:username',
-        component: MemberDetailComponent,
-        data: { breadcrumb: { alias: 'memberDetails' } },
-        resolve: {
-          member: MemberDetailedResolver,
-        },
-      },
-      {
-        path: 'member/edit',
-        component: MemberEditComponent,
-        canDeactivate: [PreventUnsavedChangesGuard],
-        data: { breadcrumb: 'Edit' },
-      },
-      {
-        path: 'lists',
-        component: ListsComponent,
-        data: { breadcrumb: 'Lists' },
-      },
-
-      {
-        path: 'messages',
-        component: MessagesComponent,
-        data: { breadcrumb: 'Messages' },
-      },
-      {
-        path: 'admin',
-        component: AdminPanelComponent,
-        canActivate: [AdminGuard],
-        data: { breadcrumb: 'Admin' },
-      },
-    ],
+    path: 'account',
+    loadChildren: () =>
+      import('./account/account.module').then((mod) => mod.AccountModule),
+    data: { breadcrumb: {skip: true} },
   },
   {
     path: 'errors',

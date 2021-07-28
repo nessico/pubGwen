@@ -1,3 +1,4 @@
+import { AccountRoutingModule } from './account-routing.module';
 import { MessagesComponent } from './messages/messages.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { CoreModule } from '../core/core.module';
@@ -43,6 +44,7 @@ import { RouterModule } from '@angular/router';
     MemberEditComponent,
     PhotoEditorComponent,
     MemberMessagesComponent,
+    AccountRoutingModule,
   ],
 })
 export class AccountModule {}
