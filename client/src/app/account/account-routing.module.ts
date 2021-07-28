@@ -15,8 +15,12 @@ import { AdminGuard } from '../core/_guards/admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, data: { breadcrumb: 'Login' } },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    data: { breadcrumb: 'Register' },
+  },
   {
     path: 'members',
     component: MemberListComponent,

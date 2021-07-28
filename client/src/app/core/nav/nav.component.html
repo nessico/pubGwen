@@ -54,10 +54,7 @@
             </div>
           </a>
         </li>
-        <li
-          class="nav-item"
-          *ngIf="(accountService.currentUser$ | async) == null"
-        >
+        <li class="nav-item" *ngIf="(currentUser$ | async) == null">
           <a
             href="#!"
             class="
@@ -71,7 +68,7 @@
         </li>
         <li
           class="nav-item pl-2 mb-2 mb-md-0"
-          *ngIf="(accountService.currentUser$ | async) == null"
+          *ngIf="(currentUser$ | async) == null"
         >
           <a
             href="#!"
@@ -114,7 +111,10 @@
             >Matches</a
           >
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" routerLink="/account/lists" routerLinkActive="active"
+          <a
+            class="dropdown-item"
+            routerLink="/account/lists"
+            routerLinkActive="active"
             >Lists</a
           >
           <div class="dropdown-divider"></div>

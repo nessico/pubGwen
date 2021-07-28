@@ -37,14 +37,14 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.initializeForm();
+    this.createRegisterForm();
     this.minDate = new Date();
     this.maxDate = new Date();
     this.minDate.setFullYear(this.minDate.getFullYear() - 100);
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
 
-  initializeForm(): void {
+  createRegisterForm(): void {
     this.registerForm = this.fb.group(
       {
         gender: ['male'],

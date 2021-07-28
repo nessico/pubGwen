@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../_accountServices/account.service';
@@ -14,13 +15,30 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) {}
-  model: any = {};
+  loginForm!: FormGroup;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.createLoginForm();
+  }
 
   login() {
-    this.accountService.login(this.model).subscribe((response) => {
-      this.router.navigateByUrl('/account/members');
+    this.accountService.login(this.loginForm.value).subscribe(
+      (response) => {
+        this.router.navigateByUrl('/account/members');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  createLoginForm() {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$'),
+      ]),
+      password: new FormControl('', Validators.required),
     });
   }
 }

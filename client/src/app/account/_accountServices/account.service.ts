@@ -57,4 +57,8 @@ export class AccountService {
   getDecodedToken(token: any) {
     return JSON.parse(atob(token.split('.')[1]));
   }
+
+  checkEmailExists(email: string) {
+    return this.http.get(this.baseUrl + 'account/emailExists?email=' + email);
+  }
 }

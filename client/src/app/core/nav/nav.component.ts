@@ -15,6 +15,7 @@ import { IBasket } from 'src/app/shared/_models/shopModels/basket';
 export class NavComponent implements OnInit {
   model: any = {};
   basket$!: Observable<IBasket | null>;
+  currentUser$!: Observable<IUser>;
 
   constructor(
     public accountService: AccountService,
@@ -25,12 +26,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;
-  }
-
-  login() {
-    this.accountService.login(this.model).subscribe((response) => {
-      this.router.navigateByUrl('/account/members');
-    });
+    this.currentUser$ = this.accountService.currentUser$;
   }
 
   logout() {

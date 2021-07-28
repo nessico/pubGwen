@@ -1,47 +1,72 @@
 <div class="container">
-  <div class="content text-center">
-    <div class="row justify-content-center">
-      <div class="col-4">
-        <form (ngSubmit)="login()" #loginForm="ngForm" autocomplete="ff">
-          <h2 class="text-center text-primary">Sign in</h2>
+  <div class="d-flex row justify-content-center">
+    <div class="col-4">
+      <div class="text-center">
+        <h2 class="text-center text-primary">Sign in</h2>
 
-          <hr />
-          <p style="font-weight: 600; font-family: sans-serif; color: #333">
-            Welcome Back.
-          </p>
-          <p>Login in with your email and password</p>
-          <div class="form">
-            <input
-              name="username"
-              [(ngModel)]="model.email"
-              class="form-control me-2"
-              type="text"
-              placeholder="Username"
-            />
-          </div>
-          <br />
+        <hr />
+        <p style="font-weight: 600; font-family: sans-serif; color: #333">
+          Welcome Back.
+        </p>
+        <p>Login in with your email and password</p>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-floating mb-3">
+          <input
+            formControlName="email"
+            class="form-control"
+            type="email"
+            placeholder="Email"
+            id="emailfloat"
+          />
+          <label for="emailfloat">Email</label>
+          <span
+            class="text-danger"
+            *ngIf="
+              loginForm.get('email')?.hasError('required') &&
+              loginForm.get('email')?.touched
+            "
+            >Email is required</span
+          >
+          <span
+            class="text-danger"
+            *ngIf="
+              loginForm.get('email')?.hasError('pattern') &&
+              loginForm.get('email')?.touched
+            "
+            >Email must be in a valid format, e.g. example@test.com</span
+          >
+        </div>
 
-          <div class="form">
-            <input
-              name="password"
-              [(ngModel)]="model.password"
-              class="form-control me-2"
-              type="password"
-              placeholder="Password"
-            />
-          </div>
-          <br />
-
+        <div class="form-floating mb-3">
+          <input
+            formControlName="password"
+            class="form-control"
+            type="password"
+            placeholder="Password"
+            id="passwordfloat"
+          />
+          <label for="passwordfloat">Password</label>
+          <span
+            class="text-danger"
+            *ngIf="
+              loginForm.get('password')?.hasError('required') &&
+              loginForm.get('password')?.touched
+            "
+            >Password is required</span
+          >
+        </div>
+        <div class="text-center">
           <button
             button
-            class="btn btn-success"
-            [disabled]="!model.email || !model.password"
+            class="btn btn-success btn-lg"
+            [disabled]="loginForm.invalid"
             type="submit"
           >
             Sign in
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
