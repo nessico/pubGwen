@@ -9,13 +9,13 @@ import {
   NgxGalleryOptions,
 } from '@kolkov/ngx-gallery';
 import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
-import { Member } from 'src/app/shared/_models/employeeModels/member';
-import { Message } from 'src/app/shared/_models/employeeModels/message';
+import { Member } from 'src/app/shared/_models/accountModels/member';
+import { Message } from 'src/app/shared/_models/accountModels/message';
 import { MembersService } from 'src/app/account/_accountServices/members.service';
 import { MessageService } from 'src/app/account/_accountServices/message.service';
 import { AccountService } from 'src/app/account/_accountServices/account.service';
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/shared/_models/employeeModels/user';
+import { User } from 'src/app/shared/_models/accountModels/user';
 import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 

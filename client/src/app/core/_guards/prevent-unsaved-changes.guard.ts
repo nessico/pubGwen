@@ -6,7 +6,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MemberEditComponent } from '../../employee/members/member-edit/member-edit.component';
+import { MemberEditComponent } from '../../account/members/member-edit/member-edit.component';
 import { ConfirmService } from '../../account/_accountServices/confirm.service';
 
 @Injectable({

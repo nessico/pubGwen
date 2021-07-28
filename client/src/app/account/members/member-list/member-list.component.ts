@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Member } from 'src/app/shared/_models/employeeModels/member';
-import { Pagination } from 'src/app/shared/_models/employeeModels/pagination';
-import { User } from 'src/app/shared/_models/employeeModels/user';
-import { UserParams } from 'src/app/shared/_models/employeeModels/userParams';
+import { Member } from 'src/app/shared/_models/accountModels/member';
+import { Pagination } from 'src/app/shared/_models/accountModels/pagination';
+import { User } from 'src/app/shared/_models/accountModels/user';
+import { UserParams } from 'src/app/shared/_models/accountModels/userParams';
 import { AccountService } from 'src/app/account/_accountServices/account.service';
 import { MembersService } from 'src/app/account/_accountServices/members.service';
 

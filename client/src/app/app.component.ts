@@ -1,6 +1,6 @@
 import { BasketService } from './basket/basket.service';
 import { Component, OnInit } from '@angular/core';
-import { User } from './shared/_models/employeeModels/user';
+import { User } from './shared/_models/accountModels/user';
 import { environment } from 'src/environments/environment';
 import { AccountService } from './account/_accountServices/account.service';
 import { PresenceService } from './account/_accountServices/presence.service';

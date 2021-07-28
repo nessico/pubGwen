@@ -1,5 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/shared/_models/employeeModels/user';
+import { User } from 'src/app/shared/_models/accountModels/user';
 import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { environment } from 'src/environments/environment';

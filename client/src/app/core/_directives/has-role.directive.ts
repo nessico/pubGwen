@@ -6,7 +6,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { User } from '../../shared/_models/employeeModels/user';
+import { User } from '../../shared/_models/accountModels/user';
 import { AccountService } from '../../account/_accountServices/account.service';
 
 @Directive({

@@ -2,8 +2,8 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
-import { Member } from 'src/app/shared/_models/employeeModels/member';
-import { User } from 'src/app/shared/_models/employeeModels/user';
+import { Member } from 'src/app/shared/_models/accountModels/member';
+import { User } from 'src/app/shared/_models/accountModels/user';
 import { AccountService } from 'src/app/account/_accountServices/account.service';
 import { MembersService } from 'src/app/account/_accountServices/members.service';
 

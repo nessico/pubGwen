@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Member } from '../../shared/_models/employeeModels/member';
-import { Pagination } from '../../shared/_models/employeeModels/pagination';
+import { Member } from '../../shared/_models/accountModels/member';
+import { Pagination } from '../../shared/_models/accountModels/pagination';
 import { MembersService } from '../_accountServices/members.service';
 
 @Component({

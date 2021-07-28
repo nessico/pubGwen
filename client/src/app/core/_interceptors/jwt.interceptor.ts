@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AccountService } from '../../account/_accountServices/account.service';
-import { User } from '../../shared/_models/employeeModels/user';
+import { User } from '../../shared/_models/accountModels/user';
 import { take } from 'rxjs/operators';
 
 @Injectable()

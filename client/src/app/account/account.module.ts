@@ -1,6 +1,6 @@
 import { MessagesComponent } from './messages/messages.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { CoreModule } from './../core/core.module';
+import { CoreModule } from '../core/core.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
@@ -45,4 +45,4 @@ import { RouterModule } from '@angular/router';
     MemberMessagesComponent,
   ],
 })
-export class EmployeeModule {}
+export class AccountModule {}

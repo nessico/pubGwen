@@ -6,14 +6,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RegisterComponent } from './employee/register/register.component';
+import { RegisterComponent } from './account/register/register.component';
 import { SharedModule } from './shared/shared.module';
 import { ErrorInterceptor } from './core/_interceptors/error.interceptor';
 import { JwtInterceptor } from './core/_interceptors/jwt.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './core/_interceptors/loading.interceptor';
 import { CoreModule } from './core/core.module';
-import { EmployeeModule } from './employee/employee.module';
+import { AccountModule } from './account/account.module';
+
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent],
@@ -25,9 +26,9 @@ import { EmployeeModule } from './employee/employee.module';
     CoreModule,
     SharedModule,
     NgxSpinnerModule,
-    EmployeeModule,
     HomeModule,
     ShopRoutingModule,
+    AccountModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

@@ -1,7 +1,7 @@
 import { PresenceService } from '../../_accountServices/presence.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Member } from 'src/app/shared/_models/employeeModels/member';
+import { Member } from 'src/app/shared/_models/accountModels/member';
 import { MembersService } from '../../_accountServices/members.service';
 
 @Component({

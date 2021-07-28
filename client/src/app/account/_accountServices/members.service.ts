@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Member } from 'src/app/shared/_models/employeeModels/member';
+import { Member } from 'src/app/shared/_models/accountModels/member';
 import { of, pipe } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { PaginatedResult } from 'src/app/shared/_models/employeeModels/pagination';
-import { UserParams } from 'src/app/shared/_models/employeeModels/userParams';
+import { PaginatedResult } from 'src/app/shared/_models/accountModels/pagination';
+import { UserParams } from 'src/app/shared/_models/accountModels/userParams';
 import { AccountService } from './account.service';
-import { User } from 'src/app/shared/_models/employeeModels/user';
+import { User } from 'src/app/shared/_models/accountModels/user';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
 @Injectable({

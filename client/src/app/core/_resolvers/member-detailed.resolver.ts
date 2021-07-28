@@ -6,7 +6,7 @@ import {
   ActivatedRouteSnapshot,
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { Member } from '../../shared/_models/employeeModels/member';
+import { Member } from '../../shared/_models/accountModels/member';
 import { MembersService } from '../../account/_accountServices/members.service';
 
 @Injectable({

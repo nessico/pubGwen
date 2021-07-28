@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RolesModalComponent } from 'src/app/core/modals/roles-modal/roles-modal.component';
-import { User } from 'src/app/shared/_models/employeeModels/user';
+import { User } from 'src/app/shared/_models/accountModels/user';
 import { AdminService } from 'src/app/account/_accountServices/admin.service';
 
 @Component({
