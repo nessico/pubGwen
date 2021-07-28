@@ -5,8 +5,8 @@ import { Member } from 'src/app/shared/_models/employeeModels/member';
 import { Pagination } from 'src/app/shared/_models/employeeModels/pagination';
 import { User } from 'src/app/shared/_models/employeeModels/user';
 import { UserParams } from 'src/app/shared/_models/employeeModels/userParams';
-import { AccountService } from 'src/app/employee/employeeServices/account.service';
-import { MembersService } from 'src/app/employee/employeeServices/members.service';
+import { AccountService } from 'src/app/account/_accountServices/account.service';
+import { MembersService } from 'src/app/account/_accountServices/members.service';
 
 @Component({
   selector: 'app-member-list',

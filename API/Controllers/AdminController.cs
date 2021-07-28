@@ -44,7 +44,6 @@ namespace API.Controllers
         {
             var userList = await _userManager.Users
             .Include(u => u.Address)
-
             .Include(p => p.Photos)
             .Select(u => new
             {

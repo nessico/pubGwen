@@ -4,8 +4,8 @@ import { take } from 'rxjs/operators';
 import { Member } from 'src/app/shared/_models/employeeModels/member';
 import { Photo } from 'src/app/shared/_models/employeeModels/photo';
 import { User } from 'src/app/shared/_models/employeeModels/user';
-import { AccountService } from 'src/app/employee/employeeServices/account.service';
-import { MembersService } from 'src/app/employee/employeeServices/members.service';
+import { AccountService } from 'src/app/account/_accountServices/account.service';
+import { MembersService } from 'src/app/account/_accountServices/members.service';
 import { environment } from 'src/environments/environment';
 
 @Component({

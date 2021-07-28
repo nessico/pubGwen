@@ -4,8 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { Member } from 'src/app/shared/_models/employeeModels/member';
 import { User } from 'src/app/shared/_models/employeeModels/user';
-import { AccountService } from 'src/app/employee/employeeServices/account.service';
-import { MembersService } from 'src/app/employee/employeeServices/members.service';
+import { AccountService } from 'src/app/account/_accountServices/account.service';
+import { MembersService } from 'src/app/account/_accountServices/members.service';
 
 @Component({
   selector: 'app-member-edit',
@@ -50,4 +50,4 @@ export class MemberEditComponent implements OnInit {
       this.editForm.reset(this.member);
     });
   }
-} 
+}

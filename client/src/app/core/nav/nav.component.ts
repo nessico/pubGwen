@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { User } from '../../shared/_models/employeeModels/user';
-import { AccountService } from '../../employee/employeeServices/account.service';
+import { AccountService } from '../../account/_accountServices/account.service';
 import { IBasket } from 'src/app/shared/_models/shopModels/basket';
 
 @Component({
