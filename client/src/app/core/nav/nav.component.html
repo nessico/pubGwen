@@ -35,16 +35,61 @@
             >Shop</a
           >
         </li>
+
         <li class="nav-item">
-          <a class="nav-link text-white" routerLinkActive="active" href="#"
-            >Contact</a
+          <a
+            class="nav-link text-white"
+            target="_blank"
+            href="https://app.swaggerhub.com/apis/soloproject/gwen-api/v1"
+            >API</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" routerLinkActive="active" href="#"
-            >Docs</a
+          <div
+            class="dropdown"
+            [isDisabled]="(currentUser$ | async) == null"
+            dropdown
           >
+            <a
+              class="dropdown-toggle nav-link text-light px-2"
+              style="text-decoration: none; font-size: medium"
+              dropdownToggle
+            >
+              Members
+            </a>
+            <div class="dropdown-menu mt-3" *dropdownMenu>
+              <a
+                class="dropdown-item d-flex align-items-center py-2"
+                routerLink="/account/members"
+                routerLinkActive="active"
+                ><i class="fa fa-users mr-3"> Members</i></a
+              >
+              <div class="dropdown-divider"></div>
+              <a
+                class="dropdown-item d-flex align-items-center py-2"
+                routerLink="/account/lists"
+                routerLinkActive="active"
+                ><i class="fa fa-heart mr-3"> Favorites</i></a
+              >
+              <div class="dropdown-divider"></div>
+              <a
+                class="dropdown-item d-flex align-items-center py-2"
+                routerLink="/account/messages"
+                routerLinkActive="active"
+                ><i class="fa fa-envelope mr-3"> Messages</i></a
+              >
+              <div class="dropdown-divider"></div>
+              <a
+                class="dropdown-item d-flex align-items-center py-2"
+                *appHasRole="['Admin', 'Moderator']"
+                routerLink="/account/admin"
+                routerLinkActive="active"
+                ><i class="fa fa-unlock-alt mr-3"> Admin</i></a
+              >
+            </div>
+          </div>
         </li>
+
         <br />
         <li class="nav-item">
           <a routerLink="/basket">
@@ -81,11 +126,7 @@
         </li>
       </ul>
 
-      <div
-        class="dropdown"
-        *ngIf="accountService.currentUser$ | async as user"
-        dropdown
-      >
+      <div class="dropdown" *ngIf="currentUser$ | async as user" dropdown>
         <img
           src="{{ user.photoUrl || './assets/user.png' }}"
           alt="{{ user.username }}"
@@ -98,45 +139,32 @@
         </a>
         <div class="dropdown-menu mt-3" *dropdownMenu>
           <a
-            class="dropdown-item"
+            class="dropdown-item d-flex align-items-center py-2"
             routerLink="/account/member/edit"
             routerLinkActive="active"
-            >Edit profile</a
+            ><i class="fa fa-pencil mr-3"> Edit Profile</i></a
           >
           <div class="dropdown-divider"></div>
           <a
-            class="dropdown-item"
-            routerLink="/account/members"
-            routerLinkActive="active"
-            >Matches</a
+            routerLink="/basket"
+            class="dropdown-item d-flex align-items-center py-2"
           >
+            <i class="fa fa-shopping-cart mr-3"> View Basket</i>
+          </a>
           <div class="dropdown-divider"></div>
           <a
-            class="dropdown-item"
-            routerLink="/account/lists"
-            routerLinkActive="active"
-            >Lists</a
+            routerLink="/Orders"
+            class="dropdown-item d-flex align-items-center py-2"
           >
+            <i class="fa fa-history mr-3"> View Orders</i>
+          </a>
           <div class="dropdown-divider"></div>
+
           <a
-            class="dropdown-item"
-            routerLink="/account/messages"
-            routerLinkActive="active"
-            >Messages</a
+            class="dropdown-item d-flex align-items-center py-2"
+            (click)="logout()"
+            ><i class="fa fa-sign-out mr-3"> Logout</i></a
           >
-          <div class="dropdown-divider"></div>
-          <a
-            class="dropdown-item"
-            *appHasRole="['Admin', 'Moderator']"
-            routerLink="/account/admin"
-            routerLinkActive="active"
-            >Admin</a
-          >
-          <div
-            class="dropdown-divider"
-            *appHasRole="['Admin', 'Moderator']"
-          ></div>
-          <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>

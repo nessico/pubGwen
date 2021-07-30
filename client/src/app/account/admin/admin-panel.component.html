@@ -1,17 +1,21 @@
 <div class="container">
-<h2>Admin Panel</h2>
-<div class="tab-panel">
-  <tabset class="member-tabset">
-    <tab heading="User Management" *appHasRole="['Admin']">
-      <div class="container">
-        <app-user-management></app-user-management>
-      </div>
-    </tab>
-    <tab heading="Errors" *appHasRole="['Admin', 'Moderator']">
-      <div class="container">
-        <app-test-errors></app-test-errors>
-      </div>
-    </tab>
-  </tabset>
-</div>
+  <h2>Admin Panel</h2>
+  <h4 *appHasRole="['Member']">
+    Note: this member is most likely only a moderator, they will not see full
+    admin functions
+  </h4>
+  <div class="tab-panel">
+    <tabset class="member-tabset">
+      <tab heading="User Management" *appHasRole="['Admin']">
+        <div class="container">
+          <app-user-management></app-user-management>
+        </div>
+      </tab>
+      <tab heading="Errors" *appHasRole="['Admin', 'Moderator']">
+        <div class="container">
+          <app-test-errors></app-test-errors>
+        </div>
+      </tab>
+    </tabset>
+  </div>
 </div>

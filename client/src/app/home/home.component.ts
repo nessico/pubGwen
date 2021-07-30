@@ -14,11 +14,25 @@ export class HomeComponent implements OnInit {
 
   learnMore() {
     this.toastr.info(
-      'Ada, Pa$$w0rd </br> Admin, adminPa$$w0rd',
-      'Try Logins:',
+      'Members and Account navigation updates based on your login',
+      'Navigation:',
       {
         enableHtml: true,
       }
     );
+  }
+  learnUser() {
+    this.toastr.info(
+      'ada@test.com, Pa$$w0rd </br> or: </br> insertName@test.com, Pa$$w0rd',
+      'Username, Password:',
+      {
+        enableHtml: true,
+      }
+    );
+  }
+  learnAdmin() {
+    this.toastr.info('admin@test.com, Pa$$w0rd', 'Username, Password:', {
+      enableHtml: true,
+    });
   }
 }
