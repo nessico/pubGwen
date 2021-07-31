@@ -53,7 +53,7 @@ export class AccountService {
     localStorage.removeItem('user');
     this.currentUserSource.next(null!);
     this.presence.stopHubConnection();
-  }
+}
 
   getDecodedToken(token: any) {
     return JSON.parse(atob(token.split('.')[1]));
@@ -61,5 +61,9 @@ export class AccountService {
 
   checkEmailExists(email: string) {
     return this.http.get(this.baseUrl + 'account/emailExists?email=' + email);
+  }
+
+  checkUserExists(username: string) {
+    return this.http.get(this.baseUrl + 'account/userExists?username=' + username);
   }
 }

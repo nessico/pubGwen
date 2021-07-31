@@ -10,9 +10,12 @@ import {
   ValidatorFn,
   Validators,
   FormArray,
+  AsyncValidatorFn,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { of, timer } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -54,8 +57,9 @@ export class RegisterComponent implements OnInit {
             Validators.required,
             Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$'),
           ],
+          [this.validateEmailNotTaken()],
         ],
-        username: ['', Validators.required],
+        username: ['', [Validators.required], [this.validateUserNotTaken()]],
         displayName: ['', Validators.required],
         dateOfBirth: ['', Validators.required],
         password: [
@@ -71,15 +75,8 @@ export class RegisterComponent implements OnInit {
         ],
         confirmPassword: ['', Validators.required],
       },
-      { validator: this.matchPass }
+      { validator: this.validateMatchPass }
     );
-  }
-
-  private matchPass(formGroup: FormGroup): ValidationErrors | null {
-    return formGroup.get('password')?.value ===
-      formGroup.get('confirmPassword')?.value
-      ? null
-      : { isMatching: true };
   }
 
   register() {
@@ -91,5 +88,46 @@ export class RegisterComponent implements OnInit {
         this.validationErrors = error;
       }
     );
+  }
+
+  private validateMatchPass(formGroup: FormGroup): ValidationErrors | null {
+    return formGroup.get('password')?.value ===
+      formGroup.get('confirmPassword')?.value
+      ? null
+      : { isMatching: true };
+  }
+  //return inner observable to the outer observable(control) with switchMap
+  validateEmailNotTaken(): AsyncValidatorFn {
+    return (control) => {
+      return timer(500).pipe(
+        switchMap(() => {
+          if (!control.value) {
+            return of(null);
+          }
+          return this.accountService.checkEmailExists(control.value).pipe(
+            map((res) => {
+              return res ? { emailExists: true } : null;
+            })
+          );
+        })
+      );
+    };
+  }
+
+  validateUserNotTaken(): AsyncValidatorFn {
+    return (control) => {
+      return timer(500).pipe(
+        switchMap(() => {
+          if (!control.value) {
+            return of(null);
+          }
+          return this.accountService.checkUserExists(control.value).pipe(
+            map((res) => {
+              return res ? { userExists: true } : null;
+            })
+          );
+        })
+      );
+    };
   }
 }

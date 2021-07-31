@@ -55,6 +55,14 @@
                 "
                 >Email must be in a valid format, e.g. example@test.com</span
               >
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm.get('email')?.hasError('emailExists') &&
+                  registerForm.get('email')?.touched
+                "
+                >Email is already in use</span
+              >
             </div>
 
             <div
@@ -80,6 +88,14 @@
                   registerForm.get('username')?.touched
                 "
                 >Username is required</span
+              >
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm.get('username')?.hasError('userExists') &&
+                  registerForm.get('username')?.touched
+                "
+                >Username is already in use</span
               >
             </div>
 
