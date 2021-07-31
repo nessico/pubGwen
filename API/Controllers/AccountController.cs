@@ -147,7 +147,7 @@ namespace API.Controllers
         }
         //Ensure username is unique
         [HttpGet("userexists")]
-        private async Task<bool> UserExists(string username)
+        public async Task<bool> UserExists(string username)
         {
             return await _userManager.Users.AnyAsync(x => x.UserName == username.ToLower());
         }
