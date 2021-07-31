@@ -58,14 +58,16 @@
           >
         </div>
         <div class="text-center">
-          <button
-            button
-            class="btn btn-success "
-            [disabled]="loginForm.invalid"
-            type="submit"
-          >
-            Sign in
-          </button>
+          <div class="d-grid">
+            <button
+              button
+              class="btn btn-success btn-block"
+              [disabled]="loginForm.invalid"
+              type="submit"
+            >
+              Sign in
+            </button>
+          </div>
         </div>
       </form>
     </div>

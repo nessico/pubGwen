@@ -34,6 +34,7 @@ export class NavComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
 
- 
-  
+  noLogin() {
+    this.toastr.error('Please login first');
+  }
 }

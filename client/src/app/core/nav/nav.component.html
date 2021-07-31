@@ -51,6 +51,16 @@
             dropdown
           >
             <a
+              *ngIf="(currentUser$ | async) == null"
+              (click)="noLogin()"
+              class="dropdown-toggle nav-link text-light px-2 text-muted"
+              style="text-decoration: none; font-size: medium"
+              dropdownToggle
+            >
+              Members
+            </a>
+            <a
+              *ngIf="(currentUser$ | async) != null"
               class="dropdown-toggle nav-link text-light px-2"
               style="text-decoration: none; font-size: medium"
               dropdownToggle
@@ -78,7 +88,10 @@
                 routerLinkActive="active"
                 ><i class="fa fa-envelope mr-3"> Messages</i></a
               >
-              <div class="dropdown-divider"></div>
+              <div
+                class="dropdown-divider"
+                *appHasRole="['Admin', 'Moderator']"
+              ></div>
               <a
                 class="dropdown-item d-flex align-items-center py-2"
                 *appHasRole="['Admin', 'Moderator']"
