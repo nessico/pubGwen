@@ -1,4 +1,4 @@
-<div class="container">
+ <div class="container">
   <div class="d-flex row justify-content-center">
     <div class="col-4">
       <div class="text-center">
@@ -39,6 +39,8 @@
           >
         </div>
 
+
+        
         <div class="form-floating mb-3">
           <input
             formControlName="password"
@@ -70,6 +72,49 @@
           </div>
         </div>
       </form>
+      
     </div>
   </div>
-</div>
+</div> 
+<!-- 
+<div class="container">
+  <div class="d-flex row justify-content-center">
+    <div class="col-4">
+      <div class="text-center">
+        <h2 class="text-center text-primary">Sign in</h2>
+        <hr />
+        <p style="font-weight: 600; font-family: sans-serif; color: #333">
+          Welcome Back.
+        </p>
+        <p>Login with your email and password</p>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+          </div>
+
+          <app-text-input
+            formControlName="email"
+            [label]="'Email address'"
+          ></app-text-input>
+          <app-text-input
+            formControlName="password"
+            [label]="'Password'"
+            [type]="'password'"
+          ></app-text-input>
+
+          <div class="d-grid">
+            <button
+              button
+              class="btn btn-success btn-block"
+          
+              type="submit"
+            >
+              Sign in
+            </button>
+          </div>
+    
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->

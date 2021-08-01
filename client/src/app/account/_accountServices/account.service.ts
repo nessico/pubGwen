@@ -60,10 +60,10 @@ export class AccountService {
   }
 
   checkEmailExists(email: string) {
-    return this.http.get(this.baseUrl + 'account/emailExists?email=' + email);
+    return this.http.get(this.baseUrl + 'account/emailexists?email=' + email);
   }
 
   checkUserExists(username: string) {
-    return this.http.get(this.baseUrl + 'account/userExists?username=' + username);
+    return this.http.get(this.baseUrl + 'account/userexists?username=' + username);
   }
 }

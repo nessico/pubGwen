@@ -38,6 +38,10 @@
                 placeholder="Email"
                 id="emailfloat"
               />
+              <div
+                *ngIf="registerForm.controls.email.status === 'PENDING'"
+                class="fa fa-spinner fa-spin loader"
+              ></div>
               <label for="emailfloat" class="text-muted">Email </label>
               <span
                 class="text-danger"
@@ -59,7 +63,7 @@
                 class="text-danger"
                 *ngIf="
                   registerForm.get('email')?.hasError('emailExists') &&
-                  registerForm.get('email')?.touched
+                  registerForm.get('email')?.dirty
                 "
                 >Email is already in use</span
               >
@@ -80,6 +84,10 @@
                 formControlName="username"
                 id="usernamefloat"
               />
+              <div
+                *ngIf="registerForm.controls.username.status === 'PENDING'"
+                class="fa fa-spinner fa-spin loader"
+              ></div>
               <label for="usernamefloat" class="text-muted">Username </label>
               <span
                 class="text-danger"
@@ -93,7 +101,7 @@
                 class="text-danger"
                 *ngIf="
                   registerForm.get('username')?.hasError('userExists') &&
-                  registerForm.get('username')?.touched
+                  registerForm.get('username')?.dirty
                 "
                 >Username is already in use</span
               >
