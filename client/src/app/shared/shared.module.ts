@@ -16,9 +16,10 @@ import { PagingHeaderComponent } from './components/shopComponents/paging-header
 import { PagerComponent } from './components/shopComponents/pager/pager.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { OrderSummaryComponent } from './components/shopComponents/order-summary/order-summary.component';
+import { TextInputComponent } from './text-input/text-input.component';
 
 @NgModule({
-  declarations: [PagingHeaderComponent, PagerComponent, OrderSummaryComponent],
+  declarations: [PagingHeaderComponent, PagerComponent, OrderSummaryComponent, TextInputComponent],
   imports: [
     CommonModule,
     BsDropdownModule.forRoot(),
@@ -54,6 +55,7 @@ import { OrderSummaryComponent } from './components/shopComponents/order-summary
     PagerComponent,
     CarouselModule,
     OrderSummaryComponent,
+    TextInputComponent,
   ],
 })
 export class SharedModule {}
