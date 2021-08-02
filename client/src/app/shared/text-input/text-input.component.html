@@ -19,6 +19,7 @@
     class="fa fa-spinner fa-spin loader"
   ></div>
   <label for="{{ label }}">{{ label }}</label>
+  <!-- Synchronous Validation -->
   <div
     class="invalid-feedback"
     *ngIf="!controlDir?.control?.valid && controlDir?.control?.touched"
@@ -26,17 +27,36 @@
     <span *ngIf="controlDir.control!.errors?.required"
       >{{ label }} is required</span
     >
-    <span *ngIf="controlDir.control!.errors?.pattern"
-      >Email must be in a valid format, e.g. example@test.com</span
-    >
+    <span *ngIf="controlDir.control!.errors?.pattern && type == 'email'"
+      >Email must be in a valid format, e.g. example@test.com
+    </span>
+    <span *ngIf="controlDir.control!.errors?.pattern && type == 'password'"
+      >Password must contain one upper, one lower, one digit, and one special
+      character
+    </span>
+    <span *ngIf="controlDir.control!.errors?.minlength"
+      >{{ label }} must be at least
+      {{ controlDir.control!.errors!.minlength["requiredLength"] }} characters
+    </span>
+    <span *ngIf="controlDir.control!.errors?.maxlength"
+      >{{ label }} must be at most
+      {{ controlDir.control!.errors!.maxlength["requiredLength"] }} characters
+    </span>
+    <span *ngIf="controlDir.control!.errors?.isMatching"
+      >Passwords must be matching
+    </span>
   </div>
 
+  <!-- Asynchronous Validation -->
   <div
     class="invalid-feedback d-block"
     *ngIf="!controlDir?.control?.valid && controlDir?.control?.dirty"
   >
     <span *ngIf="controlDir.control!.errors?.emailExists"
-      >Email address is in use</span
+      >Email is already in use</span
+    >
+    <span *ngIf="controlDir.control!.errors?.userExists"
+      >Username is already in use</span
     >
   </div>
 </div>
