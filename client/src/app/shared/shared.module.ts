@@ -16,10 +16,11 @@ import { PagingHeaderComponent } from './components/shopComponents/paging-header
 import { PagerComponent } from './components/shopComponents/pager/pager.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { OrderSummaryComponent } from './components/shopComponents/order-summary/order-summary.component';
-import { TextInputComponent } from './text-input/text-input.component';
+import { TextInputComponent } from './components/generalComponents/text-input/text-input.component';
+import { DateInputComponent } from './components/generalComponents/date-input/date-input.component';
 
 @NgModule({
-  declarations: [PagingHeaderComponent, PagerComponent, OrderSummaryComponent, TextInputComponent],
+  declarations: [PagingHeaderComponent, PagerComponent, OrderSummaryComponent, TextInputComponent, DateInputComponent],
   imports: [
     CommonModule,
     BsDropdownModule.forRoot(),
