@@ -24,8 +24,6 @@ export class DateInputComponent implements OnInit, ControlValueAccessor {
     containerClass: 'theme-dark-blue',
     isAnimated: true,
     dateInputFormat: 'YYYY-MM-DD',
-    minDate: this.minDate,
-    maxDate: this.maxDate,
   };
 
   constructor(@Self() public controlDir: NgControl) {

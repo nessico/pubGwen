@@ -9,7 +9,6 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { SharedModule } from '../shared/shared.module';
 import { HasRoleDirective } from './_directives/has-role.directive';
-
 import { HomeModule } from '../home/home.module';
 import { RouterModule } from '@angular/router';
 import { SectionHeaderComponent } from './section-header/section-header.component';
