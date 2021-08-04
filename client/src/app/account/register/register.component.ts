@@ -13,7 +13,7 @@ import {
   AsyncValidatorFn,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
 import { of, timer } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
@@ -24,13 +24,9 @@ import { map, switchMap } from 'rxjs/operators';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-
   maxDate!: Date;
   minDate!: Date;
   validationErrors: string[] = [];
-  bsConfig: Partial<BsDatepickerConfig> = {
-    containerClass: 'theme-dark-blue',
-  };
 
   constructor(
     private accountService: AccountService,
@@ -61,7 +57,15 @@ export class RegisterComponent implements OnInit {
         ],
         username: ['', [Validators.required], [this.validateUserNotTaken()]],
         displayName: ['', Validators.required],
-        dateOfBirth: ['', Validators.required],
+        dateOfBirth: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(
+              '([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))'
+            ),
+          ],
+        ],
         password: [
           '',
           [
