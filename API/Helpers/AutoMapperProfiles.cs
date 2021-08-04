@@ -7,6 +7,7 @@ using Core.Entities.Member.Parameters;
 using Core.Entities.Member;
 using Core.Entities.Identity;
 using API.Dtos;
+using Core.Entities.OrderAggregate;
 
 namespace API.Helpers
 {
@@ -36,6 +37,7 @@ namespace API.Helpers
             CreateMap<Address, AddressDto>().ReverseMap();
             CreateMap<CustomerBasketDto, CustomerBasket>();
             CreateMap<BasketItemDto, BasketItem>();
+            CreateMap<AddressDto, OrderAddress>();
 
 
 
