@@ -24,3 +24,4 @@ namespace API.Extensions
             return user?.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
         }
     }
+}
