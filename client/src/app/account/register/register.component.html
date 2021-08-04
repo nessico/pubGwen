@@ -66,6 +66,7 @@
               <label for="agefloat">Date Of Birth </label>
               <span
                 class="text-danger"
+                style="font-size: 0.875em"
                 *ngIf="
                   registerForm.get('dateOfBirth')?.hasError('required') &&
                   registerForm.get('dateOfBirth')?.touched
