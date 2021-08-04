@@ -32,6 +32,9 @@ export class AppComponent implements OnInit {
       this.accountService.setCurrentUser(user);
       this.presence.createHubConnection(user);
     }
+    if (user == null) {
+      this.accountService.setCurrentUser(null!);
+    }
   }
 
   //basket persistence

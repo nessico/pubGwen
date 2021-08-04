@@ -27,11 +27,13 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> {
     return this.accountService.currentUser$.pipe(
       map((user) => {
-        if (user) return true;
-        this.toastr.error('You are not logged in');
+        if (user) {
+          return true;
+        }
         this.router.navigate(['account/login'], {
           queryParams: { returnUrl: state.url },
         });
+        this.toastr.error('You are not logged in');
         return false;
       })
     );
