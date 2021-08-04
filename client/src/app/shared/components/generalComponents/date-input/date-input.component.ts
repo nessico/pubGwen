@@ -14,8 +14,14 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   templateUrl: './date-input.component.html',
   styleUrls: ['./date-input.component.scss'],
 })
+
+//There's currently a CVA bug in Angular v12.0.2, where BsDatePicker objects can't be read
+//BsDatePicker doesn't read it's own values
+//and it is returning a default, '' value, which was specified inside the form fb builder
+//I've tried different workarounds for ~5 hrs in a local branch
+//and just decided it will be easier to manually write the date picker for now
 export class DateInputComponent implements OnInit, ControlValueAccessor {
-  @ViewChild('input', { static: true }) input!: ElementRef;
+  @ViewChild('input', { static: true }) input!: any;
   @Input() type = 'text';
   @Input() label = 'string';
   @Input() minDate!: Date;
@@ -42,19 +48,21 @@ export class DateInputComponent implements OnInit, ControlValueAccessor {
     control!.updateValueAndValidity();
   }
 
-  onChange(event: any) {}
+  onChange(event: any) {
+    return event.target.value;
+  }
 
   onTouched() {}
 
-  writeValue(obj: any): void {
-    this.input.nativeElement.value = obj || '';
+  writeValue(obj: Date): void {
+    this.input.nativeElement.value = obj;
   }
 
   registerOnChange(fn: any): void {
-    this.onChange = fn;
+    this.onChange = fn.target.value;
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+    this.onTouched = fn.target.value;
   }
 }

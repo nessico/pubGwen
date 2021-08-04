@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 
 import { of, timer } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-register',
@@ -27,6 +28,11 @@ export class RegisterComponent implements OnInit {
   maxDate!: Date;
   minDate!: Date;
   validationErrors: string[] = [];
+  bsConfig: Partial<BsDatepickerConfig> = {
+    containerClass: 'theme-dark-blue',
+    isAnimated: true,
+    dateInputFormat: 'YYYY-MM-DD',
+  };
 
   constructor(
     private accountService: AccountService,
@@ -57,15 +63,7 @@ export class RegisterComponent implements OnInit {
         ],
         username: ['', [Validators.required], [this.validateUserNotTaken()]],
         displayName: ['', Validators.required],
-        dateOfBirth: [
-          '',
-          [
-            Validators.required,
-            Validators.pattern(
-              '([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))'
-            ),
-          ],
-        ],
+        dateOfBirth: ['', Validators.required],
         password: [
           '',
           [
@@ -86,7 +84,7 @@ export class RegisterComponent implements OnInit {
   register() {
     this.accountService.register(this.registerForm.value).subscribe(
       (response) => {
-        this.router.navigateByUrl('/account/members');
+        this.router.navigateByUrl('/shop');
       },
       (error) => {
         this.validationErrors = error;

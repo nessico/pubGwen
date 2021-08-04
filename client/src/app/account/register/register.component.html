@@ -43,13 +43,36 @@
               formControlName="displayName"
               [label]="'Display Name'"
             ></app-text-input>
-            <app-date-input
-              formControlName="dateOfBirth"
-              [label]="'Date Of Birth'"
-              [minDate]="minDate"
-              [maxDate]="maxDate"
-              [type]="'text'"
-            ></app-date-input>
+            <!--- hotfix solution for CVA date-input, see comments in date-input.component.ts --->
+            <div
+              class="form-floating mb-3"
+              [ngClass]="{
+                'has-error':
+                  registerForm.get('dateOfBirth')?.errors &&
+                  registerForm.get('dateOfBirth')?.touched
+              }"
+            >
+              <input
+                type="text"
+                placeholder="Date of birth"
+                class="form-control"
+                bsDatepicker
+                [minDate]="minDate"
+                [maxDate]="maxDate"
+                [bsConfig]="bsConfig"
+                formControlName="dateOfBirth"
+                id="agefloat"
+              />
+              <label for="agefloat">Date Of Birth </label>
+              <span
+                class="text-danger"
+                *ngIf="
+                  registerForm.get('dateOfBirth')?.hasError('required') &&
+                  registerForm.get('dateOfBirth')?.touched
+                "
+                >Must be at least 18 years old</span
+              >
+            </div>
           </div>
           <div class="col-md">
             <app-text-input
@@ -64,7 +87,13 @@
             ></app-text-input>
           </div>
         </div>
-
+        <p
+          *ngIf="registerForm.valid"
+          style="font-family: sans-serif; color: #333"
+          class="text-center"
+        >
+          All inputs are valid, you can now submit your registration
+        </p>
         <div class="form-group mr-2 text-center">
           <button
             [disabled]="registerForm.invalid"
