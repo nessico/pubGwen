@@ -1,82 +1,3 @@
- <div class="container">
-  <div class="d-flex row justify-content-center">
-    <div class="col-4">
-      <div class="text-center">
-        <h2 class="text-center text-primary">Sign in</h2>
-        <hr />
-        <p style="font-weight: 600; font-family: sans-serif; color: #333">
-          Welcome Back.
-        </p>
-        <p>Login with your email and password</p>
-      </div>
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <div class="form-floating mb-3">
-          <input
-            formControlName="email"
-            class="form-control"
-            type="email"
-            placeholder="Email"
-            id="emailfloat"
-          />
-          <label for="emailfloat" class="text-muted" style="display: block"
-            >Email</label
-          >
-          <span
-            class="text-danger"
-            *ngIf="
-              loginForm.get('email')?.hasError('required') &&
-              loginForm.get('email')?.touched
-            "
-            >Email is required</span
-          >
-          <span
-            class="text-danger"
-            *ngIf="
-              loginForm.get('email')?.hasError('pattern') &&
-              loginForm.get('email')?.touched
-            "
-            >Email must be in a valid format, e.g. example@test.com</span
-          >
-        </div>
-
-
-        
-        <div class="form-floating mb-3">
-          <input
-            formControlName="password"
-            class="form-control"
-            type="password"
-            placeholder="Password"
-            id="passwordfloat"
-          />
-          <label for="passwordfloat" class="text-muted">Password</label>
-          <span
-            class="text-danger"
-            *ngIf="
-              loginForm.get('password')?.hasError('required') &&
-              loginForm.get('password')?.touched
-            "
-            >Password is required</span
-          >
-        </div>
-        <div class="text-center">
-          <div class="d-grid">
-            <button
-              button
-              class="btn btn-success btn-block"
-              [disabled]="loginForm.invalid"
-              type="submit"
-            >
-              Sign in
-            </button>
-          </div>
-        </div>
-      </form>
-      
-    </div>
-  </div>
-</div> 
-<!-- 
 <div class="container">
   <div class="d-flex row justify-content-center">
     <div class="col-4">
@@ -88,10 +9,6 @@
         </p>
         <p>Login with your email and password</p>
         <form [formGroup]="loginForm" (ngSubmit)="login()">
-          <div class="text-center mb-4">
-            <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-          </div>
-
           <app-text-input
             formControlName="email"
             [label]="'Email address'"
@@ -103,18 +20,12 @@
           ></app-text-input>
 
           <div class="d-grid">
-            <button
-              button
-              class="btn btn-success btn-block"
-          
-              type="submit"
-            >
+            <button button class="btn btn-success btn-block" type="submit">
               Sign in
             </button>
           </div>
-    
         </form>
       </div>
     </div>
   </div>
-</div> -->
+</div>
