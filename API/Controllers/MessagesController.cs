@@ -55,7 +55,7 @@ namespace API.Controllers
             if (message.SenderDeleted && message.RecipientDeleted)
                 _unitOfWork.MessageRepository.DeleteMessage(message);
 
-            if (await _unitOfWork.Complete()) return Ok();
+            if (await _unitOfWork.Complete() != 0) return Ok();
 
             return BadRequest("Problem deleting the message");
         }

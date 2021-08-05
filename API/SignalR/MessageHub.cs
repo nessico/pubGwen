@@ -95,7 +95,7 @@ namespace API.SignalR
 
             _unitOfWork.MessageRepository.AddMessage(message);
 
-            if (await _unitOfWork.Complete())
+            if (await _unitOfWork.Complete() != 0)
             {
                 await Clients.Group(groupName).SendAsync("NewMessage", _mapper.Map<Messages>(message));
             }
@@ -115,7 +115,7 @@ namespace API.SignalR
 
             group.Connections.Add(connection);
 
-            if (await _unitOfWork.Complete()) return group;
+            if (await _unitOfWork.Complete()!= 0) return group;
 
             throw new HubException("Failed to join group");
         }
@@ -125,7 +125,7 @@ namespace API.SignalR
             var group = await _unitOfWork.MessageRepository.GetGroupForConnection(Context.ConnectionId);
             var connection = group.Connections.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
             _unitOfWork.MessageRepository.RemoveConnection(connection);
-            if (await _unitOfWork.Complete()) return group;
+            if (await _unitOfWork.Complete()!= 0) return group;
 
             throw new HubException("Failed to remove from group");
         }
