@@ -9,17 +9,13 @@ namespace Infrastructure.Services
 {
     public class OrderService : IOrderService
     {
-        private readonly IGenericRepository<Order> _orderRepo;
-        private readonly IGenericRepository<DeliveryMethod> _dmRepo;
-        private readonly IGenericRepository<Product> _productRepo;
+        private readonly IUnitOfWork _unitOfWork;
+
         private readonly IBasketRepository _basketRepo;
-        public OrderService(IGenericRepository<Order> orderRepo, IGenericRepository<DeliveryMethod> dmRepo,
-        IGenericRepository<Product> productRepo, IBasketRepository basketRepo)
+        public OrderService(IUnitOfWork unitOfWork, IBasketRepository basketRepo)
         {
+            _unitOfWork = unitOfWork;
             _basketRepo = basketRepo;
-            _productRepo = productRepo;
-            _dmRepo = dmRepo;
-            _orderRepo = orderRepo;
         }
 
         public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId, OrderAddress shippingAddress)
@@ -30,7 +26,7 @@ namespace Infrastructure.Services
             var items = new List<OrderItem>();
             foreach (var item in basket.Items)
             {
-                var productItem = await _productRepo.GetByIdAsync(item.Id);
+                var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
                 var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, productItem.PictureUrl);
                 // verify item's price inside database, so people can't code inject fake prices from the client
                 var orderItem = new OrderItem(itemOrdered, productItem.Price, item.Quantity);
@@ -38,13 +34,20 @@ namespace Infrastructure.Services
             }
 
             // get delivery method from repo using DM's id
-            var deliveryMethod = await _dmRepo.GetByIdAsync(deliveryMethodId);
+            var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync(deliveryMethodId);
             // calc subtotal
             var subtotal = items.Sum(item => item.Price * item.Quantity);
             // create order
             var order = new Order(buyerEmail, shippingAddress, deliveryMethod, items, subtotal);
+            _unitOfWork.Repository<Order>().Add(order);
 
-            //save to db (tbd)
+            // save to db 
+            var result = await _unitOfWork.CompleteStore();
+
+            if (result <= 0) return null;
+
+            //delete basket
+            await _basketRepo.DeleteBasketAsync(basketId);
 
             return order;
         }
