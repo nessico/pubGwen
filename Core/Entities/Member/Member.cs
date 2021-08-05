@@ -16,6 +16,6 @@ namespace Core.Entities.Member
         public string Introduction { get; set; }
         public string LookingFor { get; set; }
         public string Interests { get; set; }
-        public ICollection<Photos> Photos { get; set; }
+        public ICollection<MemberPhotos> Photos { get; set; }
     }
 }

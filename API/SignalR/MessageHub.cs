@@ -97,7 +97,7 @@ namespace API.SignalR
 
             if (await _unitOfWork.Complete() != 0)
             {
-                await Clients.Group(groupName).SendAsync("NewMessage", _mapper.Map<Messages>(message));
+                await Clients.Group(groupName).SendAsync("NewMessage", _mapper.Map<MemberMessages>(message));
             }
         }
 

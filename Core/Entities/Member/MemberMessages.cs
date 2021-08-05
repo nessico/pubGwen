@@ -3,8 +3,8 @@ using System.Text.Json.Serialization;
 
 namespace Core.Entities.Member
 {
-    //Object to populate client side
-    public class Messages
+
+    public class MemberMessages
     {
         public int Id { get; set; }
         public int SenderId { get; set; }

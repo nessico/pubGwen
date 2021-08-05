@@ -16,7 +16,7 @@ namespace Core.Interfaces
         void AddMessage(Message message);
         void DeleteMessage(Message message);
         Task<Message> GetMessage(int id);
-        Task<PagedList<Messages>> GetMessagesForUser(MessageParams messageParams);
-        Task<IEnumerable<Messages>> GetMessageThread(string currentUsername, string recipientUsername);
+        Task<PagedList<MemberMessages>> GetMessagesForUser(MessageParams messageParams);
+        Task<IEnumerable<MemberMessages>> GetMessageThread(string currentUsername, string recipientUsername);
     }
 }

@@ -73,7 +73,7 @@ namespace API.Controllers
             return BadRequest("Failed to update user");
         }
         [HttpPost("add-photo")]
-        public async Task<ActionResult<Photos>> AddPhoto(IFormFile file)
+        public async Task<ActionResult<MemberPhotos>> AddPhoto(IFormFile file)
         {
             var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
 
@@ -96,7 +96,7 @@ namespace API.Controllers
 
             if (await _unitOfWork.Complete() != 0)
             {
-                return CreatedAtRoute("GetUser", new { username = user.UserName }, _mapper.Map<Photos>(photo));
+                return CreatedAtRoute("GetUser", new { username = user.UserName }, _mapper.Map<MemberPhotos>(photo));
             }
 
 

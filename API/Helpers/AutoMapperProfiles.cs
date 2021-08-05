@@ -15,26 +15,26 @@ namespace API.Helpers
     {
         public AutoMapperProfiles()
         {
-            //CreateMap<TSource, TDestination>();
-            //e.g. If you have data annotations:
-            //Entity -> DTO concerns validation data coming out of the server
-            //DTO -> Entity concerns validation data coming into server 
-            //d = destination, o = options, s = source
+            // CreateMap<TSource, TDestination>();
+            // e.g. If you have data annotations:
+            // Entity -> DTO concerns validation data coming out of the server
+            // DTO -> Entity concerns validation data coming into server 
+            // d = destination, o = options, s = source
 
-            //Identity
+            // Identity
             CreateMap<AppUser, Member>()
                 .ForMember(d => d.PhotoUrl, o => o.MapFrom(s =>
                     s.Photos.FirstOrDefault(x => x.IsMain).Url))
                 .ForMember(d => d.Age, o => o.MapFrom(s => s.DateOfBirth.CalculateAge()));
-            CreateMap<Photo, Photos>();
+            CreateMap<Photo, MemberPhotos>();
             CreateMap<MemberUpdateDto, AppUser>();
             CreateMap<RegisterDto, AppUser>();
-            CreateMap<Message, Messages>()
+            CreateMap<Message, MemberMessages>()
                 .ForMember(d => d.SenderPhotoUrl, o => o.MapFrom(s => s.Sender.Photos.FirstOrDefault(x => x.IsMain).Url))
                 .ForMember(d => d.RecipientPhotoUrl, o => o.MapFrom(s => s.Recipient.Photos.FirstOrDefault(x => x.IsMain).Url));
             CreateMap<Address, AddressDto>().ReverseMap();
 
-            //Store
+            // Store
             CreateMap<Product, ProductToReturnDto>()
                .ForMember(d => d.ProductBrand, o => o.MapFrom(s => s.ProductBrand.Name))
                .ForMember(d => d.ProductType, o => o.MapFrom(s => s.ProductType.Name))
