@@ -19,18 +19,19 @@ namespace API.Helpers
             //e.g. If you have data annotations:
             //Entity -> DTO concerns validation data coming out of the server
             //DTO -> Entity concerns validation data coming into server 
+            //d = destination, o = options, s = source
 
             //Identity
             CreateMap<AppUser, Member>()
-                .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src =>
-                    src.Photos.FirstOrDefault(x => x.IsMain).Url))
-                .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
+                .ForMember(d => d.PhotoUrl, o => o.MapFrom(s =>
+                    s.Photos.FirstOrDefault(x => x.IsMain).Url))
+                .ForMember(d => d.Age, o => o.MapFrom(s => s.DateOfBirth.CalculateAge()));
             CreateMap<Photo, Photos>();
             CreateMap<MemberUpdateDto, AppUser>();
             CreateMap<RegisterDto, AppUser>();
             CreateMap<Message, Messages>()
-                .ForMember(dest => dest.SenderPhotoUrl, opt => opt.MapFrom(src => src.Sender.Photos.FirstOrDefault(x => x.IsMain).Url))
-                .ForMember(dest => dest.RecipientPhotoUrl, opt => opt.MapFrom(src => src.Recipient.Photos.FirstOrDefault(x => x.IsMain).Url));
+                .ForMember(d => d.SenderPhotoUrl, o => o.MapFrom(s => s.Sender.Photos.FirstOrDefault(x => x.IsMain).Url))
+                .ForMember(d => d.RecipientPhotoUrl, o => o.MapFrom(s => s.Recipient.Photos.FirstOrDefault(x => x.IsMain).Url));
             CreateMap<Address, AddressDto>().ReverseMap();
 
             //Store
@@ -41,8 +42,13 @@ namespace API.Helpers
             CreateMap<CustomerBasketDto, CustomerBasket>();
             CreateMap<BasketItemDto, BasketItem>();
             CreateMap<AddressDto, OrderAddress>();
-            CreateMap<Order, OrderToReturnDto>();
-            CreateMap<OrderItem, OrderItemDto>();
+            CreateMap<Order, OrderToReturnDto>()
+                .ForMember(d => d.DeliveryMethod, o => o.MapFrom(s => s.DeliveryMethod.ShortName))
+                .ForMember(d => d.ShippingPrice, o => o.MapFrom(s => s.DeliveryMethod.Price));
+            CreateMap<OrderItem, OrderItemDto>()
+                .ForMember(d => d.ProductId, o => o.MapFrom(s => s.ItemOrdered.ProductItemId))
+                .ForMember(d => d.ProductName, o => o.MapFrom(s => s.ItemOrdered.ProductName))
+                .ForMember(d => d.PictureUrl, o => o.MapFrom(s => s.ItemOrdered.PictureUrl));
 
         }
     }
