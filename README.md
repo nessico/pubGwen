@@ -28,7 +28,7 @@ May be down due to the cost of hosting on AWS
 - Cloudinary API for media management
 - SignalR API for real-time online presence, live chat, and notifications
 - Fluent API and AutoMapper to map table references and relationships
-- Rxjs for persistent client side storage with caching to optimize performance and mapping observables with pipe
+- Rxjs and tokens in local storage for client persistence along with caching to optimize performance and mapping observables with pipe
 - Redis for in-memory cache to store customer basket
 - AWS EC2 linux instance for deployment , AWS RDS for database, AWS CodeBuild and CodePipeline for CI/CD pipeline
 - Angular and BootStrap modules for styling, e.g. toastr, ngx-bootstrap
@@ -38,7 +38,7 @@ May be down due to the cost of hosting on AWS
 
 - Identity and Role Management using ASPNET.Identity with hashed and salted passwords for users
 - JWT for user authentication, SSL to encrypt incoming user information
-- Angular route/auth guards, client-side form validation, API-side data annotations validation, DTOs to encapsulate properties from client
+- Angular route/auth guards, client-side form validation along with async API validators, API-side data annotations validation, DTOs to encapsulate properties from client
 - etc...
 
 ## Architecture
@@ -60,17 +60,18 @@ Adhered to Microsoft`s Clean Architecture:
 
 Implemented design patterns:
 
-| Pattern              | Description                                                                  |
-| -------------------- | ---------------------------------------------------------------------------- |
-| Singleton            | api                                                                          |
-| Repository           | api                                                                          |
-| Unit Of Work         | api                                                                          |
-| Observable           | client for async pipe , use $ at end of varname to identify it as observable |
-| ?                    | Http Client                                                                  |
-| service locator      | api                                                                          |
-| Dependency Injection | api and client                                                               |
-| Promise              | client async send message in message.service.ts cant sub to a promise        |
-| Specification        | GenericRepository with specific pattern to avoid leaky abstractions          |
+| Pattern             |Where  | Description                                                                  | 
+| --------------------| -| ---------------------------------------------------------------------------- |
+| Singleton            | API & Client| |
+| Repository           |  API |Allows changing between domain model and database model independently, which is great for code maintenance|
+| Unit Of Work         | API                                                                          ||
+| Observable           | Client  |Manages async data, Can use Rxjs Operators and Async pipe, etc  before subscribing|
+| ?                    |                        |Http Client|
+| service locator      | API    ||
+| Dependency Injection | API & Client                                                               |Achieves Inversion of Control (IoC) to reduce coupling which helps with isolating design changes to the client to promote reuseable, testable, and clean code.|
+| Promise              |  Client   | async send message in message.service.ts cant sub to a promise|
+| Specification        | API|GenericRepository with Specification pattern to avoid leaky abstractions|
+| Dto        |    API   |Enterprise application architecture pattern to serialize, encapsulate, validate, model data  |
 
 ## Install
 
