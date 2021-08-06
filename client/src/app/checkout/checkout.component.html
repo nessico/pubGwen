@@ -3,10 +3,10 @@
     <div class="row">
       <section class="col-9 py-5 mb-1">
         <app-stepper [linearModeSelected]="false" #appStepper>
-          <cdk-step [label]="'Address'"></cdk-step>
-          <cdk-step [label]="'Delivery'"></cdk-step>
-          <cdk-step [label]="'Review'"></cdk-step>
-          <cdk-step [label]="'Payment'"></cdk-step>
+          <cdk-step [label]="'Address'"><app-checkout-address></app-checkout-address></cdk-step>
+          <cdk-step [label]="'Delivery'"><app-checkout-delivery></app-checkout-delivery></cdk-step>
+          <cdk-step [label]="'Review'"><app-checkout-review></app-checkout-review></cdk-step>
+          <cdk-step [label]="'Payment'"><app-checkout-payment></app-checkout-payment></cdk-step>
         </app-stepper>
       </section>
       <section class="col-3 py-5 mb-1">
