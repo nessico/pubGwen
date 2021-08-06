@@ -1,18 +1,34 @@
 button.nav-link {
-    background: #e9ecef;
-    border-radius: 0;
-    border: none;
+  background: #e9ecef;
+  border-radius: 0;
+  border: none;
 
-    &:focus {
-        outline: none;
-    }
-    &.active:hover {
-        color: white;
-    }
-    & :active {
-        outline: none;
-    }
-    &.active:focus {
-        outline: none;
-    }
-} 
+  &:focus {
+    outline: none;
+  }
+  &.active:hover {
+    color: white;
+  }
+  & :active {
+    outline: none;
+  }
+  &.active:focus {
+    outline: none;
+  }
+  font-size: 16.25px;
+  font-family: Lato, -apple-system;
+  color: #222323;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.563;
+  list-style: none;
+  text-rendering: optimizeLegibility;
+  cursor: default;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  white-space: normal;
+}
