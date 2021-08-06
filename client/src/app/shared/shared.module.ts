@@ -12,14 +12,14 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TimeagoModule } from 'ngx-timeago';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PagingHeaderComponent } from './components/shopComponents/paging-header/paging-header.component';
-import { PagerComponent } from './components/shopComponents/pager/pager.component';
+import { PagingHeaderComponent } from './components/generalComponents/paging-header/paging-header.component';
+import { PagerComponent } from './components/generalComponents/pager/pager.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { OrderSummaryComponent } from './components/shopComponents/order-summary/order-summary.component';
 import { TextInputComponent } from './components/generalComponents/text-input/text-input.component';
 import { DateInputComponent } from './components/generalComponents/date-input/date-input.component';
 import { CdkStepperModule } from '@angular/cdk/stepper';
-import { StepperComponent } from './components/shopComponents/stepper/stepper.component';
+import { StepperComponent } from './components/generalComponents/stepper/stepper.component';
 
 @NgModule({
   declarations: [
