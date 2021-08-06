@@ -18,9 +18,18 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { OrderSummaryComponent } from './components/shopComponents/order-summary/order-summary.component';
 import { TextInputComponent } from './components/generalComponents/text-input/text-input.component';
 import { DateInputComponent } from './components/generalComponents/date-input/date-input.component';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { StepperComponent } from './components/shopComponents/stepper/stepper.component';
 
 @NgModule({
-  declarations: [PagingHeaderComponent, PagerComponent, OrderSummaryComponent, TextInputComponent, DateInputComponent],
+  declarations: [
+    PagingHeaderComponent,
+    PagerComponent,
+    OrderSummaryComponent,
+    TextInputComponent,
+    DateInputComponent,
+    StepperComponent,
+  ],
   imports: [
     CommonModule,
     BsDropdownModule.forRoot(),
@@ -38,6 +47,7 @@ import { DateInputComponent } from './components/generalComponents/date-input/da
     FormsModule,
     ReactiveFormsModule,
     CarouselModule.forRoot(),
+    CdkStepperModule,
   ],
   exports: [
     BsDropdownModule,
@@ -57,7 +67,9 @@ import { DateInputComponent } from './components/generalComponents/date-input/da
     CarouselModule,
     OrderSummaryComponent,
     TextInputComponent,
-    DateInputComponent
+    DateInputComponent,
+    CdkStepperModule,
+    StepperComponent,
   ],
 })
 export class SharedModule {}
