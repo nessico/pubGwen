@@ -1,1 +1,18 @@
-<p>stepper works!</p>
+<div class="container">
+  <!-- Nav Selection from the CdkStep is projected here -->
+  <ul class="nav nav-pills nav-justified">
+    <li class="nav-item" *ngFor="let step of steps; let i = index">
+      <button
+        (click)="onClick(i)"
+        [class.active]="selectedIndex === i"
+        class="nav-link py-3 text-uppercase font-weight-bold btn-block"
+      >
+        {{ step.label }}:{{ step.completed }}
+      </button>
+    </li>
+  </ul>
+  <div>
+    <!-- Content from the CdkStep is projected here -->
+    <ng-container [ngTemplateOutlet]="selected!.content"></ng-container>
+  </div>
+</div>

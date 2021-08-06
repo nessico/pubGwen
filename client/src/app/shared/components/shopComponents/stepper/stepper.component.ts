@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./stepper.component.scss'],
   providers: [{ provide: CdkStepper, useExisting: StepperComponent }],
 })
+// https://material.angular.io/guide/creating-a-custom-stepper-using-the-cdk-stepper
 export class StepperComponent extends CdkStepper implements OnInit {
   // Sets child component to linearMode
   @Input() linearModeSelected!: boolean;
@@ -17,6 +18,5 @@ export class StepperComponent extends CdkStepper implements OnInit {
   // Keeps track of what step you are currently on
   onClick(index: number) {
     this.selectedIndex = index;
-    
-  } 
+  }
 }
