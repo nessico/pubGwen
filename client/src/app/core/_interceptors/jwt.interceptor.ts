@@ -13,7 +13,8 @@ import { take } from 'rxjs/operators';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   constructor(private accountService: AccountService) {}
-
+  // Sends token to server by default instead of adding it manually in every HTTP request with an HttpInterceptor
+  // Authorization header with Bearer token so server will authenticate us
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
@@ -33,4 +34,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     return next.handle(request);
   }
+
+  // Alternative way is to get token from local storage with localStorage.getItem('token') 
+  // Instead of pipe & subscribe with accountService 
 }
