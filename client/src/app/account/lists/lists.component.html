@@ -1,6 +1,8 @@
 <div class="text-center mb-3">
   <h2>
-    {{ predicate === "liked" ? "People I like" : "People who like me" }}
+    {{
+      predicate === "liked" ? "People I favorited" : "People who favorited me"
+    }}
   </h2>
 </div>
 
@@ -13,7 +15,7 @@
         [(ngModel)]="predicate"
         (click)="loadLikes()"
       >
-        People I like
+        People I favorited
       </button>
       <button
         class="btn btn-outline-primary"
@@ -21,7 +23,7 @@
         [(ngModel)]="predicate"
         (click)="loadLikes()"
       >
-        People who like me
+        People who favorited me
       </button>
     </div>
   </div>
