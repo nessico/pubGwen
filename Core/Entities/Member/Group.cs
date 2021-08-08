@@ -14,7 +14,7 @@ namespace Core.Entities.Member
             Name = name;
         }
 
-        //Primary key
+        // Primary key
         [Key]
         public string Name { get; set; }
 

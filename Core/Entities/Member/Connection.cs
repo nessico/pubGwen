@@ -12,7 +12,7 @@ namespace Core.Entities.Member
             Username = username;
         }
 
-        //primary key, name + id will make entity framework consider this primary key
+        // Primary key, name + id will make entity framework consider this primary key
         public string ConnectionId { get; set; }
 
         public string Username { get; set; }

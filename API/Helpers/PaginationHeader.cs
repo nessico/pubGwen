@@ -15,7 +15,7 @@ namespace API.Helpers
         public int TotalItems { get; set; }
         public int TotalPages { get; set; }
     }
-    //Add HttpExtensions method to add pagination header to HTTP response in extensions folder, 
+    // Add HttpExtensions method to add pagination header to HTTP response in extensions folder, 
 
 
 }

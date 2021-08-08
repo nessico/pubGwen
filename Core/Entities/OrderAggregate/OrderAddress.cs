@@ -1,6 +1,6 @@
 namespace Core.Entities.OrderAggregate
 {
-    //Owned by our order, will be on the same row of our order table
+    // Owned by our order, will be on the same row of our order table
     public class OrderAddress
     {
         public OrderAddress()

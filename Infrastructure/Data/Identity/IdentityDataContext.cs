@@ -23,12 +23,12 @@ namespace Infrastructure.Data.Identity
         public DbSet<Connection> Connections { get; set; }
         public DbSet<Address> Address { get; set; }
 
-        //configuring userlikes in EF
+        // Configuring userlikes in EF
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            //configuring keys and relationships
+            // Configuring keys and relationships
             builder.Entity<AppUser>()
             .HasMany(ur => ur.UserRoles)
             .WithOne(u => u.User)
@@ -70,7 +70,7 @@ namespace Infrastructure.Data.Identity
             builder.ApplyUtcDateTimeConverter();
         }
     }
-    //config all datetime to utc
+    // Config all datetime to utc
     public static class UtcDateAnnotation
     {
         private const string IsUtcAnnotation = "IsUtc";
@@ -83,9 +83,9 @@ namespace Infrastructure.Data.Identity
         public static bool IsUtc(this IMutableProperty property) =>
             ((bool?)property.FindAnnotation(IsUtcAnnotation)?.Value) ?? true;
 
-        /// <summary>
-        /// Make sure this is called after configuring all your entities.
-        /// </summary>
+        // / <summary>
+        // / Make sure this is called after configuring all your entities.
+        // / </summary>
         public static void ApplyUtcDateTimeConverter(this ModelBuilder builder)
         {
             foreach (var entityType in builder.Model.GetEntityTypes())

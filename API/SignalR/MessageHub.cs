@@ -28,7 +28,7 @@ namespace API.SignalR
 
         public override async Task OnConnectedAsync()
         {
-            //get user profiles 
+            // Get user profiles 
             var httpContext = Context.GetHttpContext();
             var otherUser = httpContext.Request.Query["user"].ToString();
             var groupName = GetGroupName(Context.User.GetUsername(), otherUser);
@@ -54,7 +54,7 @@ namespace API.SignalR
         public async Task SendMessage(CreateMessageDto createMessageDto)
         {
 
-            //get hold of both user (sender & recipient) to populate message when first created and return dto
+            // Get hold of both user (sender & recipient) to populate message when first created and return dto
             var username = Context.User.GetUsername();
 
             if (username == createMessageDto.RecipientUsername.ToLower())
@@ -65,7 +65,7 @@ namespace API.SignalR
 
             if (recipient == null) throw new HubException("Not found user");
 
-            //creating message 
+            // Creating message 
             var message = new Message
             {
                 Sender = sender,
@@ -103,7 +103,7 @@ namespace API.SignalR
 
         private async Task<Group> AddToGroup(string groupName)
         {
-            //when a user connects to this hub, they given a new connection id unless they're reconnecting
+            // When a user connects to this hub, they given a new connection id unless they're reconnecting
             var group = await _unitOfWork.MessageRepository.GetMessageGroup(groupName);
             var connection = new Connection(Context.ConnectionId, Context.User.GetUsername());
 
@@ -130,7 +130,7 @@ namespace API.SignalR
             throw new HubException("Failed to remove from group");
         }
 
-        //helper method to get groupName
+        // Helper method to get groupName
         private string GetGroupName(string caller, string other)
         {
             var stringCompare = string.CompareOrdinal(caller, other) < 0;

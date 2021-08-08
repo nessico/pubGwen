@@ -8,8 +8,8 @@ namespace API.SignalR
 {
     public class PresenceTracker
     {
-        //user will get a connection id
-        //lock so dict won't be shared so concurrent users can't update at the same time
+        // user will get a connection id
+        // lock so dict won't be shared so concurrent users can't update at the same time
         private static readonly Dictionary<string, List<string>> OnlineUsers =
             new Dictionary<string, List<string>>();
 

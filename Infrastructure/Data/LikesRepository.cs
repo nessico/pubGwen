@@ -11,7 +11,7 @@ using Core.Entities.Member;
 namespace Infrastructure.Data.Identity
 {
 
-    //joint query
+    // Joint query
     public class LikesRepository : ILikesRepository
     {
         private readonly IdentityDataContext _context;
@@ -25,7 +25,7 @@ namespace Infrastructure.Data.Identity
             return await _context.Likes.FindAsync(sourceUserId, LikedUserId);
         }
 
-        //list of users that liked this user
+        // List of users that liked this user
         public async Task<PagedList<Like>> GetUserLikes(LikesParams likesParams)
         {
             var users = _context.Users.OrderBy(u => u.UserName).AsQueryable();
@@ -55,7 +55,7 @@ namespace Infrastructure.Data.Identity
             return await PagedList<Like>.CreateAsync(likedUsers, likesParams.PageNumber, likesParams.PageSize);
         }
 
-        //list of user that this user has liked
+        // List of user that this user has liked
         public async Task<AppUser> GetUserWithLikes(int userId)
         {
             return await _context.Users

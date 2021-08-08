@@ -2,12 +2,12 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Core.Specifications
 {
-    //Parameters for ProductsController for sorting, filtering, paging
+    // Parameters for ProductsController for sorting, filtering, paging
     public class ProductSpecParams
     {
         private const int MaxPageSize = 50;
 
-        //Default returns first page
+        // Default returns first page
         public int PageIndex { get; set; } = 1;
         private int _pageSize = 6;
 

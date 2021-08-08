@@ -65,7 +65,7 @@ namespace API.Controllers
         [HttpPost("edit-roles/{username}")]
         public async Task<ActionResult> EditRoles(string username, [FromQuery] string roles)
         {
-            //list of roles -> add user to the roles unless they're already in that role
+            // list of roles -> add user to the roles unless they're already in that role
             var selectedRoles = roles.Split(",").ToArray();
 
             var user = await _userManager.FindByNameAsync(username);

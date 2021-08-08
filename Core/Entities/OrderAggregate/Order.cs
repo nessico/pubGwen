@@ -19,15 +19,15 @@ namespace Core.Entities.OrderAggregate
             Subtotal = subtotal;
         }
 
-        //Use this to retrieve list of orders from a particular user, because identity is in a separate context boundary
+        // Use this to retrieve list of orders from a particular user, because identity is in a separate context boundary
         public string BuyerEmail { get; set; }
 
-        //stores local time of where the order was made
+        // stores local time of where the order was made
         public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
         public OrderAddress ShipToAddress { get; set; }
         public DeliveryMethod DeliveryMethod { get; set; }
         public IReadOnlyList<OrderItem> OrderItems { get; set; }
-        //Order Items + Quantity = subtotal
+        // Order Items + Quantity = subtotal
         public decimal Subtotal { get; set; }
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
         public string PaymentIntentId { get; set; }

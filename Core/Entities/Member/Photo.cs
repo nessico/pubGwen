@@ -12,7 +12,7 @@ namespace Core.Entities.Member
         public bool IsMain { get; set; }
         public string PublicId { get; set; }
 
-        //Entity Framework conventions
+        // Entity Framework conventions
         public AppUser AppUser { get; set; }
         public int AppUserId { get; set; }
     }

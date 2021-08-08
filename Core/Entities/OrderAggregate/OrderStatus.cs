@@ -2,7 +2,7 @@ using System.Runtime.Serialization;
 
 namespace Core.Entities.OrderAggregate
 {
-    //Include Shipped, Completed, etc status if used by actual vendors
+    // Include Shipped, Completed, etc status if used by actual vendors
     public enum OrderStatus
     {
         [EnumMember(Value = "Pending")]

@@ -16,7 +16,7 @@ namespace Infrastructure.Data.Identity
     {
         public static async Task SeedUsers(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
-            //create users and role
+            // create users and role
 
             if (await userManager.Users.AnyAsync()) return;
 

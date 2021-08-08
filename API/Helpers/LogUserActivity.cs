@@ -9,8 +9,8 @@ namespace API.Helpers
 {
     public class LogUserActivity : IAsyncActionFilter
     {
-        //next gives us the context after your request is executed, so we're gonna want to use this
-        //for logging user activity
+        // Next gives us the context after your request is executed, so we're gonna want to use this
+        // for logging user activity
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var resultContext = await next();
@@ -19,7 +19,7 @@ namespace API.Helpers
 
 
             var userId = resultContext.HttpContext.User.GetUserId();
-            //service locator pattern
+            // Service locator pattern
             var uow = resultContext.HttpContext.RequestServices.GetService<IUnitOfWork>();
             var user = await uow.UserRepository.GetUserByIdAsync(userId);
             user.LastActive = DateTime.Now;

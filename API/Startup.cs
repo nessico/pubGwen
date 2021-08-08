@@ -25,7 +25,7 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //DbContext, repositories, database connections, misc services
+            // DbContext, repositories, database connections, misc services
             services.AddApplicationServices(_config);
 
 
@@ -52,7 +52,7 @@ namespace API
             app.UseCors(x => x.AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials()
-            .WithOrigins("https://localhost:4200"));
+            .WithOrigins("https:// localhost:4200"));
 
             app.UseAuthentication();
 

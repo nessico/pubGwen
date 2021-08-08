@@ -19,7 +19,7 @@ namespace Infrastructure.Data.Config
                     o => o.ToString(),
                     o => (OrderStatus)Enum.Parse(typeof(OrderStatus), o)
                 );
-            //If we delete an order, it will delete any order items that was involved in that particular order
+            // If we delete an order, it will delete any order items that was involved in that particular order
             builder.HasMany(o => o.OrderItems).WithOne().OnDelete(DeleteBehavior.Cascade);
         }
     }

@@ -33,11 +33,11 @@ namespace Infrastructure.Data.Identity
 
         public async Task<PagedList<Member>> GetMembersAsync(UserParams userParams)
         {
-            //turn off tracking in entity framework, b/c you created static method called CreateAsync, you can use it here at this class
-            //Add this info to our response header in the UsersController
+            // Turn off tracking in entity framework, b/c you created static method called CreateAsync, you can use it here at this class
+            // Add this info to our response header in the UsersController
             var query = _context.Users.AsQueryable();
 
-            //want to return all user except the currently logged in one
+            // Want to return all user except the currently logged in one
             query = query.Where(u => u.UserName != userParams.CurrentUsername);
             query = query.Where(u => u.Gender == userParams.Gender);
 

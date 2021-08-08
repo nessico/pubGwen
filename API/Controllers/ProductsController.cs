@@ -33,8 +33,8 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        //Add [FromQuery] to tell your api to bind product parameters to method
-        //basically telling API to go and look for the properties in the query string
+        // Add [FromQuery] to tell your api to bind product parameters to method
+        // basically telling API to go and look for the properties in the query string
         public async Task<ActionResult<ProductPagination<ProductToReturnDto>>> GetProducts(
             [FromQuery] ProductSpecParams productParams)
         {

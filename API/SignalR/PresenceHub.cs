@@ -11,7 +11,7 @@ namespace API.SignalR
     [Authorize]
     public class PresenceHub : Hub
     {
-        //SignalR has to use query string, they can't send authentication headers
+        // SignalR has to use query string, they can't send authentication headers
         private readonly PresenceTracker _tracker;
         public PresenceHub(PresenceTracker tracker)
         {

@@ -9,7 +9,7 @@ namespace Core.Entities.Member.Parameters
         public int MinAge { get; set; } = 18;
         public int MaxAge { get; set; } = 100;
 
-        //sorting functionality
+        // Sorting functionality
         public string OrderBy { get; set; } = "lastActive";
     }
 }

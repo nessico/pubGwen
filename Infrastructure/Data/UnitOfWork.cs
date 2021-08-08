@@ -23,7 +23,7 @@ namespace Infrastructure.Data.Identity
             _mapper = mapper;
         }
 
-        //create instance of repositories then pass it
+        // create instance of repositories then pass it
         public IUserRepository UserRepository => new UserRepository(_context, _mapper);
 
         public IMessageRepository MessageRepository => new MessageRepository(_context, _mapper);
@@ -33,12 +33,12 @@ namespace Infrastructure.Data.Identity
 
         public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
         {
-            //Check if hashtable is created
+            // Check if hashtable is created
             if (_repositories == null) _repositories = new Hashtable();
 
             var type = typeof(TEntity).Name;
 
-            //pass in context that our unit of works owns as a parameter into this new repository
+            // pass in context that our unit of works owns as a parameter into this new repository
             if (!_repositories.ContainsKey(type))
             {
                 var repositoryType = typeof(GenericRepository<>);

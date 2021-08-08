@@ -67,7 +67,7 @@ namespace API.Controllers
             };
         }
 
-        //Sending values in the body for our request so it's post to login
+        // Sending values in the body for our request so it's post to login
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
@@ -139,13 +139,13 @@ namespace API.Controllers
 
 
 
-        //Ensure email is unique
+        // Ensure email is unique
         [HttpGet("emailexists")]
         public async Task<ActionResult<bool>> EmailExists([FromQuery] string email)
         {
             return await _userManager.FindByEmailAsync(email) != null;
         }
-        //Ensure username is unique
+        // Ensure username is unique
         [HttpGet("userexists")]
         public async Task<bool> UserExists(string username)
         {

@@ -8,7 +8,7 @@ namespace API.DTOs
         public string PhotoUrl { get; set; }
         public string DisplayName { get; set; }
 
-        //saves us from using an api call
+        // Saves us from using an api call
         public string Gender { get; set; }
     }
 }

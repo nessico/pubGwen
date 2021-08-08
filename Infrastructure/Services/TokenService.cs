@@ -36,7 +36,7 @@ namespace Infrastructure.Services
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
             };
 
-            //adding roles to claims
+            // Adding roles to claims
             var roles = await _userManager.GetRolesAsync(user);
             claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 

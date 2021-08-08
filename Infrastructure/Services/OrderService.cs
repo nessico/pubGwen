@@ -21,33 +21,33 @@ namespace Infrastructure.Services
 
         public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId, OrderAddress shippingAddress)
         {
-            // get basket from repo
+            // Get basket from repo
             var basket = await _basketRepo.GetBasketAsync(basketId);
-            // get items from product repo
+            // Get items from product repo
             var items = new List<OrderItem>();
             foreach (var item in basket.Items)
             {
                 var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
                 var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, productItem.PictureUrl);
-                // verify item's price inside database, so people can't code inject fake prices from the client
+                // Verify item's price inside database, so people can't code inject fake prices from the client
                 var orderItem = new OrderItem(itemOrdered, productItem.Price, item.Quantity);
                 items.Add(orderItem);
             }
 
-            // get delivery method from repo using DM's id
+            // Get delivery method from repo using DM's id
             var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync(deliveryMethodId);
-            // calc subtotal
+            // Calc subtotal
             var subtotal = items.Sum(item => item.Price * item.Quantity);
-            // create order
+            // Create order
             var order = new Order(buyerEmail, shippingAddress, deliveryMethod, items, subtotal);
             _unitOfWork.Repository<Order>().Add(order);
 
-            // save to db 
+            // Save to db 
             var result = await _unitOfWork.CompleteStore();
 
             if (result <= 0) return null;
 
-            //delete basket
+            // Delete basket
             await _basketRepo.DeleteBasketAsync(basketId);
 
             return order;

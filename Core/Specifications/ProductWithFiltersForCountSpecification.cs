@@ -4,7 +4,7 @@ namespace Core.Specifications
 {
     public class ProductWithFiltersForCountSpecification : BaseSpecification<Product>
     {
-        //get items after populated in product pagination
+        // get items after populated in product pagination
         public ProductWithFiltersForCountSpecification(ProductSpecParams productParams)
             : base(x =>
             (string.IsNullOrEmpty(productParams.Search) || x.Name.ToLower().Contains(productParams.Search)) &&

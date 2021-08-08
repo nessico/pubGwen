@@ -25,7 +25,7 @@ namespace Core.Entities.Identity
 
         public ICollection<Photo> Photos { get; set; }
 
-        //self referencing relationship, acts like a join table
+        // Self referencing relationship, acts like a join table
         public ICollection<UserLike> LikedByUsers { get; set; }
         public ICollection<UserLike> LikedUsers { get; set; }
 

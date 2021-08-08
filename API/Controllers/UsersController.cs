@@ -57,7 +57,7 @@ namespace API.Controllers
             return await _unitOfWork.UserRepository.GetMemberAsync(username);
         }
 
-        //get User's username form the token to authenticate 
+        // Get User's username form the token to authenticate 
         [HttpPut]
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
         {
@@ -103,8 +103,8 @@ namespace API.Controllers
             return BadRequest("Problem addding photo");
         }
 
-        //{} pass id as root parameter
-        //Servers already signed the token so you're already authenticated to upload photo to specific user
+        // {} pass id as root parameter
+        // Servers already signed the token so you're already authenticated to upload photo to specific user
         [HttpPut("set-main-photo/{photoId}")]
         public async Task<ActionResult> SetMainPhoto(int photoId)
         {

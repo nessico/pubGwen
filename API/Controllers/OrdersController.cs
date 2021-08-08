@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace API.Controllers
 {
-    //We need their email from the token, so we need for users to log in first
+    // We need their email from the token, so we need for users to log in first
     [Authorize]
     public class OrdersController : BaseApiController
     {

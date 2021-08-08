@@ -42,7 +42,7 @@ namespace Infrastructure.Data.Identity
         }
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
-            //E.g. T gets replaced as a product, then converted into a queryable, which goes into our specification evaluator
+            // E.g. T gets replaced as a product, then converted into a queryable, which goes into our specification evaluator
             return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
         }
 

@@ -53,7 +53,7 @@ namespace API.Extensions
                };
            });
 
-            //Default connection goes to a Docker PostgreSQL localhost server
+            // Default connection goes to a Docker PostgreSQL localhost server
             services.AddDbContext<StoreContext>(options => options.UseNpgsql(config.GetConnectionString("DefaultConnection")));
             services.AddDbContext<IdentityDataContext>(options =>
             {
@@ -67,7 +67,7 @@ namespace API.Extensions
                 }
                 else
                 {
-                    //use AWS connection string
+                    // Use AWS connection string
                     string dbname = Environment.GetEnvironmentVariable("RDS_DB_NAME");
                     string username = Environment.GetEnvironmentVariable("RDS_USERNAME");
                     string password = Environment.GetEnvironmentVariable("RDS_PASSWORD");

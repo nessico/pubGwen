@@ -16,7 +16,7 @@ namespace API.Extensions
         public static IServiceCollection AddIdentityServices(this IServiceCollection services,
         IConfiguration config)
         {
-            //configuring identity in startup class
+            // Configuring identity in startup class
             services.AddIdentityCore<AppUser>(opt =>
             {
                 opt.Password.RequireNonAlphanumeric = false;
@@ -44,7 +44,7 @@ namespace API.Extensions
                     {
                         OnMessageReceived = context =>
                         {
-                            //make it a query string for SignalR
+                            // Make it a query string for SignalR
                             var accessToken = context.Request.Query["access_token"];
 
                             var path = context.HttpContext.Request.Path;
