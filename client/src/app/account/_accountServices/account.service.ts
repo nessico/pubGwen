@@ -14,7 +14,11 @@ export class AccountService {
   baseUrl = environment.apiUrl;
   private currentUserSource = new ReplaySubject<IUser>(1);
   currentUser$ = this.currentUserSource.asObservable();
-  //ReplaySubject is like a buffer object that stores the value in here and anytime a subscribers subscribes a observable, its gonna store the value in it
+  // ReplaySubject is like a buffer object that stores the value in here and anytime
+  //  a subscribers subscribes a observable, its gonna store the value in it
+  // Alternative was Behavior Subject; However, BehaviorSubject won't dispatch the last emitted value after completion,
+  //  but ReplaySubject can dispatch values to an observable even if your ReplaySubject is completed.
+  // https://stackoverflow.com/questions/43118769/subject-vs-behaviorsubject-vs-replaysubject-in-angular
 
   constructor(private http: HttpClient, private presence: PresenceService) {}
 
