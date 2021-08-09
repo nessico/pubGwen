@@ -39,6 +39,7 @@ May be down due to the cost of hosting on AWS
 - Identity and Role Management using ASPNET.Identity with hashed and salted passwords for users
 - JWT for user authentication, SSL to encrypt incoming user information
 - Angular route/auth guards, client-side form validation along with async API validators, API-side data annotations validation, DTOs to encapsulate properties from client
+- Scalable and maintainable architecture with clean code and inline documentation
 - etc...
 
 ## Architecture
