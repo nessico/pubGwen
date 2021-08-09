@@ -2,20 +2,24 @@
   <div class="table-responsive">
     <table class="table">
       <thead>
-        <tr>
-          <th class="border-0 bg-light" scope="col">
+        <tr class="border-bottom">
+          <th scope="col" [class.bg-light]="isBasket" class="border-0">
             <div class="p-2 px-3 text-uppercase">Item</div>
           </th>
-          <th scope="col" class="border-0 bg-light">
+          <th scope="col" [class.bg-light]="isBasket" class="border-0">
             <div class="py-2 text-uppercase">Price</div>
           </th>
-          <th scope="col" class="border-0 bg-light">
+          <th scope="col" [class.bg-light]="isBasket" class="border-0">
             <div class="py-2 text-uppercase">Quantity</div>
           </th>
-          <th scope="col" class="border-0 bg-light">
+          <th scope="col" [class.bg-light]="isBasket" class="border-0">
             <div class="py-2 text-uppercase">Total</div>
           </th>
-          <th scope="col" class="border-0 bg-light text-center">
+          <th
+            *ngIf="isBasket"
+            scope="col"
+            class="border-0 bg-light text-center"
+          >
             <div class="py-2 text-uppercase">Remove</div>
           </th>
         </tr>
@@ -44,8 +48,12 @@
             <strong>{{ item.price | currency }}</strong>
           </td>
           <td class="align-middle">
-            <div class="d-flex align-items-center">
+            <div
+              class="d-flex align-items-center"
+              [class.justify-content-between]="!isBasket"
+            >
               <i
+                *ngIf="isBasket"
                 (click)="decrementItemQuantity(item)"
                 class="fa fa-minus-circle fa-lg mx-2"
                 style="cursor: pointer"
@@ -56,6 +64,7 @@
               }}</span>
 
               <i
+                *ngIf="isBasket"
                 (click)="incrementItemQuantity(item)"
                 class="fa fa-plus-circle fa-lg mx-2"
                 style="cursor: pointer"
@@ -67,6 +76,7 @@
           </td>
           <td class="align-middle text-center">
             <i
+              *ngIf="isBasket"
               (click)="removeBasketItem(item)"
               class="fa fa-trash fa-2x"
               style="color: black; cursor: pointer"

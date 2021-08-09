@@ -1,7 +1,7 @@
 import { IBasketItem } from './../../../_models/shopModels/basket';
 import { Observable } from 'rxjs';
 import { BasketService } from './../../../../basket/basket.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { IBasket } from 'src/app/shared/_models/shopModels/basket';
 
 @Component({
@@ -16,6 +16,7 @@ export class BasketSummaryComponent implements OnInit {
   @Output() increment: EventEmitter<IBasketItem> =
     new EventEmitter<IBasketItem>();
   @Output() remove: EventEmitter<IBasketItem> = new EventEmitter<IBasketItem>();
+  @Input() isBasket = true;
 
   constructor(private basketService: BasketService) {}
 
