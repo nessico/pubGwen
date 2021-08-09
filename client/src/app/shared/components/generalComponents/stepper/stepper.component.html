@@ -8,7 +8,7 @@
         class="nav-link py-3 text-uppercase font-weight-bold btn-block"
         style="font-weight: bold"
       >
-        {{ step.label }}
+        {{ step.label }}<i class="fa fa-check" *ngIf="step.completed"></i>
       </button>
     </li>
   </ul>
