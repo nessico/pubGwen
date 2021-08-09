@@ -17,7 +17,7 @@ export class AdminService {
     );
   }
 
-  //?roles is for query string
+  // ?roles is for query string
   updateUserRoles(username: any, roles: any[]) {
     return this.http.post(
       this.baseUrl + 'admin/edit-roles/' + username + '?roles=' + roles,

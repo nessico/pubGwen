@@ -43,11 +43,11 @@ export class MembersService {
     return this.userParams;
   }
 
-  //https://valor-software.com/ngx-bootstrap/pagination
-  //passed pagination parameters from paginatedResult
+  // https://valor-software.com/ngx-bootstrap/pagination
+  // Passed pagination parameters from paginatedResult
   getMembers(userParams: UserParams) {
-    //caching with map, by passing in user params,
-    //if users is identical to cache, then it will go into our cache instead of ai
+    // Caching with map, by passing in user params,
+    // If users is identical to cache, then it will go into our cache instead of ai
     var response = this.memberCache.get(Object.values(userParams).join('-'));
     if (response) {
       return of(response);
@@ -63,9 +63,9 @@ export class MembersService {
     params = params.append('gender', userParams.gender);
     params = params.append('orderBy', userParams.orderBy);
 
-    //Observing will get the response back and we will have to get the body ourselves with pipe
-    //Observing response -> passed the params -> passed into a pipe -> specify our response mapping
-    //caching at map
+    // Observing will get the response back and we will have to get the body ourselves with pipe
+    // Observing response -> passed the params -> passed into a pipe -> specify our response mapping
+    // Caching at map
     return getPaginatedResult<IMember[]>(
       this.baseUrl + 'users',
       params,
@@ -79,7 +79,7 @@ export class MembersService {
   }
 
   getMember(username: string) {
-    //spread operator
+    // Spread operator
     const member = [...this.memberCache.values()]
       .reduce((arr, elem) => arr.concat(elem.result), [])
       .find((member: IMember) => member.username === username);

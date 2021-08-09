@@ -17,8 +17,8 @@ export class ShopService {
   constructor(private http: HttpClient) {}
 
   getProducts(shopParams: ShopParams) {
-    //filter functionality
-    //create a params object that we can pass into our API object as a query string
+    // Filter functionality
+    // Create a params object that we can pass into our API object as a query string
     let params = new HttpParams();
 
     if (shopParams.brandId !== 0) {

@@ -51,7 +51,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    //guaranteeing route will have member in it
+    // Guaranteeing route will have member in it
     this.route.data.subscribe((data) => {
       this.member = data.member;
       this.bcService.set('@memberDetails', this.member.displayName);

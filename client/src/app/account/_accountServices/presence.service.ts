@@ -18,8 +18,8 @@ export class PresenceService {
 
   constructor(private toastr: ToastrService, private router: Router) {}
 
-  //start hub connection if user is logged in or when user registers
-  //stop hub connection if user is logged out
+  // Start hub connection if user is logged in or when user registers
+  // Stop hub connection if user is logged out
   createHubConnection(user: IUser) {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.hubUrl + 'presence', {

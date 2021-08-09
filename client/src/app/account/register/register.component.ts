@@ -98,7 +98,7 @@ export class RegisterComponent implements OnInit {
       ? null
       : { isMatching: true };
   }
-  //return inner observable to the outer observable(control) with switchMap
+  // Return inner observable to the outer observable(control) with switchMap
   validateEmailNotTaken(): AsyncValidatorFn {
     return (control) => {
       return timer(500).pipe(

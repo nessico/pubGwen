@@ -12,7 +12,7 @@ import { ConfirmService } from '../../account/_accountServices/confirm.service';
 @Injectable({
   providedIn: 'root',
 })
-//root guard will automatically subscribe for us
+// Root guard will automatically subscribe for us
 export class PreventUnsavedChangesGuard implements CanDeactivate<unknown> {
   constructor(private confirmService: ConfirmService) {}
 

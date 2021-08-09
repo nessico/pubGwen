@@ -15,11 +15,11 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   styleUrls: ['./date-input.component.scss'],
 })
 
-//There's currently a CVA bug in Angular v12.0.2, where BsDatePicker objects can't be read
-//BsDatePicker doesn't read it's own values
-//and it is returning a default, '' value, which was specified inside the form fb builder
-//I've tried different workarounds for ~5 hrs in a local branch
-//and just decided it will be easier to manually write the date picker for now
+// There's currently a CVA bug in Angular v12.0.2, where BsDatePicker objects can't be read
+// BsDatePicker doesn't read it's own values
+//  and it is returning a default, '' value, which was specified inside the form fb builder
+// I've tried different workarounds for ~5 hrs in a local branch
+//  and just decided it will be easier to manually write the date picker for now
 export class DateInputComponent implements OnInit, ControlValueAccessor {
   @ViewChild('input', { static: true }) input!: any;
   @Input() type = 'text';

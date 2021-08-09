@@ -31,7 +31,7 @@ export class ConfirmService {
     return new Observable<boolean>(this.getResult());
   }
 
-  //subscribing to an observable
+  // Subscribing to an observable
   private getResult() {
     return (observer: any) => {
       const subscription = this.BsModalRef.onHidden.subscribe(() => {

@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./photo-editor.component.scss'],
 })
 export class PhotoEditorComponent implements OnInit {
-  //Receive our member from the parent component
+  // Receive our member from the parent component
   @Input() member!: IMember;
   uploader!: FileUploader;
   hasBaseDropzoneOver = false;
@@ -73,7 +73,7 @@ export class PhotoEditorComponent implements OnInit {
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
         const photo: IPhoto = JSON.parse(response);
-        // add photos to photo array
+        // Add photos to photo array
         this.member.photos.push(photo);
         if (photo.isMain) {
           this.user.photoUrl = photo.url;

@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     this.setCurrentBasket();
   }
 
-  //user persistence
+  // User persistence
   setCurrentUser() {
     const user: IUser = JSON.parse(localStorage.getItem('user')!);
     if (user) {
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  //basket persistence
+  // Basket persistence
   setCurrentBasket() {
     const basketId = localStorage.getItem('basket_id');
     if (basketId) {

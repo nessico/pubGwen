@@ -15,9 +15,9 @@ import { IBasket } from '../shared/_models/shopModels/basket';
   providedIn: 'root',
 })
 export class BasketService {
-  //BehaviorSubject - observable that allows for multi-casting of the observable itself and allows for multiple subscribers
-  //Since it's private, you'll need a public property (basket$,etc) to be accessible by other components
-  //basket$,etc is observable
+  // BehaviorSubject - observable that allows for multi-casting of the observable itself and allows for multiple subscribers
+  //  Since it's private, you'll need a public property (basket$,etc) to be accessible by other components
+  //  basket$,etc is observable
 
   baseUrl = environment.apiUrl;
   private basketSource = new BehaviorSubject<IBasket | null>(null);
@@ -27,8 +27,8 @@ export class BasketService {
 
   constructor(private http: HttpClient) {}
 
-  //From response of http client, set basket source to the basket from api
-  //Subscribe inside component with async pipe
+  // From response of http client, set basket source to the basket from api
+  // Subscribe inside component with async pipe
   getBasket(id: string) {
     return this.http.get<IBasket>(this.baseUrl + 'basket?id=' + id).pipe(
       map((basket: IBasket) => {
@@ -60,9 +60,9 @@ export class BasketService {
     this.setBasket(basket!);
   }
 
-  //helper methods
+  // Helper methods
 
-  //to get current value of basket without subscribing
+  // To get current value of basket without subscribing
   getCurrentBasketValue() {
     return this.basketSource.value;
   }
@@ -110,8 +110,8 @@ export class BasketService {
     );
   }
 
-  //calculate total inside basket and set it to the basket$ Behavior Subject
-  //a is count, b is item, given initial val of 0
+  // Calculate total inside basket and set it to the basket$ Behavior Subject
+  //  a is count, b is item, given initial val of 0
   private calculateTotals() {
     const basket = this.getCurrentBasketValue();
     const shipping = 0;
@@ -123,15 +123,15 @@ export class BasketService {
     this.basketTotalSource.next({ shipping, total, subtotal });
   }
 
-  //creates a basket if user doesn't currently have a basket
-  //for persistence, use local storage to get basket id
+  // Creates a basket if user doesn't currently have a basket
+  // For persistence, use local storage to get basket id
   private createBasket(): IBasket | null {
     const basket = new Basket();
     localStorage.setItem('basket_id', basket.id);
     return basket;
   }
 
-  //to map item to basket
+  // To map item to basket
   private mapProductItemToBasketItem(
     item: IProduct,
     quantity: number
@@ -147,8 +147,8 @@ export class BasketService {
     };
   }
 
-  //if there's already an item of type X, then increase quantity of item X
-  //or, if there is no item of type X, push an additional item X
+  // If there's already an item of type X, then increase quantity of item X
+  //  Or, if there is no item of type X, push an additional item X
   private addOrUpdateItem(
     items: IBasketItem[] | undefined,
     itemToAdd: IBasketItem,

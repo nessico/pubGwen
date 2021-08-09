@@ -45,7 +45,8 @@ export class AccountService {
     );
   }
 
-  //persistence by setting token to local storage then app component runs a method to get token from local storage on ngOnInit()
+  // Persistence by setting token to local storage 
+  //  then app component runs a method to get token from local storage on ngOnInit()
   setCurrentUser(user: IUser) {
     if (user == null) {
       this.currentUserSource.next(null!);
