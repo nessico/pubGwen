@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -20,6 +21,7 @@ import { TextInputComponent } from './components/generalComponents/text-input/te
 import { DateInputComponent } from './components/generalComponents/date-input/date-input.component';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { StepperComponent } from './components/generalComponents/stepper/stepper.component';
+import { BasketSummaryComponent } from './components/shopComponents/basket-summary/basket-summary.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { StepperComponent } from './components/generalComponents/stepper/stepper
     TextInputComponent,
     DateInputComponent,
     StepperComponent,
+    BasketSummaryComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +51,7 @@ import { StepperComponent } from './components/generalComponents/stepper/stepper
     ReactiveFormsModule,
     CarouselModule.forRoot(),
     CdkStepperModule,
+    RouterModule,
   ],
   exports: [
     BsDropdownModule,
@@ -70,6 +74,7 @@ import { StepperComponent } from './components/generalComponents/stepper/stepper
     DateInputComponent,
     CdkStepperModule,
     StepperComponent,
+    BasketSummaryComponent,
   ],
 })
 export class SharedModule {}
