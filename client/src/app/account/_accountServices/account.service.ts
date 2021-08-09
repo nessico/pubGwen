@@ -75,8 +75,13 @@ export class AccountService {
     );
   }
 
-  //Checkout Form
+  // Checkout Form
   updateUserAddress(address: IAddress) {
     return this.http.put<IAddress>(this.baseUrl + 'account/address', address);
+  }
+
+  // For populating user's address if they already have a saved address
+  getUserAddress() {
+    return this.http.get(this.baseUrl + 'account/address');
   }
 }
