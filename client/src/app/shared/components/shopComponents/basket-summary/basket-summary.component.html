@@ -48,10 +48,7 @@
             <strong>{{ item.price | currency }}</strong>
           </td>
           <td class="align-middle">
-            <div
-              class="d-flex align-items-center"
-              [class.justify-content-between]="!isBasket"
-            >
+            <div class="d-flex align-items-center">
               <i
                 *ngIf="isBasket"
                 (click)="decrementItemQuantity(item)"
@@ -59,9 +56,9 @@
                 style="cursor: pointer"
               ></i>
 
-              <span class="font-weight-bold" style="font-size: 1.5em">{{
-                item.quantity
-              }}</span>
+              <span [class.mx-5]="!isBasket"
+                ><strong>{{ item.quantity }}</strong></span
+              >
 
               <i
                 *ngIf="isBasket"
