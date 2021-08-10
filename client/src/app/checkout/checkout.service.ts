@@ -1,3 +1,4 @@
+import { IOrderToCreate } from './../shared/_models/shopModels/order';
 import { IDeliveryMethod } from './../shared/_models/shopModels/deliveryMethod';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -10,6 +11,11 @@ import { Injectable } from '@angular/core';
 export class CheckoutService {
   baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
+
+  // After order is created, basket will be removed by deleteLocalBasket in basket.service.ts
+  createOrder(order: IOrderToCreate) {
+    return this.http.post(this.baseUrl + 'orders', order);
+  }
 
   getDeliveryMethods() {
     return this.http

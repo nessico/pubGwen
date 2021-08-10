@@ -104,6 +104,7 @@ export class BasketService {
     }
   }
 
+  // Delete basket in API
   deleteBasket(basket: IBasket | null) {
     return this.http.delete(this.baseUrl + 'basket?id=' + basket!.id).subscribe(
       () => {
@@ -115,6 +116,13 @@ export class BasketService {
         console.log(error);
       }
     );
+  }
+
+  // Delete basket in client
+  deleteLocalBasket(id: string) {
+    this.basketSource.next(null);
+    this.basketTotalSource.next(null);
+    localStorage.removeItem('basket_id');
   }
 
   // Helper methods (private)
