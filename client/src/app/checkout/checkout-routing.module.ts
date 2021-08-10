@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', component: CheckoutComponent },
-  { path: 'success', component: CheckoutSuccessComponent },
+  { path: 'Success', component: CheckoutSuccessComponent },
 ];
 
 @NgModule({
