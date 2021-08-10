@@ -30,7 +30,7 @@ namespace API.Controllers
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
 
-            var address = _mapper.Map<AddressDto, OrderAddress>(orderDto.ShiptoAddress);
+            var address = _mapper.Map<AddressDto, OrderAddress>(orderDto.ShipToAddress);
 
             var order = await _orderService.CreateOrderAsync(email, orderDto.DeliveryMethodId, orderDto.BasketId, address);
 
