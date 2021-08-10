@@ -3,6 +3,7 @@
   <div class="row" formGroupName="deliveryForm">
     <div class="col-6 form-group mb-3" *ngFor="let method of deliveryMethods">
       <input
+        (click)="setShippingPrice(method)"
         type="radio"
         id="{{ method.id }}"
         value="{{ method.id }}"
