@@ -37,4 +37,8 @@ export class NavComponent implements OnInit {
   noLogin() {
     this.toastr.error('Please login first');
   }
+
+  public isActive(base: string): boolean {
+    return this.router.url.includes(`/${base}`);
+ }
 }

@@ -24,7 +24,7 @@
       <ul class="nav navbar-nav">
         <li class="nav-item">
           <a
-            class="nav-link navMiddleShop"
+            class="nav-link"
             routerLink="/shop"
             routerLinkActive="active"
             href="#"
@@ -34,14 +34,14 @@
 
         <li class="nav-item">
           <a
-            class="nav-link text-white navMiddleShop"
+            class="nav-link text-white"
             target="_blank"
             href="https://app.swaggerhub.com/apis/soloproject/gwen-api/v1"
             >API</a
           >
         </li>
 
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item active">
           <div
             class="dropdown"
             [isDisabled]="(currentUser$ | async) == null"
@@ -50,21 +50,15 @@
             <a
               *ngIf="(currentUser$ | async) == null"
               (click)="noLogin()"
-              class="
-                dropdown-toggle
-                nav-link
-                text-light
-                px-2
-                text-muted
-                navMiddleShop
-              "
+              class="dropdown-toggle nav-link text-light px-2 text-muted"
               dropdownToggle
             >
               Members
             </a>
             <a
               *ngIf="(currentUser$ | async) != null"
-              class="dropdown-toggle nav-link text-light px-2 navMiddleShop"
+              class="dropdown-toggle nav-link text-light px-2"
+              [class.active]="isActive('account')"
               dropdownToggle
             >
               Members
@@ -91,17 +85,16 @@
                 routerLinkActive="active"
                 ><i class="fa fa-envelope mr-3"> Messages</i></a
               >
-              <div
-                class="dropdown-divider"
-                *appHasRole="['Admin', 'Moderator']"
-              ></div>
-              <a
-                class="dropdown-item d-flex align-items-center py-2"
-                *appHasRole="['Admin', 'Moderator']"
-                routerLink="/account/admin"
-                routerLinkActive="active"
-                ><i class="fa fa-unlock-alt mr-3"> Admin</i></a
-              >
+              <div class="dropdown-divider"></div>
+              <div *ngIf="currentUser$ | async as user">
+                <a
+                  class="dropdown-item d-flex align-items-center py-2"
+                  [class.disabled]="user.roles.length == 1"
+                  routerLink="/account/admin"
+                  routerLinkActive="active"
+                  ><i class="fa fa-unlock-alt mr-3"> Admin </i></a
+                >
+              </div>
             </div>
           </div>
         </li>
