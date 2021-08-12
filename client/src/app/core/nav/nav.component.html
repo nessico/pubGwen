@@ -11,7 +11,7 @@
     box-outline
   "
 >
-  <div class="container">
+  <div class="container-fluid">
     <a
       class="navbar-brand"
       routerLink="/"
@@ -21,14 +21,10 @@
     >
 
     <div class="nav navbar-nav justify-content-center">
-      <nav class="mx-auto text-uppercase" style="font-size: larger"></nav>
-    </div>
-
-    <div class="justify-content-end d-inline-flex">
       <ul class="nav navbar-nav">
         <li class="nav-item">
           <a
-            class="nav-link"
+            class="nav-link navMiddleShop"
             routerLink="/shop"
             routerLinkActive="active"
             href="#"
@@ -38,13 +34,14 @@
 
         <li class="nav-item">
           <a
-            class="nav-link text-white"
+            class="nav-link text-white navMiddleShop"
             target="_blank"
             href="https://app.swaggerhub.com/apis/soloproject/gwen-api/v1"
             >API</a
           >
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item" routerLinkActive="active">
           <div
             class="dropdown"
             [isDisabled]="(currentUser$ | async) == null"
@@ -53,20 +50,26 @@
             <a
               *ngIf="(currentUser$ | async) == null"
               (click)="noLogin()"
-              class="dropdown-toggle nav-link text-light px-2 text-muted"
-              style="text-decoration: none; font-size: medium"
+              class="
+                dropdown-toggle
+                nav-link
+                text-light
+                px-2
+                text-muted
+                navMiddleShop
+              "
               dropdownToggle
             >
               Members
             </a>
             <a
               *ngIf="(currentUser$ | async) != null"
-              class="dropdown-toggle nav-link text-light px-2"
-              style="text-decoration: none; font-size: medium"
+              class="dropdown-toggle nav-link text-light px-2 navMiddleShop"
               dropdownToggle
             >
               Members
             </a>
+
             <div class="dropdown-menu mt-3" *dropdownMenu>
               <a
                 class="dropdown-item d-flex align-items-center py-2"
@@ -102,16 +105,52 @@
             </div>
           </div>
         </li>
+      </ul>
+    </div>
 
-        <br />
-        <li class="nav-item">
-          <a routerLink="/basket">
-            <i class="fa fa-shopping-cart fa-2x mr-5 text-dark px-3"></i>
-            <div *ngIf="basket$ | async as basket" class="cart-no">
-              {{ basket.items.length }}
-            </div>
+    <div class="justify-content-end d-inline-flex">
+      <div class="dropdown" *ngIf="currentUser$ | async as user" dropdown>
+        <img
+          src="{{ user.photoUrl || './assets/user.png' }}"
+          alt="{{ user.username }}"
+        />
+        <a
+          class="dropdown-toggle text-light px-2"
+          style="text-decoration: none; font-size: medium"
+          dropdownToggle
+          >Welcome, {{ user.displayName || user.username | titlecase }}
+        </a>
+        <div class="dropdown-menu mt-3" *dropdownMenu>
+          <a
+            class="dropdown-item d-flex align-items-center py-2"
+            routerLink="/account/member/edit"
+            routerLinkActive="active"
+            ><i class="fa fa-pencil mr-3"> Edit Profile</i></a
+          >
+          <div class="dropdown-divider"></div>
+          <a
+            routerLink="/basket"
+            class="dropdown-item d-flex align-items-center py-2"
+          >
+            <i class="fa fa-shopping-cart mr-3"> View Basket</i>
           </a>
-        </li>
+          <div class="dropdown-divider"></div>
+          <a
+            routerLink="/orders"
+            class="dropdown-item d-flex align-items-center py-2"
+          >
+            <i class="fa fa-history mr-3"> View Orders</i>
+          </a>
+          <div class="dropdown-divider"></div>
+
+          <a
+            class="dropdown-item d-flex align-items-center py-2"
+            (click)="logout()"
+            ><i class="fa fa-sign-out mr-3"> Logout</i></a
+          >
+        </div>
+      </div>
+      <ul class="nav navbar-nav">
         <li class="nav-item" *ngIf="(currentUser$ | async) == null">
           <a
             href="#!"
@@ -137,49 +176,15 @@
             >Register</a
           >
         </li>
+        <li class="nav-item">
+          <a routerLink="/basket">
+            <i class="fa fa-shopping-cart fa-2x mr-5 text-dark px-3"></i>
+            <div *ngIf="basket$ | async as basket" class="cart-no">
+              {{ basket.items.length }}
+            </div>
+          </a>
+        </li>
       </ul>
-
-      <div class="dropdown" *ngIf="currentUser$ | async as user" dropdown>
-        <img
-          src="{{ user.photoUrl || './assets/user.png' }}"
-          alt="{{ user.username }}"
-        />
-        <a
-          class="dropdown-toggle text-light px-2"
-          style="text-decoration: none; font-size: medium"
-          dropdownToggle
-          >Welcome {{ user.displayName || user.username | titlecase }}
-        </a>
-        <div class="dropdown-menu mt-3" *dropdownMenu>
-          <a
-            class="dropdown-item d-flex align-items-center py-2"
-            routerLink="/account/member/edit"
-            routerLinkActive="active"
-            ><i class="fa fa-pencil mr-3"> Edit Profile</i></a
-          >
-          <div class="dropdown-divider"></div>
-          <a
-            routerLink="/basket"
-            class="dropdown-item d-flex align-items-center py-2"
-          >
-            <i class="fa fa-shopping-cart mr-3"> View Basket</i>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a
-            routerLink="/Orders"
-            class="dropdown-item d-flex align-items-center py-2"
-          >
-            <i class="fa fa-history mr-3"> View Orders</i>
-          </a>
-          <div class="dropdown-divider"></div>
-
-          <a
-            class="dropdown-item d-flex align-items-center py-2"
-            (click)="logout()"
-            ><i class="fa fa-sign-out mr-3"> Logout</i></a
-          >
-        </div>
-      </div>
     </div>
   </div>
 </header>
