@@ -3,7 +3,7 @@
   cursor: pointer;
 }
 img {
-  max-height: 41px;
+  height: 41px;
   border: 2px solid #fff;
   display: inline;
   border-radius: 5px;
@@ -39,4 +39,9 @@ img {
   display: inline-block;
   margin: 0;
   white-space: normal;
+  height: 41px;
+}
+
+.gwenNavAlign {
+  height: 41px;
 }

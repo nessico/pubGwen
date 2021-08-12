@@ -13,7 +13,7 @@
 >
   <div class="container-fluid">
     <a
-      class="navbar-brand"
+      class="navbar-brand gwenNavAlign"
       routerLink="/"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
@@ -50,14 +50,14 @@
             <a
               *ngIf="(currentUser$ | async) == null"
               (click)="noLogin()"
-              class="dropdown-toggle nav-link text-light px-2 text-muted"
+              class="dropdown-toggle nav-link text-light text-muted"
               dropdownToggle
             >
               Members
             </a>
             <a
               *ngIf="(currentUser$ | async) != null"
-              class="dropdown-toggle nav-link text-light px-2"
+              class="dropdown-toggle nav-link text-light"
               [class.active]="isActive('account')"
               dropdownToggle
             >
@@ -108,7 +108,7 @@
           alt="{{ user.username }}"
         />
         <a
-          class="dropdown-toggle text-light px-2"
+          class="dropdown-toggle text-light mx-2"
           style="text-decoration: none; font-size: medium"
           dropdownToggle
           >Welcome, {{ user.displayName || user.username | titlecase }}
@@ -171,7 +171,9 @@
         </li>
         <li class="nav-item">
           <a routerLink="/basket">
-            <i class="fa fa-shopping-cart fa-2x mr-5 text-dark px-3"></i>
+            <i
+              class="fa fa-shopping-cart fa-2x mr-5 text-dark mx-3 gwenNavAlign"
+            ></i>
             <div *ngIf="basket$ | async as basket" class="cart-no">
               {{ basket.items.length }}
             </div>
