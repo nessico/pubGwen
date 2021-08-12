@@ -10,7 +10,7 @@
     autocomplete="off"
   >
     <label> Age from:</label>
-    <div class="col-12">
+    <div class="col-md-12">
       <div class="form-group">
         <input
           type="number"
@@ -23,7 +23,7 @@
     </div>
 
     <label>Age to: </label>
-    <div class="col-12">
+    <div class="col-md-12">
       <div class="form-group">
         <input
           type="number"
@@ -36,7 +36,7 @@
     </div>
 
     <label>Show: </label>
-    <div class="col-12">
+    <div class="col-md-12">
       <div class="form-group">
         <select
           name="gender"
@@ -51,16 +51,16 @@
       </div>
     </div>
 
-    <div class="col-12">
+    <div class="col-md-12">
       <button class="btn btn-primary" type="submit">Apply Filters</button>
     </div>
-    <div class="col-12">
+    <div class="col-md-12">
       <button (click)="resetFilters()" class="btn btn-info" type="submit">
         Reset Filters
       </button>
     </div>
 
-    <div class="col-12">
+    <div class="col-md-12">
       <button
         type="button"
         class="btn btn-primary btn-sm"
@@ -72,7 +72,7 @@
         Last Active
       </button>
     </div>
-    <div class="col-12">
+    <div class="col-md-12">
       <button
         type="button"
         class="btn btn-primary btn-sm"
@@ -90,7 +90,7 @@
   <br />
 
   <div class="row">
-    <div *ngFor="let member of members" class="col-2">
+    <div *ngFor="let member of members" class="col-md-2">
       <app-member-card [member]="member"></app-member-card>
     </div>
   </div>

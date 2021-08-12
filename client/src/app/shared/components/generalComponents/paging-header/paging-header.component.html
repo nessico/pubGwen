@@ -5,12 +5,10 @@
       {{ (pageIndex - 1) * pageSize + 1 }}
       -
       {{
-        pageIndex * pageSize > totalCount
-          ? totalCount
-          : pageIndex * pageSize
+        pageIndex * pageSize > totalCount ? totalCount : pageIndex * pageSize
       }}
     </strong>
-    of <strong> {{ totalCount }} </strong> Results
+    of <strong> {{ totalCount }} </strong> Results for {{ searchTerm }}
   </span>
   <span *ngIf="totalCount === 0">
     There are <strong> 0 </strong> results for this filter!

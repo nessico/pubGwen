@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <section class="col-3">
+    <section class="col-md-3">
       <ng-container *ngIf="types && brands">
         <h5 class="text-warning ml-3 my-2 mt-4">Sort</h5>
         <select class="form-select my-3" (change)="onSortSelected($event)">
@@ -39,18 +39,19 @@
       </ng-container>
     </section>
 
-    <section class="col-9">
+    <section class="col-md-9">
       <div class="d-flex justify-content-between align-items-center pb-2">
         <app-paging-header
           [totalCount]="totalCount"
           [pageIndex]="this.shopParams.pageIndex"
           [pageSize]="this.shopParams.pageSize"
+          [searchTerm]="this.searchTerm.nativeElement.value"
         ></app-paging-header>
         <form
           class="row row-cols-lg-auto g-3 align-items-center"
           *ngIf="products"
         >
-          <div class="col-auto">
+          <div class="col-md-auto">
             <input
               (keyup.enter)="onSearch()"
               class="form-control"
@@ -61,23 +62,22 @@
             />
           </div>
 
-          <div class="col-auto">
+          <div class="col-md-auto">
             <button (click)="onSearch()" class="btn btn-outline-primary my-2">
               Search
             </button>
           </div>
 
-          <div class="col-auto">
+          <div class="col-md-auto">
             <button (click)="onReset()" class="btn btn-outline-success my-2">
               Reset
             </button>
           </div>
         </form>
       </div>
-      
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col" *ngFor="let item of products">
+        <div class="col-md" *ngFor="let item of products">
           <app-product-item [product]="item"></app-product-item>
         </div>
       </div>

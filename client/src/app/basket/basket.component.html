@@ -7,14 +7,14 @@
     <div class="pb-5">
       <div class="container">
         <div class="row">
-          <section class="col-9 py-5 mb-1 bg-white rounded shadow-sm">
+          <section class="col-md-9 py-5 mb-1 bg-white rounded shadow-sm">
             <app-basket-summary
               (decrement)="decrementItemQuantity($event)"
               (increment)="incrementItemQuantity($event)"
               (remove)="removeBasketItem($event)"
             ></app-basket-summary>
           </section>
-          <section class="col-3 py-5 mb-1">
+          <section class="col-md-3 py-5 mb-1">
             <app-order-summary></app-order-summary>
             <div class="d-grid">
               <a

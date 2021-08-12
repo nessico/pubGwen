@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-4">
+    <div class="col-md-4">
       <div class="card">
         <img
           src="{{ member.photoUrl || './assets/user.png' }}"
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div class="col-8">
+    <div class="col-md-8">
       <tabset class="member-tabset" #memberTabs>
         <tab
           heading="About {{ member.displayName }}"
