@@ -9,7 +9,7 @@ export class PagingHeaderComponent implements OnInit {
   @Input() pageIndex!: number;
   @Input() pageSize!: number;
   @Input() totalCount!: number;
-  @Input() searchTerm: string = "";
+
 
   constructor() {}
 
