@@ -28,12 +28,15 @@
         <tr *ngFor="let item of basket.items">
           <th scope="row">
             <div class="p-2">
-              <img
-                src="{{ item.pictureUrl }}"
-                alt="{{ item.productName }}"
-                class="img-fluid"
-                style="max-height: 100px"
-              />
+              <a routerLink="/shop/{{ item.id }}" style="cursor: pointer">
+                <img
+                  src="{{ item.pictureUrl }}"
+                  alt="{{ item.productName }}"
+                  class="img-fluid"
+                  style="max-height: 100px"
+                />
+              </a>
+
               <div class="ml-3 d-inline-block align-top">
                 <h6 class="mb-0">
                   <a routerLink="/shop/{{ item.id }}">{{ item.productName }}</a>

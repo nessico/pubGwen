@@ -30,13 +30,18 @@
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-5">
-              <img
+              <a
                 *ngFor="let orderPicture of order.orderItems"
-                src="{{ orderPicture.pictureUrl }}"
-                alt="{{ orderPicture.productName }}"
-                class="img-fluid"
-                style="max-height: 100px"
-              />
+                routerLink="/shop/{{ orderPicture.productId }}"
+                style="cursor: pointer"
+              >
+                <img
+                  src="{{ orderPicture.pictureUrl }}"
+                  alt="{{ orderPicture.productName }}"
+                  class="img-fluid"
+                  style="max-height: 100px"
+                />
+              </a>
             </div>
           </div>
         </ul>
