@@ -3,24 +3,24 @@
     <table class="table">
       <thead>
         <tr class="border-bottom">
-          <th scope="col" [class.bg-light]="isBasket" class="border-0">
-            <div class="p-2 px-3 text-uppercase">Item</div>
+          <th scope="col" [class.bg-secondary]="isBasket" class="border-0">
+            <div class="px-3 text-uppercase">Item</div>
           </th>
-          <th scope="col" [class.bg-light]="isBasket" class="border-0">
-            <div class="py-2 text-uppercase">Price</div>
+          <th scope="col" [class.bg-secondary]="isBasket" class="border-0">
+            <div class="text-uppercase">Price</div>
           </th>
-          <th scope="col" [class.bg-light]="isBasket" class="border-0">
-            <div class="py-2 text-uppercase">Quantity</div>
+          <th scope="col" [class.bg-secondary]="isBasket" class="border-0">
+            <div class="text-uppercase">Quantity</div>
           </th>
-          <th scope="col" [class.bg-light]="isBasket" class="border-0">
-            <div class="py-2 text-uppercase">Total</div>
+          <th scope="col" [class.bg-secondary]="isBasket" class="border-0">
+            <div class="text-uppercase">Total</div>
           </th>
           <th
             *ngIf="isBasket"
             scope="col"
-            class="border-0 bg-light text-center"
+            class="border-0 bg-secondary text-center"
           >
-            <div class="py-2 text-uppercase">Remove</div>
+            <div class="text-uppercase">Remove</div>
           </th>
         </tr>
       </thead>

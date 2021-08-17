@@ -2,14 +2,14 @@
   <div class="row">
     <section class="col-md-3">
       <ng-container *ngIf="types && brands">
-        <h5 class="text-warning ml-3 my-2 mt-4">Sort</h5>
+        <h5 class="ml-3 my-2 mt-4">Sort</h5>
         <select class="form-select my-3" (change)="onSortSelected($event)">
           <option *ngFor="let sort of sortOptions" [value]="sort.value">
             {{ sort.name }}
           </option>
         </select>
 
-        <h5 class="text-warning ml-3 my-2">Brands</h5>
+        <h5 class="ml-3 my-2">Brands</h5>
         <ul class="list-group my-3">
           <li
             class="list-group-item"
@@ -23,7 +23,7 @@
           </li>
         </ul>
 
-        <h5 class="text-warning ml-3 my-2">Types</h5>
+        <h5 class="ml-3 my-2">Types</h5>
         <ul class="list-group my-3">
           <li
             class="list-group-item"
@@ -45,7 +45,6 @@
           [totalCount]="totalCount"
           [pageIndex]="this.shopParams.pageIndex"
           [pageSize]="this.shopParams.pageSize"
-
         ></app-paging-header>
         <form
           class="row row-cols-lg-auto g-3 align-items-center"
@@ -63,13 +62,19 @@
           </div>
 
           <div class="col-md-auto">
-            <button (click)="onSearch()" class="btn btn-outline-primary my-2">
+            <button
+              (click)="onSearch()"
+              class="btn btn-outline-primary btn-sm my-2"
+            >
               Search
             </button>
           </div>
 
           <div class="col-md-auto">
-            <button (click)="onReset()" class="btn btn-outline-success my-2">
+            <button
+              (click)="onReset()"
+              class="btn btn-outline-info btn-sm my-2"
+            >
               Reset
             </button>
           </div>

@@ -3,7 +3,7 @@
   cursor: pointer;
 }
 img {
-  height: 41px;
+  height: 44px;
   border: 2px solid #fff;
   display: inline;
   border-radius: 5px;
@@ -15,15 +15,15 @@ img {
   min-width: 20px;
   border-radius: 50%;
   font-size: 0.8em;
-  background: white;
-  color: black;
+  background: black;
+  color: white;
   text-align: center;
-  top: -10px;
+  top: 5px;
   right: 32px;
 }
 
 .nav-item {
-  font-size: 16.25px;
+  font-size: 16px;
   font-family: Lato, -apple-system;
   color: #222323;
   font-weight: 400;
@@ -39,9 +39,17 @@ img {
   display: inline-block;
   margin: 0;
   white-space: normal;
-  height: 41px;
+  height: 44px;
+}
+
+.nav-link {
+  height: 44px;
 }
 
 .gwenNavAlign {
-  height: 41px;
+  height: 44px;
+}
+
+.active {
+  border-bottom: 1px solid currentColor;
 }

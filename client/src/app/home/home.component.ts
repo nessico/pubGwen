@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
 
   learnMore() {
-    this.toastr.info(
+    this.toastr.show(
       'Members and Account navigation updates based on your login',
       'Navigation:',
       {
@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
     );
   }
   learnUser() {
-    this.toastr.info(
-      'ada@test.com, Pa$$w0rd </br> or: </br> insertName@test.com, Pa$$w0rd',
+    this.toastr.show(
+      'ada@test.com, Pa$$w0rd </br> or: </br> < seededUser >@test.com, Pa$$w0rd',
       'Username, Password:',
       {
         enableHtml: true,
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     );
   }
   learnAdmin() {
-    this.toastr.info('admin@test.com, Pa$$w0rd', 'Username, Password:', {
+    this.toastr.show('admin@test.com, Pa$$w0rd', 'Username, Password:', {
       enableHtml: true,
     });
   }

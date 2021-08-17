@@ -40,5 +40,5 @@ export class NavComponent implements OnInit {
 
   public isActive(base: string): boolean {
     return this.router.url.includes(`/${base}`);
- }
+  }
 }

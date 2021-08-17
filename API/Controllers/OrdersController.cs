@@ -5,6 +5,7 @@ using API.DTOs;
 using API.Errors;
 using API.Extensions;
 using AutoMapper;
+using Core.Entities.Member.Parameters;
 using Core.Entities.OrderAggregate;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -40,13 +41,11 @@ namespace API.Controllers
 
         }
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<OrderDto>>> GetOrdersForUser()
+        public async Task<ActionResult<IReadOnlyList<OrderDto>>> GetOrdersForUser([FromQuery] PaginationParams paginationParams)
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
 
-            var orders = await _orderService.GetOrdersForUserAsync(email);
-
-            if (orders.Count == 0) return NotFound(new ApiResponse(404));
+            var orders = await _orderService.GetOrdersForUserAsync(email, paginationParams);
 
             return Ok(_mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDto>>(orders));
         }
