@@ -7,7 +7,7 @@ namespace Core.Entities.Member.Parameters
         // If client chooses a different a different value from 10, and if its over 50, then its set to 50
         private const int MaxPageSize = 50;
         public int PageNumber { get; set; } = 1;
-        private int _pageSize = 10;
+        private int _pageSize = 6;
 
         public int PageSize
         {

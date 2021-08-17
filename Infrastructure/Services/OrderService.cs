@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
+using Core.Entities.Member.Parameters;
 using Core.Entities.OrderAggregate;
 using Core.Interfaces;
 using Core.Specifications;
@@ -65,9 +66,9 @@ namespace Infrastructure.Services
             return await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
         }
 
-        public async Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string buyerEmail)
+        public async Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string buyerEmail, PaginationParams paginationParams)
         {
-            var spec = new OrdersWithItemsAndOrderingSpecification(buyerEmail);
+            var spec = new OrdersWithItemsAndOrderingSpecification(buyerEmail, paginationParams);
 
             return await _unitOfWork.Repository<Order>().ListAsync(spec);
         }
