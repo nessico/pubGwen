@@ -67,8 +67,8 @@ export class MessageService {
     }
   }
 
-  getMessages(pageNumber: any, pageSize: any, container: any) {
-    let params = getPaginationHeaders(pageNumber, pageSize);
+  getMessages(pageIndex: any, pageSize: any, container: any) {
+    let params = getPaginationHeaders(pageIndex, pageSize);
     params = params.append('Container', container);
     return getPaginatedResult<IMessage[]>(
       this.baseUrl + 'messages',

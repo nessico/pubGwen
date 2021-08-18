@@ -52,7 +52,7 @@ namespace Infrastructure.Data.Identity
                 Id = user.Id
             });
 
-            return await PagedList<Like>.CreateAsync(likedUsers, likesParams.PageNumber, likesParams.PageSize);
+            return await PagedList<Like>.CreateAsync(likedUsers, likesParams.pageIndex, likesParams.PageSize);
         }
 
         // List of user that this user has liked

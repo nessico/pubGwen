@@ -53,7 +53,7 @@ namespace Infrastructure.Data.Identity
             };
 
             return await PagedList<Member>.CreateAsync(query.ProjectTo<Member>(_mapper.ConfigurationProvider).AsNoTracking(),
-                userParams.PageNumber, userParams.PageSize);
+                userParams.pageIndex, userParams.PageSize);
 
 
         }

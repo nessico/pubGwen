@@ -49,17 +49,18 @@
               [label]="'Display Name'"
             ></app-text-input>
             <!--- hotfix solution for CVA date-input, see comments in date-input.component.ts --->
-            <div
-              class="form-floating mb-3"
-              [ngClass]="{
-                'has-error':
-                  registerForm.get('dateOfBirth')?.errors &&
-                  registerForm.get('dateOfBirth')?.touched
-              }"
-            >
+            <div class="form-floating mb-3">
               <input
+                [class]="
+                  registerForm.get('dateOfBirth')?.touched
+                    ? !registerForm.get('dateOfBirth')?.valid
+                      ? 'is-invalid'
+                      : 'is-valid'
+                    : null
+                "
                 type="text"
-                placeholder="Date of birth"
+                placeholder="Date
+              of birth"
                 class="form-control"
                 bsDatepicker
                 [minDate]="minDate"

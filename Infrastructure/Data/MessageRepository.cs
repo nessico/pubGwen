@@ -79,7 +79,7 @@ namespace Infrastructure.Data.Identity
                 _ => query.Where(u => u.RecipientUsername == messageParams.Username && u.RecipientDeleted == false && u.DateRead == null)
             };
 
-            return await PagedList<MemberMessages>.CreateAsync(query, messageParams.PageNumber, messageParams.PageSize);
+            return await PagedList<MemberMessages>.CreateAsync(query, messageParams.pageIndex, messageParams.PageSize);
         }
 
         // Get messages for both side of conversation

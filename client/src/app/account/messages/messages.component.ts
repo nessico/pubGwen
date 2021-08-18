@@ -13,7 +13,7 @@ export class MessagesComponent implements OnInit {
   messages: IMessage[] = [];
   pagination!: IPagination;
   container = 'Unread';
-  pageNumber = 1;
+  pageIndex = 1;
   pageSize = 100;
   loading = false;
   constructor(
@@ -28,7 +28,7 @@ export class MessagesComponent implements OnInit {
   loadMessages() {
     this.loading = true;
     this.messageService
-      .getMessages(this.pageNumber, this.pageSize, this.container)
+      .getMessages(this.pageIndex, this.pageSize, this.container)
       .subscribe((response) => {
         this.messages = response.result;
         this.pagination = response.pagination;
@@ -52,7 +52,7 @@ export class MessagesComponent implements OnInit {
   }
 
   pageChanged(event: any) {
-    this.pageNumber = event.page;
+    this.pageIndex = event.page;
     this.loadMessages();
   }
 }
