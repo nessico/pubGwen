@@ -4,6 +4,7 @@ using API.Dtos;
 using API.DTOs;
 using API.Errors;
 using API.Extensions;
+using API.Helpers;
 using AutoMapper;
 using Core.Entities.Member.Parameters;
 using Core.Entities.OrderAggregate;
@@ -41,13 +42,24 @@ namespace API.Controllers
 
         }
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<OrderDto>>> GetOrdersForUser([FromQuery] PaginationParams paginationParams)
+        public async Task<ActionResult<IReadOnlyList<ProductPagination<OrderDto>>>> GetOrdersForUser([FromQuery] PaginationParams paginationParams)
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
 
             var orders = await _orderService.GetOrdersForUserAsync(email, paginationParams);
 
-            return Ok(_mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDto>>(orders));
+            // If user has no orders
+            // Alternative was: totalItems = orders[0].Id; 
+            //  but I might as well just this in case you change your Id style
+            var totalItems = await _orderService.GetAllOrdersForUserAsync(email);
+            if (orders.Count == 0)
+            {
+                totalItems = 0;
+            }
+
+            var data = _mapper.Map<IReadOnlyList<OrderToReturnDto>>(orders);
+
+            return Ok(new ProductPagination<OrderToReturnDto>(paginationParams.pageIndex, paginationParams.PageSize, totalItems, data));
         }
 
         [HttpGet("{id}")]

@@ -20,6 +20,8 @@ namespace Infrastructure.Services
             _basketRepo = basketRepo;
         }
 
+
+
         public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId, string basketId, OrderAddress shippingAddress)
         {
             // Get basket from repo
@@ -66,11 +68,25 @@ namespace Infrastructure.Services
             return await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
         }
 
+
+
         public async Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string buyerEmail, PaginationParams paginationParams)
         {
+            // var count = await source.CountAsync();
             var spec = new OrdersWithItemsAndOrderingSpecification(buyerEmail, paginationParams);
 
             return await _unitOfWork.Repository<Order>().ListAsync(spec);
         }
+
+        public async Task<int> GetAllOrdersForUserAsync(string buyerEmail)
+        {
+            // Use CountAsync since it fits out current function, but can change it to ListAsync if you need to fetch all items
+            var spec = new OrdersWithItemsAndOrderingSpecification(buyerEmail);
+
+            return await _unitOfWork.Repository<Order>().CountAsync(spec);
+        }
+
+
+
     }
 }
