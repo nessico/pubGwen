@@ -47,6 +47,13 @@
           </div>
         </ul>
       </ul>
+      <div class="d-flex justify-content-center my-3">
+        <app-pager
+          [pageSize]="shopParams.pageSize"
+          [totalCount]="totalCount"
+          (pageChanged)="onPageChanged($event)"
+        ></app-pager>
+      </div>
     </div>
   </div>
 </div>
