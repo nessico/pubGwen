@@ -1,48 +1,74 @@
-<div class="container">
+<div class="container py-3 mb-5">
   <div class="row" *ngIf="product">
-    <div class="col-md-6">
+    <section class="col-md-5">
       <img
         src="{{ product.pictureUrl }}"
         alt="{{ product.name }}"
         class="img-fluid w-100"
       />
-    </div>
-    <div class="col-md-6">
-      <h3>{{ product.name }}</h3>
-      <p>{{ product.price | currency }}</p>
-      <div class="row row-cols-lg-auto g-2 align-items-center mt-2">
-        <div class="col-md-auto">
-          <i
-            (click)="decrementQuantity()"
-            class="fa fa-minus-circle fa-2x mx-2"
-            style="cursor: pointer"
-          ></i>
+    </section>
+    <div class="col-md-1"></div>
+    <section class="col-md-5">
+      <div class="border-bottom">
+        <div class="my-3">
+          <h4>{{ product.name }}</h4>
+          <strong>{{ product.price | currency }}</strong>
         </div>
 
-        <div class="col-md-auto">
-          <span class="font-weight-bold" style="font-size: 1.5em">{{
-            quantity
-          }}</span>
+        <div class="my-3">
+          <strong>Brand: {{ product.productBrand }}</strong>
         </div>
 
-        <div class="col-md-auto">
-          <i
-            (click)="incrementQuantity()"
-            class="fa fa-plus-circle fa-2x mx-2"
-            style="cursor: pointer"
-          ></i>
+        <div class="my-3">
+          <strong>Qty:</strong>
+          <select
+            class="form-select my-3"
+            (change)="onQuantitySelected($event)"
+            style="width: 25%"
+          >
+            <option *ngFor="let n of numSequence(10); let i = index">
+              {{ i + 1 }}
+            </option>
+          </select>
         </div>
 
-        <div (click)="addItemToBasket()" class="col-md-auto px-4">
-          <button class="btn btn-outline-secondary btn-lg">Add to Cart</button>
+        <div class="my-4" (click)="addItemToBasket()">
+          <button class="btn btn-primary btn-block" style="width: 100%">
+            Add to Basket
+          </button>
         </div>
       </div>
-    </div>
-    <div class="row mt-5">
-      <div class="col-md-12 ml-3">
-        <h4>Description</h4>
-        <p>{{ product.description }}</p>
+
+      <div class="mt-4 border-bottom">
+        <div class="my-3">
+          <strong>Description</strong>
+          <p>{{ product.description }}</p>
+        </div>
       </div>
-    </div>
+
+      <div class="my-3">
+        <strong>Shipping</strong>
+        <table class="table">
+          <thead>
+            <tr class="border-bottom">
+              <th scope="col" class="border-0">Method</th>
+              <th scope="col" class="border-0">Shipping Time</th>
+              <th scope="col" class="border-0">Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let method of deliveryMethods">
+              <th scope="row">
+                {{ method.shortName }}
+              </th>
+              <td>Arrives in {{ method.deliveryTime | lowercase }}</td>
+              <td>
+                {{ method.price | currency }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </div>
 </div>
