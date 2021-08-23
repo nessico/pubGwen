@@ -27,7 +27,12 @@
         </app-stepper>
       </section>
       <section class="col-md-3 py-5 mb-1">
-        <app-order-summary></app-order-summary>
+        <app-order-summary
+          *ngIf="basketTotal$ | async"
+          [shipping]="(basketTotal$ | async)!.shipping"
+          [subtotal]="(basketTotal$ | async)!.subtotal"
+          [total]="(basketTotal$ | async)!.total"
+        ></app-order-summary>
       </section>
     </div>
   </div>
