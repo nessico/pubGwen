@@ -2,7 +2,7 @@
   <div class="table-responsive">
     <table class="table">
       <thead>
-        <tr class="border-bottom" [class.thead-secondary]="isBasket || isOrder">
+        <tr class="border-bottom">
           <th scope="col" class="border-0">
             <div class="px-3 text-uppercase">Item</div>
           </th>
@@ -15,7 +15,7 @@
           <th scope="col" class="border-0">
             <div class="text-uppercase">Total</div>
           </th>
-          <th *ngIf="isBasket" scope="col" class="border-0text-center">
+          <th *ngIf="isBasket" scope="col" class="border-0 text-center">
             <div class="text-uppercase">Remove</div>
           </th>
         </tr>
@@ -34,14 +34,12 @@
               </a>
 
               <div class="ml-3 d-inline-block align-top">
-                <h6 class="mb-0">
+                <strong class="mb-0">
                   <a routerLink="/shop/{{ item.id || item.id }}">{{
                     item.productName
                   }}</a>
-                </h6>
-                <span class="d-block"
-                  ><strong>Brand: </strong>{{ item.brand }}</span
-                >
+                </strong>
+                <strong class="d-block">Brand: {{ item.brand }}</strong>
               </div>
             </div>
           </th>

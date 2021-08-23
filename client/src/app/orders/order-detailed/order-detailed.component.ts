@@ -1,3 +1,4 @@
+import { BreadcrumbService } from 'xng-breadcrumb';
 import { ActivatedRoute } from '@angular/router';
 import { OrdersService } from './../orders.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,8 @@ export class OrderDetailedComponent implements OnInit {
   // Navigate to order ID from your routes, e.g. /{{url}}/orders/10
   constructor(
     private orderService: OrdersService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private bcService: BreadcrumbService
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +30,10 @@ export class OrderDetailedComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.order = response;
-          console.log(this.order);
+          this.bcService.set(
+            '@orderDetailed',
+            `#${this.order.id} - ${this.order.status}`
+          );
         },
         (error) => {
           console.log(error);
