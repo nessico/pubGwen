@@ -10,8 +10,7 @@
     <div class="row">
       <section class="col-md-9 py-4 mt-3">
         <app-basket-summary
-          (decrement)="decrementItemQuantity($event)"
-          (increment)="incrementItemQuantity($event)"
+          (update)="updateItemQuantity($event)"
           (remove)="removeBasketItem($event)"
           [items]="(basket$ | async)!.items"
         ></app-basket-summary>
