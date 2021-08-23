@@ -1,3 +1,4 @@
+import { IDeliveryMethod } from './../../shared/_models/shopModels/deliveryMethod';
 import { BasketService } from './../../basket/basket.service';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailsComponent implements OnInit {
   product!: IProduct;
+  deliveryMethods!: IDeliveryMethod[];
   quantity = 1;
 
   constructor(
@@ -30,6 +32,14 @@ export class ProductDetailsComponent implements OnInit {
 
   addItemToBasket() {
     this.basketService.addItemToBasket(this.product, this.quantity);
+  }
+
+  onQuantitySelected(event: any) {
+    this.quantity = event.target.value;
+  }
+
+  numSequence(n: number) {
+    return Array(10);
   }
 
   incrementQuantity() {
@@ -55,6 +65,17 @@ export class ProductDetailsComponent implements OnInit {
         }
       );
   }
+  getDeliveryMethods() {
+    this.shopService.getDeliveryMethods().subscribe(
+      (dm: IDeliveryMethod[]) => {
+        this.deliveryMethods = dm;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   reloadComponent() {
     let currentUrl = this.router.url;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
