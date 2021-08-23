@@ -29,9 +29,6 @@ export class OrdersComponent implements OnInit {
         this.shopParams.pageIndex = response.pageIndex;
         this.shopParams.pageSize = response.pageSize;
         this.totalCount = response.count;
-        console.log(this.orders);
-        console.log(this.shopParams);
-        console.log(this.totalCount);
       },
       (error) => {
         console.log(error);

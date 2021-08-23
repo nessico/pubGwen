@@ -1,3 +1,4 @@
+import { IOrderItem } from 'src/app/shared/_models/shopModels/order';
 import { IBasketItem } from './../../../_models/shopModels/basket';
 import { Observable } from 'rxjs';
 import { BasketService } from './../../../../basket/basket.service';
@@ -17,6 +18,8 @@ export class BasketSummaryComponent implements OnInit {
     new EventEmitter<IBasketItem>();
   @Output() remove: EventEmitter<IBasketItem> = new EventEmitter<IBasketItem>();
   @Input() isBasket = true;
+  @Input() isOrder = false;
+  @Input() items!: IOrderItem[] ;
 
   constructor(private basketService: BasketService) {}
 
