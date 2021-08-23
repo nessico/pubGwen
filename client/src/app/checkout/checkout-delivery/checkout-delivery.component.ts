@@ -18,6 +18,10 @@ export class CheckoutDeliveryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getDeliveryMethod();
+  }
+
+  getDeliveryMethod() {
     this.checkoutService.getDeliveryMethods().subscribe(
       (dm: IDeliveryMethod[]) => {
         this.deliveryMethods = dm;
