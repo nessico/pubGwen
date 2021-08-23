@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 namespace API.Controllers
 {
     // We need their email from the token, so we need for users to log in first
-    [Authorize]
+
     public class OrdersController : BaseApiController
     {
         private readonly IOrderService _orderService;
@@ -27,6 +27,7 @@ namespace API.Controllers
             _mapper = mapper;
             _orderService = orderService;
         }
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Order>> CreateOrder(OrderDto orderDto)
         {
@@ -41,6 +42,7 @@ namespace API.Controllers
             return Ok(order);
 
         }
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<ProductPagination<OrderDto>>>> GetOrdersForUser([FromQuery] PaginationParams paginationParams)
         {
@@ -62,6 +64,7 @@ namespace API.Controllers
             return Ok(new ProductPagination<OrderToReturnDto>(paginationParams.pageIndex, paginationParams.PageSize, totalItems, data));
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderToReturnDto>> GetOrderByIdForUser(int id)
         {
@@ -73,6 +76,7 @@ namespace API.Controllers
 
             return _mapper.Map<Order, OrderToReturnDto>(order);
         }
+
         [HttpGet("deliveryMethods")]
         public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethods()
         {
