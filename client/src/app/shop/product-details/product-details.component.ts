@@ -40,7 +40,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   numSequence(n: number) {
-    return Array(10);
+    return Array(n);
   }
 
   loadProduct() {
@@ -73,4 +73,16 @@ export class ProductDetailsComponent implements OnInit {
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([currentUrl]);
   }
+
+  // Unused, can be changed based on what users like more
+
+  // incrementQuantity() {
+  //   this.quantity++;
+  // }
+
+  // decrementQuantity() {
+  //   if (this.quantity > 1) {
+  //     this.quantity--;
+  //   }
+  // }
 }
