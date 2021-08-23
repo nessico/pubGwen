@@ -155,7 +155,12 @@
 
       <ul class="nav navbar-nav">
         <li class="nav-item" *ngIf="(currentUser$ | async) == null">
-          <a href="#!" class="nav-link text-white" routerLink="/account/login">
+          <a
+            href="#!"
+            class="nav-link text-white"
+            routerLink="/account/login"
+            routerLinkActive="active"
+          >
             Sign in
           </a>
         </li>
@@ -167,6 +172,7 @@
             href="#!"
             class="nav-link text-white"
             routerLink="/account/register"
+            routerLinkActive="active"
             >Register</a
           >
         </li>
