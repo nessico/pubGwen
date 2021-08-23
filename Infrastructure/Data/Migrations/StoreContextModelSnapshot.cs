@@ -83,6 +83,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("Brand")
+                        .HasColumnType("text");
+
                     b.Property<int?>("OrderId")
                         .HasColumnType("integer");
 
@@ -91,6 +94,9 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

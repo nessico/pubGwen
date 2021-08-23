@@ -33,7 +33,7 @@ namespace Infrastructure.Services
                 var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
                 var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, productItem.PictureUrl);
                 // Verify item's price inside database, so people can't code inject fake prices from the client
-                var orderItem = new OrderItem(itemOrdered, productItem.Price, item.Quantity);
+                var orderItem = new OrderItem(itemOrdered, productItem.Price, item.Quantity, item.Brand, item.Type);
                 items.Add(orderItem);
             }
 
