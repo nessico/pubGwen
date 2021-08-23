@@ -7,11 +7,13 @@ export interface IOrderToCreate {
 }
 
 export interface IOrderItem {
-  productId: number;
+  id: number;
   productName: string;
-  pictureUrl: string;
   price: number;
   quantity: number;
+  pictureUrl: string;
+  brand: string;
+  type: string;
 }
 
 export interface IOrder {

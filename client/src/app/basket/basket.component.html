@@ -10,6 +10,7 @@
           (decrement)="decrementItemQuantity($event)"
           (increment)="incrementItemQuantity($event)"
           (remove)="removeBasketItem($event)"
+          [items]="(basket$ |async)!.items"
         ></app-basket-summary>
       </section>
       <section class="col-md-3 py-5 mb-1">
