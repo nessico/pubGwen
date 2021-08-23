@@ -32,6 +32,7 @@ export class ProductDetailsComponent implements OnInit {
 
   addItemToBasket() {
     this.basketService.addItemToBasket(this.product, this.quantity);
+    this.quantity = 0;
   }
 
   onQuantitySelected(event: any) {
