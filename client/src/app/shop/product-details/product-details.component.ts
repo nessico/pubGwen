@@ -33,7 +33,6 @@ export class ProductDetailsComponent implements OnInit {
 
   addItemToBasket() {
     this.basketService.addItemToBasket(this.product, this.quantity);
-    console.log(this.quantity);
   }
 
   onQuantitySelected(event: any) {
@@ -42,16 +41,6 @@ export class ProductDetailsComponent implements OnInit {
 
   numSequence(n: number) {
     return Array(10);
-  }
-
-  incrementQuantity() {
-    this.quantity++;
-  }
-
-  decrementQuantity() {
-    if (this.quantity > 1) {
-      this.quantity--;
-    }
   }
 
   loadProduct() {

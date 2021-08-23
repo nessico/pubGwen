@@ -17,7 +17,9 @@
         <i class="fa fa-truck mr-1"></i>
         <strong>{{ method.shortName }} - {{ method.price | currency }}</strong>
         <br />
-        <span class="label-description px-1">{{ method.description }}</span>
+        <span class="label-description px-1"
+          >Arrives in {{ method.deliveryTime | lowercase }}</span
+        >
       </label>
     </div>
   </div>

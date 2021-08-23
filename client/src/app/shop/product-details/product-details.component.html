@@ -9,7 +9,7 @@
     </section>
     <div class="col-md-1"></div>
     <section class="col-md-5">
-      <div class="border-bottom">
+      <div class="pb-3 border-bottom">
         <div class="my-3">
           <h4>{{ product.name }}</h4>
           <strong>{{ product.price | currency }}</strong>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="my-3">
-          <strong>Qty:</strong>
+          <strong>Qty*</strong>
           <select
             class="form-select my-3"
             (change)="onQuantitySelected($event)"
