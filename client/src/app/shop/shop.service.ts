@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { IBrand } from '../shared/_models/shopModels/productBrand';
 import { IProductPagination } from '../shared/_models/shopModels/productPagination';
 import { IType } from '../shared/_models/shopModels/productType';
+import { IDeliveryMethod } from '../shared/_models/shopModels/deliveryMethod';
 
 @Injectable({
   providedIn: 'root',
@@ -59,5 +60,15 @@ export class ShopService {
 
   getTypes() {
     return this.http.get<IType[]>(this.baseUrl + 'products/types');
+  }
+
+  getDeliveryMethods() {
+    return this.http
+      .get<IDeliveryMethod[]>(this.baseUrl + 'orders/deliveryMethods')
+      .pipe(
+        map((dm: IDeliveryMethod[]) => {
+          return dm.sort((a, b) => b.price - a.price);
+        })
+      );
   }
 }
