@@ -74,22 +74,15 @@ export class BasketService {
     return this.basketSource.value;
   }
 
-  incrementItemQuantity(item: IBasketItem) {
+  updateItemQuantity(event: any) {
     const basket = this.getCurrentBasketValue();
-    const foundItemIndex = basket!.items.findIndex((x) => x.id === item.id);
-    basket!.items[foundItemIndex].quantity++;
-    this.setBasket(basket!);
-  }
+    const item = event.item;
+    const updateQuantity = event.event.target.value;
 
-  decrementItemQuantity(item: IBasketItem) {
-    const basket = this.getCurrentBasketValue();
-    const foundItemIndex = basket?.items.findIndex((x) => x.id === item.id);
-    if (basket!.items[foundItemIndex!].quantity > 1) {
-      basket!.items[foundItemIndex!].quantity--;
-      this.setBasket(basket!);
-    } else {
-      this.removeItemFromBasket(item);
-    }
+    console.log(event.item);
+    const foundItemIndex = basket!.items.findIndex((x) => x.id === item.id);
+    basket!.items[foundItemIndex].quantity = updateQuantity;
+    this.setBasket(basket!);
   }
 
   removeItemFromBasket(item: IBasketItem) {
@@ -181,4 +174,24 @@ export class BasketService {
     }
     return items!;
   }
+
+  // Unused, can be changed based on what users like more
+
+  // incrementItemQuantity(item: IBasketItem) {
+  //   const basket = this.getCurrentBasketValue();
+  //   const foundItemIndex = basket!.items.findIndex((x) => x.id === item.id);
+  //   basket!.items[foundItemIndex].quantity++;
+  //   this.setBasket(basket!);
+  // }
+
+  // decrementItemQuantity(item: IBasketItem) {
+  //   const basket = this.getCurrentBasketValue();
+  //   const foundItemIndex = basket?.items.findIndex((x) => x.id === item.id);
+  //   if (basket!.items[foundItemIndex!].quantity > 1) {
+  //     basket!.items[foundItemIndex!].quantity--;
+  //     this.setBasket(basket!);
+  //   } else {
+  //     this.removeItemFromBasket(item);
+  //   }
+  // }
 }

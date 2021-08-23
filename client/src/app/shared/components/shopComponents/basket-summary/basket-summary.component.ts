@@ -11,10 +11,10 @@ import { IBasket } from 'src/app/shared/_models/shopModels/basket';
   styleUrls: ['./basket-summary.component.scss'],
 })
 export class BasketSummaryComponent implements OnInit {
-  @Output() decrement: EventEmitter<IBasketItem> =
-    new EventEmitter<IBasketItem>();
-  @Output() increment: EventEmitter<IBasketItem> =
-    new EventEmitter<IBasketItem>();
+  @Output() update: EventEmitter<{
+    item: IBasketItem;
+    event: any;
+  }> = new EventEmitter<{ item: IBasketItem; event: any }>();
   @Output() remove: EventEmitter<IBasketItem> = new EventEmitter<IBasketItem>();
   @Input() isBasket = true;
   @Input() isOrder = false;
@@ -24,15 +24,32 @@ export class BasketSummaryComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  decrementItemQuantity(item: IBasketItem) {
-    this.decrement.emit(item);
-  }
-
-  incrementItemQuantity(item: IBasketItem) {
-    this.increment.emit(item);
-  }
-
   removeBasketItem(item: IBasketItem) {
     this.remove.emit(item);
   }
+
+  onQuantitySelected(item: IBasketItem, event: any) {
+    console.log(event.target.value);
+    console.log(item);
+    console.log(event);
+    this.update.emit({ item, event });
+  }
+
+  numSequence(n: number) {
+    return Array(n);
+  }
+
+  // Unused, can be changed based on what users like more
+  //
+  // decrementItemQuantity(item: IBasketItem) {
+  //   this.decrement.emit(item);
+  // }
+  //
+  // incrementItemQuantity(item: IBasketItem) {
+  //   this.increment.emit(item);
+  // }
+  // @Output() decrement: EventEmitter<IBasketItem> =
+  //   new EventEmitter<IBasketItem>();
+  // @Output() increment: EventEmitter<IBasketItem> =
+  //   new EventEmitter<IBasketItem>();
 }

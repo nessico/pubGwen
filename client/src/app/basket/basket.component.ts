@@ -13,6 +13,7 @@ import { IBasket } from '../shared/_models/shopModels/basket';
 export class BasketComponent implements OnInit {
   basket$!: Observable<IBasket | null>;
   basketTotal$!: Observable<IBasketTotals | null>;
+  item!: IBasketItem;
 
   constructor(private basketService: BasketService) {}
 
@@ -25,11 +26,17 @@ export class BasketComponent implements OnInit {
     this.basketService.removeItemFromBasket(item);
   }
 
-  incrementItemQuantity(item: IBasketItem) {
-    this.basketService.incrementItemQuantity(item);
+  updateItemQuantity( event: any) {
+    this.basketService.updateItemQuantity( event);
   }
 
-  decrementItemQuantity(item: IBasketItem) {
-    this.basketService.decrementItemQuantity(item);
-  }
+  // Unused, can be changed based on what users like more
+  //
+  // incrementItemQuantity(item: IBasketItem) {
+  //   this.basketService.incrementItemQuantity(item);
+  // }
+
+  // decrementItemQuantity(item: IBasketItem) {
+  //   this.basketService.decrementItemQuantity(item);
+  // }
 }

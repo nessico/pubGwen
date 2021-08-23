@@ -47,25 +47,25 @@
             <strong>{{ item.price | currency }}</strong>
           </td>
           <td class="align-top">
-            <div class="d-flex align-items-center">
-              <i
-                *ngIf="isBasket"
-                (click)="decrementItemQuantity(item)"
-                class="fa fa-minus-circle fa-lg mx-2"
-                style="cursor: pointer"
-              ></i>
-
-              <span [class.mx-5]="!isBasket"
-                ><strong>{{ item.quantity }}</strong></span
+            <select
+              *ngIf="isBasket"
+              class="form-select"
+              (change)="onQuantitySelected(item, $event)"
+            >
+              <option
+                *ngFor="let n of numSequence(item.quantity - 1); let i = index"
+                ask
               >
-
-              <i
-                *ngIf="isBasket"
-                (click)="incrementItemQuantity(item)"
-                class="fa fa-plus-circle fa-lg mx-2"
-                style="cursor: pointer"
-              ></i>
-            </div>
+                {{ i + 1 }}
+              </option>
+              <option selected>{{ item.quantity }}</option>
+              <option *ngFor="let n of numSequence(10); let i = index">
+                {{ item.quantity + i + 1 }}
+              </option>
+            </select>
+            <span *ngIf="!isBasket" class="mx-4"
+              ><strong>{{ item.quantity }}</strong></span
+            >
           </td>
           <td class="align-top">
             <strong>{{ item.price * item.quantity | currency }} </strong>
