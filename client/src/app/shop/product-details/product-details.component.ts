@@ -28,15 +28,16 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProduct();
+    this.getDeliveryMethods();
   }
 
   addItemToBasket() {
     this.basketService.addItemToBasket(this.product, this.quantity);
-    this.quantity = 0;
+    console.log(this.quantity);
   }
 
   onQuantitySelected(event: any) {
-    this.quantity = event.target.value;
+    this.quantity = event.target.value as number;
   }
 
   numSequence(n: number) {

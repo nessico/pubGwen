@@ -1,5 +1,8 @@
-<div class="container" *ngIf="(basket$ | async) === null">
+<div class="container mt-4" *ngIf="(basket$ | async) === null">
   <h5>There are no items in your basket</h5>
+  <a routerLink="/shop" class="btn btn-primary py-2" style="color: white">
+    Proceed to shop
+  </a>
 </div>
 
 <div *ngIf="basket$ | async as basket">
