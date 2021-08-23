@@ -1,11 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9 py-4 mb-1 mt-3">
-      <app-basket-summary [isBasket]="false" [isOrder]="true" [items]="order.orderItems">
+      <app-basket-summary
+        [isBasket]="false"
+        [isOrder]="true"
+        [items]="order.orderItems"
+      >
       </app-basket-summary>
     </div>
     <div class="col-md-3 py-5 mb-1">
-      <app-order-summary></app-order-summary>
+      <app-order-summary
+        [shipping]="order.shippingPrice"
+        [subtotal]="order.subtotal"
+        [total]="order.total"
+      ></app-order-summary>
     </div>
   </div>
 </div>

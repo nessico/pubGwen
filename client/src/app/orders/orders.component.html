@@ -33,7 +33,7 @@
             <div class="col-md-5">
               <a
                 *ngFor="let orderPicture of order.orderItems"
-                routerLink="/shop/{{ orderPicture.productId }}"
+                routerLink="/shop/{{ orderPicture.id }}"
                 style="cursor: pointer"
               >
                 <img
