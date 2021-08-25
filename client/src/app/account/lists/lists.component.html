@@ -39,6 +39,7 @@
   <!--ngmodel for 2 way binding to receive current page &  update current page -->
   <!-- [] binds to property () binds to event -->
   <pagination
+    *ngIf="pagination.totalItems && pagination.totalItems > 0"
     [boundaryLinks]="true"
     [totalItems]="pagination.totalItems"
     [itemsPerPage]="pagination.itemsPerPage"
