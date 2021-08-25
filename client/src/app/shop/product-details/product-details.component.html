@@ -39,35 +39,36 @@
         </div>
       </div>
 
-      <div class="mt-4 border-bottom">
-        <div class="my-3">
-          <strong>Description</strong>
-          <p>{{ product.description }}</p>
+      <div class="mt-4">
+        <div>
+          <tabset class="member-tabset">
+            <tab heading="Description" id="tab1">
+              <p>{{ product.description }}</p></tab
+            >
+            <tab heading="Shipping">
+              <table class="table">
+                <thead>
+                  <tr class="">
+                    <th scope="col" class="border-0">Method</th>
+                    <th scope="col" class="border-0">Shipping Time</th>
+                    <th scope="col" class="border-0">Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let method of deliveryMethods">
+                    <th scope="row">
+                      {{ method.shortName }}
+                    </th>
+                    <td>Arrives in {{ method.deliveryTime | lowercase }}</td>
+                    <td>
+                      {{ method.price | currency }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </tab>
+          </tabset>
         </div>
-      </div>
-
-      <div class="my-3">
-        <strong>Shipping</strong>
-        <table class="table">
-          <thead>
-            <tr class="border-bottom">
-              <th scope="col" class="border-0">Method</th>
-              <th scope="col" class="border-0">Shipping Time</th>
-              <th scope="col" class="border-0">Cost</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let method of deliveryMethods">
-              <th scope="row">
-                {{ method.shortName }}
-              </th>
-              <td>Arrives in {{ method.deliveryTime | lowercase }}</td>
-              <td>
-                {{ method.price | currency }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </section>
   </div>
