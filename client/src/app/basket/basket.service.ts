@@ -71,6 +71,20 @@ export class BasketService {
     this.setBasket(basket!);
   }
 
+  createPaymentIntent() {
+    return this.http
+      .post<IBasket>(
+        this.baseUrl + 'payments/' + this.getCurrentBasketValue()?.id,
+        {}
+      )
+      .pipe(
+        map((basket: IBasket) => {
+          this.basketSource.next(basket);
+          console.log(this.getCurrentBasketValue());
+        })
+      );
+  }
+
   // Helper methods (public)
 
   // To get current value of basket without subscribing
