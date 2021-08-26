@@ -22,12 +22,15 @@ namespace Infrastructure.Services
             _unitOfWork = unitOfWork;
         }
 
+        //
         public async Task<CustomerBasket> CreateOrUpdatePaymentIntent(string basketId)
         {
             // Config at appsettings.json (not uploaded to GitHub)
             StripeConfiguration.ApiKey = _config["StripeSettings:SecretKey"];
 
             var basket = await _basketRepository.GetBasketAsync(basketId);
+
+            if (basket == null) return null;
 
             var shippingPrice = 0m;
 
