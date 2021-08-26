@@ -24,5 +24,6 @@ namespace Core.Entities
 
         // Used to update payment intent in case customer wants to change items in their basket
         public string PaymentIntentId { get; set; }
+        public decimal ShippingPrice { get; set; }
     }
 }
