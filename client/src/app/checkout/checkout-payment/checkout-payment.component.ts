@@ -1,7 +1,11 @@
-import { IOrder } from './../../shared/_models/shopModels/order';
 import { BasketService } from './../../basket/basket.service';
-
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,8 +18,16 @@ import { IBasket } from 'src/app/shared/_models/shopModels/basket';
   templateUrl: './checkout-payment.component.html',
   styleUrls: ['./checkout-payment.component.scss'],
 })
-export class CheckoutPaymentComponent implements OnInit {
+export class CheckoutPaymentComponent implements AfterViewInit {
   @Input() checkoutForm!: FormGroup;
+  @ViewChild('cardNumber', { static: true }) cardNumberElement!: ElementRef;
+  @ViewChild('cardExpiry', { static: true }) cardExpiryElement!: ElementRef;
+  @ViewChild('cardCvc', { static: true }) cardCvcElement!: ElementRef;
+  stripe: any;
+  cardNumber: any;
+  cardExpiry: any;
+  cardCvc: any;
+  cardErrors: any;
 
   constructor(
     private checkoutService: CheckoutService,
@@ -24,7 +36,7 @@ export class CheckoutPaymentComponent implements OnInit {
     private basketService: BasketService
   ) {}
 
-  ngOnInit(): void {}
+  ngAfterViewInit(): void {}
 
   submitOrder() {
     const basket = this.basketService.getCurrentBasketValue();
