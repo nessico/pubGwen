@@ -18,7 +18,7 @@
             ></app-checkout-delivery
           ></cdk-step>
           <cdk-step [label]="'Review'"
-            ><app-checkout-review></app-checkout-review
+            ><app-checkout-review [stepNext]="appStepper"></app-checkout-review
           ></cdk-step>
           <cdk-step [label]="'Payment'"
             ><app-checkout-payment [checkoutForm]="checkoutForm">
