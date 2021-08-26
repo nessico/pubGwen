@@ -63,8 +63,12 @@ export class BasketService {
   }
 
   setShippingPrice(deliveryMethod: IDeliveryMethod) {
+    // Update basket while setting a shipping option in case customer goes back to checkout for Stripe
     this.shipping = deliveryMethod.price;
+    const basket = this.getCurrentBasketValue();
+    basket!.deliveryMethodId = deliveryMethod.id;
     this.calculateTotals();
+    this.setBasket(basket!);
   }
 
   // Helper methods (public)

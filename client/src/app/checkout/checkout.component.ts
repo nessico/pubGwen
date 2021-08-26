@@ -5,7 +5,6 @@ import { AccountService } from 'src/app/account/_accountServices/account.service
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -24,6 +23,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.createCheckoutForm();
     this.getAddressFormValues();
+    this.getDeliveryMethodValue();
     this.basketTotal$ = this.basketService.basketTotal$;
   }
 
@@ -57,5 +57,16 @@ export class CheckoutComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  // Used when customer backs out of checkout in case they want to update their basket
+  getDeliveryMethodValue() {
+    const basket = this.basketService.getCurrentBasketValue();
+    if (basket?.deliveryMethodId !== null) {
+      this.checkoutForm
+        .get('deliveryForm')
+        ?.get('deliveryMethod')
+        ?.patchValue(basket?.deliveryMethodId?.toString());
+    }
   }
 }

@@ -18,7 +18,7 @@
       <section class="col-md-3 py-5 mb-1">
         <app-order-summary
           *ngIf="basketTotal$ | async"
-          [shipping]="0"
+          [shipping]="(basketTotal$ | async)!.shipping"
           [subtotal]="(basketTotal$ | async)!.subtotal"
           [total]="(basketTotal$ | async)!.total"
         ></app-order-summary>
