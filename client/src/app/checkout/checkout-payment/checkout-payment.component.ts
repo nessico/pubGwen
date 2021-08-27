@@ -32,6 +32,7 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   cardExpiry: any;
   cardCvc: any;
   cardErrors: any;
+  cardHandler = this.onChange.bind(this);
 
   constructor(
     private checkoutService: CheckoutService,
@@ -49,18 +50,34 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
 
     this.cardNumber = elements.create('cardNumber');
     this.cardNumber.mount(this.cardNumberElement.nativeElement);
+    this.cardNumber.addEventListener('change', this.cardHandler);
 
     this.cardExpiry = elements.create('cardExpiry');
     this.cardExpiry.mount(this.cardExpiryElement.nativeElement);
+    this.cardExpiry.addEventListener('change', this.cardHandler);
 
     this.cardCvc = elements.create('cardCvc');
     this.cardCvc.mount(this.cardCvcElement.nativeElement);
+    this.cardCvc.addEventListener('change', this.cardHandler);
   }
 
   ngOnDestroy(): void {
     this.cardNumber.destroy();
     this.cardExpiry.destroy();
     this.cardCvc.destroy();
+  }
+
+  // Destructing, https://codecraft.tv/courses/angular/es6-typescript/destructuring/
+  // onChange receives an object with the error property, instead of saying object.error, we can just use the error itself
+  // Stripe elements (cardNumber, cardExpiry, cardCvc) has it owns eventListener looking for any changes inside the element
+  //  If there are changes, it will use the cardHandler to call our onChange event to check for errors
+
+  onChange(event: any) {
+    if (event.error) {
+      this.cardErrors = event.error.message;
+    } else {
+      this.cardErrors = null;
+    }
   }
 
   submitOrder() {
