@@ -34,6 +34,12 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   cardErrors: any;
   cardHandler = this.onChange.bind(this);
   loading = false;
+  cardNumberValid = false;
+  cardExpiryValid = false;
+  cardCvcValid = false;
+  cardNumberEmpty = true;
+  cardExpiryEmpty = true;
+  cardCvcEmpty = true;
 
   constructor(
     private checkoutService: CheckoutService,
@@ -74,10 +80,25 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   //  If there are changes, it will use the cardHandler to call our onChange event to check for errors
 
   onChange(event: any) {
+    console.log(event);
     if (event.error) {
       this.cardErrors = event.error.message;
     } else {
       this.cardErrors = null;
+    }
+    switch (event.elementType) {
+      case 'cardNumber':
+        this.cardNumberValid = event.complete;
+        this.cardNumberEmpty = event.empty;
+        break;
+      case 'cardExpiry':
+        this.cardExpiryValid = event.complete;
+        this.cardExpiryEmpty = event.empty;
+        break;
+      case 'cardCvc':
+        this.cardCvcValid = event.complete;
+        this.cardCvcEmpty = event.empty;
+        break;
     }
   }
 
