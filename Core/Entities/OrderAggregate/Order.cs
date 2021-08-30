@@ -10,13 +10,14 @@ namespace Core.Entities.OrderAggregate
         }
 
         public Order(string buyerEmail, OrderAddress shipToAddress,
-        DeliveryMethod deliveryMethod, IReadOnlyList<OrderItem> orderItems, decimal subtotal)
+        DeliveryMethod deliveryMethod, IReadOnlyList<OrderItem> orderItems, decimal subtotal, string paymentIntentId)
         {
             BuyerEmail = buyerEmail;
             ShipToAddress = shipToAddress;
             DeliveryMethod = deliveryMethod;
             OrderItems = orderItems;
             Subtotal = subtotal;
+            PaymentIntentId = paymentIntentId;
         }
 
         // Use this to retrieve list of orders from a particular user, because identity is in a separate context boundary

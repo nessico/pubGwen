@@ -6,16 +6,19 @@ using Core.Entities.Member.Parameters;
 using Core.Entities.OrderAggregate;
 using Core.Interfaces;
 using Core.Specifications;
+using Infrastructure.Data.Identity;
 
 namespace Infrastructure.Services
 {
     public class OrderService : IOrderService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IPaymentService _paymentService;
 
         private readonly IBasketRepository _basketRepo;
-        public OrderService(IUnitOfWork unitOfWork, IBasketRepository basketRepo)
+        public OrderService(IUnitOfWork unitOfWork, IBasketRepository basketRepo, IPaymentService paymentService)
         {
+            _paymentService = paymentService;
             _unitOfWork = unitOfWork;
             _basketRepo = basketRepo;
         }
@@ -41,17 +44,33 @@ namespace Infrastructure.Services
             var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync(deliveryMethodId);
             // Calc subtotal
             var subtotal = items.Sum(item => item.Price * item.Quantity);
+
+            // Check if there is already an existing order
+
+            var spec = new OrderByPaymentIntentIdWithItemsSpecification(basket.PaymentIntentId);
+            var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
+
+            // If there is an existing order, then we delete that order, 
+            //  if customer is repeating the order because payment failed, 
+            //  then we are going to  repeat our code and create a new order to replace it
+
+            if (existingOrder != null)
+            {
+                _unitOfWork.Repository<Order>().Delete(existingOrder);
+
+                // Update payment intent to see if it is accurate to create our replacement order
+                await _paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntentId);
+            }
+
+
             // Create order
-            var order = new Order(buyerEmail, shippingAddress, deliveryMethod, items, subtotal);
+            var order = new Order(buyerEmail, shippingAddress, deliveryMethod, items, subtotal, basket.PaymentIntentId);
             _unitOfWork.Repository<Order>().Add(order);
 
             // Save to db 
             var result = await _unitOfWork.CompleteStore();
 
             if (result <= 0) return null;
-
-            // Delete basket
-            await _basketRepo.DeleteBasketAsync(basketId);
 
             return order;
         }
