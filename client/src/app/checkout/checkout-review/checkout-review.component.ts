@@ -30,7 +30,6 @@ export class CheckoutReviewComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        this.toastr.error(error.message);
       }
     );
   }

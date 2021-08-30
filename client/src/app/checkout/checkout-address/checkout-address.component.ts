@@ -1,3 +1,4 @@
+import { IAddress } from './../../shared/_models/accountModels/address';
 import { FormGroup } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/account/_accountServices/account.service';
@@ -21,8 +22,9 @@ export class CheckoutAddressComponent implements OnInit {
     this.accountService
       .updateUserAddress(this.checkoutForm.get('addressForm')!.value)
       .subscribe(
-        () => {
+        (address: IAddress) => {
           this.toastr.success('Address saved');
+          this.checkoutForm.get('addressForm')?.reset(address);
         },
         (error) => {
           this.toastr.error(error.message);
