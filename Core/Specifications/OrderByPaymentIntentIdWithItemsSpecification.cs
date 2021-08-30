@@ -4,11 +4,11 @@ using Core.Entities.OrderAggregate;
 
 namespace Core.Specifications
 {
-    public class OrderByPaymentIntentIdWithItemsSpecification : BaseSpecification<Order>
+    public class OrderByPaymentIntentIdSpecification : BaseSpecification<Order>
     {
 
         //set o.paymentIntentId to the paymentIntentId that we are passing in
-        public OrderByPaymentIntentIdWithItemsSpecification(string paymentIntentId) : base(o => o.PaymentIntentId == paymentIntentId)
+        public OrderByPaymentIntentIdSpecification(string paymentIntentId) : base(o => o.PaymentIntentId == paymentIntentId)
         {
         }
     }

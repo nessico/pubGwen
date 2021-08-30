@@ -1,9 +1,11 @@
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Entities.OrderAggregate;
 using Core.Interfaces;
+using Core.Specifications;
 using Microsoft.Extensions.Configuration;
 using Stripe;
 
@@ -87,6 +89,34 @@ namespace Infrastructure.Services
             await _basketRepository.AddOrUpdateBasketAsync(basket);
             return basket;
 
+        }
+
+
+        // Stripe Webhooks for updating order status
+        public async Task<Core.Entities.OrderAggregate.Order> UpdateOrderPaymentFailed(string paymentIntentId)
+        {
+            var spec = new OrderByPaymentIntentIdSpecification(paymentIntentId);
+            var order = await _unitOfWork.Repository<Core.Entities.OrderAggregate.Order>().GetEntityWithSpec(spec);
+
+            if (order == null) return null;
+
+            order.Status = OrderStatus.PaymentFailed;
+            await _unitOfWork.CompleteStore();\
+            
+            return order;
+        }
+
+        public async Task<Core.Entities.OrderAggregate.Order> UpdateOrderPaymentSucceeded(string paymentIntentId)
+        {
+            var spec = new OrderByPaymentIntentIdSpecification(paymentIntentId);
+            var order = await _unitOfWork.Repository<Core.Entities.OrderAggregate.Order>().GetEntityWithSpec(spec);
+
+            if (order == null) return null;
+            order.Status = OrderStatus.PaymentReceived;
+            _unitOfWork.Repository<Core.Entities.OrderAggregate.Order>().Update(order);
+
+            await _unitOfWork.CompleteStore();
+            return null;
         }
     }
 }

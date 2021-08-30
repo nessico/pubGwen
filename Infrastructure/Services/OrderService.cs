@@ -47,7 +47,7 @@ namespace Infrastructure.Services
 
             // Check if there is already an existing order
 
-            var spec = new OrderByPaymentIntentIdWithItemsSpecification(basket.PaymentIntentId);
+            var spec = new OrderByPaymentIntentIdSpecification(basket.PaymentIntentId);
             var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
 
             // If there is an existing order, then we delete that order, 
