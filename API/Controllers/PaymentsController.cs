@@ -13,7 +13,7 @@ namespace API.Controllers
     public class PaymentsController : BaseApiController
     {
         private readonly IPaymentService _paymentService;
-        private const string WhSecret = "";
+        private const string WhSecret = "whsec_tC48VLRVHPxR5N2IyGjRMKYsnLMpd0sG";
         private readonly ILogger<IPaymentService> _logger;
         public PaymentsController(IPaymentService paymentService, ILogger<IPaymentService> logger)
         {
@@ -35,6 +35,17 @@ namespace API.Controllers
 
         // Creating our webhook endpoint to update payment intent status on stripe
         //  This will work even on a localhost server instead of requesting a pure webhook on Stripe
+
+        // Testing: 
+        // Add Stripe event Listener then use test cards 
+        // CLI to use stripe commands: https://github.com/stripe/stripe-cli 
+        // Event Listener: https://stripe.com/docs/api/events/types
+        // Test Cards: https://stripe.com/docs/testing
+
+        // e.g. 
+        //  stripe login -> stripe listen -> replace WhSecret with webhook signing secret from CLI, keep listen open 
+        //  stripe listen -f https://localhost:5001/api/payments/webhook
+        //  stripe listen -f https://localhost:5001/api/payments/webhook -e payment_intent.succeeded,payment_intent.payment_failed
 
 
         [HttpPost("webhook")]
