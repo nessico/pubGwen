@@ -101,8 +101,8 @@ namespace Infrastructure.Services
             if (order == null) return null;
 
             order.Status = OrderStatus.PaymentFailed;
-            await _unitOfWork.CompleteStore();\
-            
+            await _unitOfWork.CompleteStore();
+
             return order;
         }
 
@@ -116,7 +116,8 @@ namespace Infrastructure.Services
             _unitOfWork.Repository<Core.Entities.OrderAggregate.Order>().Update(order);
 
             await _unitOfWork.CompleteStore();
-            return null;
+
+            return order;
         }
     }
 }
