@@ -27,7 +27,7 @@ namespace Infrastructure.Services
             var options = new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            }
+            };
 
             var serializedResponse = JsonSerializer.Serialize(response, options);
 
