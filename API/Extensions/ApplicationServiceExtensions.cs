@@ -24,6 +24,7 @@ namespace API.Extensions
               var configuration = ConfigurationOptions.Parse(config.GetConnectionString("Redis"), true);
               return ConnectionMultiplexer.Connect(configuration);
           });
+            services.AddSingleton<IResponseCacheService, ResponseCacheService>();
             services.AddSingleton<PresenceTracker>();
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<ITokenService, TokenService>();
