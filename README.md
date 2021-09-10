@@ -80,7 +80,7 @@ Implemented design patterns:
 install a Redis docker developer with
 	docker run --name redisdev -d -p 6379:6379 redis
 install a PostgreSQL docker developer server with
-	docker run --name dev -POSTGRES-USER=appuser -e POSTGRES_PASSWORD=PA$$W0RD -p 5432:5432 -d postgres
+	docker run --name dev -e POSTGRES_USER=appuser -e POSTGRES_PASSWORD=Pa$$w0rd -p 5432:5432 -d postgres
 1st terminal: cd into API folder and type: dotnet run
 2nd terminal: cd into client folder and type: ng serve
 use https://localhost:4200 in your preferred browser
