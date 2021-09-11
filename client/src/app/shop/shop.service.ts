@@ -8,12 +8,19 @@ import { IBrand } from '../shared/_models/shopModels/productBrand';
 import { IProductPagination } from '../shared/_models/shopModels/productPagination';
 import { IType } from '../shared/_models/shopModels/productType';
 import { IDeliveryMethod } from '../shared/_models/shopModels/deliveryMethod';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShopService {
   baseUrl = environment.apiUrl;
+
+  // Caching products in shopService,
+  //  Whenever a customer requests products, it will come from the shop.service as opposed to making another API call
+  products: IProduct[] = [];
+  brands: IBrand[] = [];
+  types: IType[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -45,21 +52,43 @@ export class ShopService {
       })
       .pipe(
         map((response) => {
+          this.products = response.body!.data;
           return response.body;
         })
       );
   }
 
   getProduct(id: number) {
+    const product = this.products.find((p) => p.id === id);
+
+    if (product) {
+      return of(product);
+    }
     return this.http.get<IProduct>(this.baseUrl + 'products/' + id);
   }
 
   getBrands() {
-    return this.http.get<IBrand[]>(this.baseUrl + 'products/brands');
+    if (this.brands.length > 0) {
+      return of(this.brands);
+    }
+    return this.http.get<IBrand[]>(this.baseUrl + 'products/brands').pipe(
+      map((response) => {
+        this.brands = response;
+        return response;
+      })
+    );
   }
 
   getTypes() {
-    return this.http.get<IType[]>(this.baseUrl + 'products/types');
+    if (this.types.length > 0) {
+      return of(this.brands);
+    }
+    return this.http.get<IType[]>(this.baseUrl + 'products/types').pipe(
+      map((response) => {
+        this.types = response;
+        return response;
+      })
+    );
   }
 
   getDeliveryMethods() {
