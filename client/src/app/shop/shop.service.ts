@@ -5,7 +5,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { IBrand } from '../shared/_models/shopModels/productBrand';
-import { IProductPagination } from '../shared/_models/shopModels/productPagination';
+import {
+  IProductPagination,
+  ProductPagination,
+} from '../shared/_models/shopModels/productPagination';
 import { IType } from '../shared/_models/shopModels/productType';
 import { IDeliveryMethod } from '../shared/_models/shopModels/deliveryMethod';
 import { of } from 'rxjs';
@@ -21,29 +24,31 @@ export class ShopService {
   products: IProduct[] = [];
   brands: IBrand[] = [];
   types: IType[] = [];
+  productPagination = new ProductPagination();
+  shopParams = new ShopParams();
 
   constructor(private http: HttpClient) {}
 
-  getProducts(shopParams: ShopParams) {
+  getProducts() {
     // Filter functionality
     // Create a params object that we can pass into our API object as a query string
     let params = new HttpParams();
 
-    if (shopParams.brandId !== 0) {
-      params = params.append('brandId', shopParams.brandId.toString());
+    if (this.shopParams.brandId !== 0) {
+      params = params.append('brandId', this.shopParams.brandId.toString());
     }
 
-    if (shopParams.typeId !== 0) {
-      params = params.append('typeId', shopParams.typeId.toString());
+    if (this.shopParams.typeId !== 0) {
+      params = params.append('typeId', this.shopParams.typeId.toString());
     }
 
-    if (shopParams.search) {
-      params = params.append('search', shopParams.search);
+    if (this.shopParams.search) {
+      params = params.append('search', this.shopParams.search);
     }
 
-    params = params.append('sort', shopParams.sort);
-    params = params.append('pageIndex', shopParams.pageIndex.toString());
-    params = params.append('pageSize', shopParams.pageSize.toString());
+    params = params.append('sort', this.shopParams.sort);
+    params = params.append('pageIndex', this.shopParams.pageIndex.toString());
+    params = params.append('pageSize', this.shopParams.pageSize.toString());
 
     return this.http
       .get<IProductPagination>(this.baseUrl + 'products', {
@@ -52,10 +57,20 @@ export class ShopService {
       })
       .pipe(
         map((response) => {
-          this.products = response.body!.data;
-          return response.body;
+          // Append new & old results from API to this.products for paginating cache
+          this.products = [...this.products, ...response.body!.data];
+          this.productPagination = response.body!;
+          return this.productPagination;
         })
       );
+  }
+
+  setShopParams(params: ShopParams) {
+    this.shopParams = params;
+  }
+
+  getShopParams() {
+    return this.shopParams;
   }
 
   getProduct(id: number) {

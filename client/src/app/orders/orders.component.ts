@@ -1,8 +1,6 @@
-import { UserParams } from './../shared/_models/accountModels/userParams';
 import { IOrder } from 'src/app/shared/_models/shopModels/order';
 import { OrdersService } from './orders.service';
 import { Component, OnInit } from '@angular/core';
-import { IPagination } from '../shared/_models/accountModels/pagination';
 import { ShopParams } from '../shared/_models/shopModels/shopParams';
 
 @Component({
@@ -12,7 +10,6 @@ import { ShopParams } from '../shared/_models/shopModels/shopParams';
 })
 export class OrdersComponent implements OnInit {
   orders!: IOrder[];
-  pagination!: IPagination;
   shopParams = new ShopParams();
   totalCount!: number;
 
