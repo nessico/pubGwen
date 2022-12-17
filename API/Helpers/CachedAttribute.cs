@@ -13,11 +13,13 @@ namespace API.Helpers
     // AsyncActionFilter allow codes to return 
     // before or after specific stages in a request processing pipeline
     // e.g. before a method or after a method is called
+    // https://www.red-gate.com/simple-talk/development/dotnet-development/cache-strategies-in-redis/
     public class CachedAttribute : Attribute, IAsyncActionFilter
     {
 
         // Before calling a method, check if it is already inside our cache
         // If we don't have it, execute the request, and put results into our cache
+        // Therefore the next person that comes and ask for the same thing, we will just retrieve that data from the cache
         private readonly int _timeToLiveSeconds;
 
         public CachedAttribute(int timeToLiveSeconds)
@@ -36,7 +38,6 @@ namespace API.Helpers
             // If not empty, retrieve from memory, as opposed to controller -> database
             if (!string.IsNullOrEmpty(cachedResponse))
             {
-
                 var contentResult = new ContentResult
                 {
                     Content = cachedResponse,
@@ -50,8 +51,8 @@ namespace API.Helpers
             }
 
             // If cachedResponse is empty, move to controller to retrieve from database
-
             // Move to controller with ActionExecutionDelegate
+
             var executedContext = await next();
 
             if (executedContext.Result is OkObjectResult okObjectResult)
@@ -61,7 +62,7 @@ namespace API.Helpers
         }
 
 
-        // Generate cache key to identify inside our redis database 
+        // Generate cache key to identify values inside our redis database 
         //  (what object we're asking for, so we can return it later)
         private string GenerateCacheKeyFromRequest(HttpRequest request)
         {

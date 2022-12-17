@@ -35,7 +35,7 @@ namespace Infrastructure.Services
         }
 
 
-        // Retrieve from database
+        // Retrieve from cache (redis database)
         public async Task<string> GetCachedResponseAsync(string cacheKey)
         {
             var cachedResponse = await _database.StringGetAsync(cacheKey);
