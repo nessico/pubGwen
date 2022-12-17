@@ -25,17 +25,18 @@ export class ShopComponent implements OnInit {
   ];
 
   constructor(private shopService: ShopService) {
+    // Access shop params from service 
     this.shopParams = this.shopService.getShopParams();
   }
 
   ngOnInit(): void {
-    this.getProducts();
+    this.getProducts(true);
     this.getBrands();
     this.getTypes();
   }
 
-  getProducts() {
-    this.shopService.getProducts().subscribe(
+  getProducts(useCache = false) {
+    this.shopService.getProducts(useCache).subscribe(
       (response: any) => {
         this.products = response.data;
         this.totalCount = response.count;
@@ -69,6 +70,7 @@ export class ShopComponent implements OnInit {
   }
 
   onBrandSelected(brandId: number) {
+    // Set brands inside service, so our service remembers what we're passing in when we get our products
     const params = this.shopService.getShopParams();
     params.brandId = brandId;
     params.pageIndex = 1;
@@ -77,6 +79,7 @@ export class ShopComponent implements OnInit {
   }
 
   onTypeSelected(typeId: number) {
+    // Set types inside service
     const params = this.shopService.getShopParams();
     params.typeId = typeId;
     params.pageIndex = 1;
@@ -85,13 +88,15 @@ export class ShopComponent implements OnInit {
   }
 
   onSortSelected(event: any) {
+    // Set sort inside service
     const params = this.shopService.getShopParams();
     params.sort = event.target.value.toString();
     this.shopService.setShopParams(params);
     this.getProducts();
-  }
+}
 
   onSearch() {
+    // Set onSearch inside service
     const params = this.shopService.getShopParams();
     params.search = this.searchTerm.nativeElement.value;
     params.pageIndex = 1;
@@ -100,18 +105,20 @@ export class ShopComponent implements OnInit {
   }
 
   onReset() {
+    // Set onReset inside service
     this.searchTerm.nativeElement.value = '';
-    const params = new ShopParams();
-    this.shopService.setShopParams(params);
+    this.shopParams = new ShopParams();
+    this.shopService.setShopParams(this.shopParams);
     this.getProducts();
   }
 
   onPageChanged(event: any) {
+    // Set onPageChanged inside service
     const params = this.shopService.getShopParams();
     if (params.pageIndex !== event) {
       params.pageIndex = event;
       this.shopService.setShopParams(params);
-      this.getProducts();
+      this.getProducts(true);
     }
   }
 }

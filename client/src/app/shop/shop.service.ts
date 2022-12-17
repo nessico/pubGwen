@@ -29,7 +29,30 @@ export class ShopService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts() {
+  getProducts(useCache: boolean) {
+    // Cache only paginated requests
+    if (useCache === false) {
+      this.products = [];
+    }
+
+    if (this.products.length > 0 && useCache === true) {
+      // Check how many pages client has opened (e.g. 12 products / 6 per page = page 2)
+      const pagesReceived = Math.ceil(
+        this.products.length / this.shopParams.pageSize
+      );
+
+      // Check what pageIndex is being requested
+      //  If less than already opened pages, then we know that requested page is in memory
+      //  (e.g. going from page 2 -> page 1)
+      if (this.shopParams.pageIndex <= pagesReceived) {
+        this.productPagination.data = this.products.slice(
+          (this.shopParams.pageIndex - 1) * this.shopParams.pageSize,
+          this.shopParams.pageIndex * this.shopParams.pageSize
+        );
+        return of(this.productPagination);
+      }
+    }
+
     // Filter functionality
     // Create a params object that we can pass into our API object as a query string
     let params = new HttpParams();
@@ -74,6 +97,7 @@ export class ShopService {
   }
 
   getProduct(id: number) {
+    // check if product is inside product array
     const product = this.products.find((p) => p.id === id);
 
     if (product) {
