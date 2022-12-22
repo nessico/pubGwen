@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   learnMore() {
     this.toastr.show(
-      'Members and Account navigation updates based on your login',
+      'Members and Account navigation options update based on your account type (member, mod, admin)',
       'Navigation:',
       {
         enableHtml: true,
