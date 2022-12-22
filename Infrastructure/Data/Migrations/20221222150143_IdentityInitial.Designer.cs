@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(IdentityDataContext))]
-    [Migration("20210722034133_IdentityInitial")]
+    [Migration("20221222150143_IdentityInitial")]
     partial class IdentityInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,34 +20,6 @@ namespace Infrastructure.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-            modelBuilder.Entity("Core.Entities.Connection", b =>
-                {
-                    b.Property<string>("ConnectionId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("GroupName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Username")
-                        .HasColumnType("text");
-
-                    b.HasKey("ConnectionId");
-
-                    b.HasIndex("GroupName");
-
-                    b.ToTable("Connections");
-                });
-
-            modelBuilder.Entity("Core.Entities.Group", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("Name");
-
-                    b.ToTable("Groups");
-                });
 
             modelBuilder.Entity("Core.Entities.Identity.Address", b =>
                 {
@@ -218,7 +190,35 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Core.Entities.Message", b =>
+            modelBuilder.Entity("Core.Entities.Member.Connection", b =>
+                {
+                    b.Property<string>("ConnectionId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("GroupName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
+
+                    b.HasKey("ConnectionId");
+
+                    b.HasIndex("GroupName");
+
+                    b.ToTable("Connections");
+                });
+
+            modelBuilder.Entity("Core.Entities.Member.Group", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Name");
+
+                    b.ToTable("Groups");
+                });
+
+            modelBuilder.Entity("Core.Entities.Member.Message", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -261,7 +261,7 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("Core.Entities.Photo", b =>
+            modelBuilder.Entity("Core.Entities.Member.Photo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -287,7 +287,7 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("Core.Entities.UserLike", b =>
+            modelBuilder.Entity("Core.Entities.Member.UserLike", b =>
                 {
                     b.Property<int>("SourceUserId")
                         .HasColumnType("integer");
@@ -388,13 +388,6 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Core.Entities.Connection", b =>
-                {
-                    b.HasOne("Core.Entities.Group", null)
-                        .WithMany("Connections")
-                        .HasForeignKey("GroupName");
-                });
-
             modelBuilder.Entity("Core.Entities.Identity.Address", b =>
                 {
                     b.HasOne("Core.Entities.Identity.AppUser", "AppUser")
@@ -425,7 +418,14 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Core.Entities.Message", b =>
+            modelBuilder.Entity("Core.Entities.Member.Connection", b =>
+                {
+                    b.HasOne("Core.Entities.Member.Group", null)
+                        .WithMany("Connections")
+                        .HasForeignKey("GroupName");
+                });
+
+            modelBuilder.Entity("Core.Entities.Member.Message", b =>
                 {
                     b.HasOne("Core.Entities.Identity.AppUser", "Recipient")
                         .WithMany("MessagesReceived")
@@ -444,7 +444,7 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("Core.Entities.Photo", b =>
+            modelBuilder.Entity("Core.Entities.Member.Photo", b =>
                 {
                     b.HasOne("Core.Entities.Identity.AppUser", "AppUser")
                         .WithMany("Photos")
@@ -455,7 +455,7 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("Core.Entities.UserLike", b =>
+            modelBuilder.Entity("Core.Entities.Member.UserLike", b =>
                 {
                     b.HasOne("Core.Entities.Identity.AppUser", "LikedUser")
                         .WithMany("LikedByUsers")
@@ -510,11 +510,6 @@ namespace Infrastructure.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Core.Entities.Group", b =>
-                {
-                    b.Navigation("Connections");
-                });
-
             modelBuilder.Entity("Core.Entities.Identity.AppRole", b =>
                 {
                     b.Navigation("UserRoles");
@@ -535,6 +530,11 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("Photos");
 
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Core.Entities.Member.Group", b =>
+                {
+                    b.Navigation("Connections");
                 });
 #pragma warning restore 612, 618
         }
