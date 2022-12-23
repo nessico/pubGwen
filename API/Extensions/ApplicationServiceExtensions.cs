@@ -56,7 +56,31 @@ namespace API.Extensions
            });
 
             // Default connection goes to a Docker PostgreSQL localhost server
-            services.AddDbContext<StoreContext>(options => options.UseNpgsql(config.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<StoreContext>(options =>
+            {
+                var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                // Depending on if in development or production, use either AWS RDS or localhost
+                // For AWS/Github Code Pipeline
+                if (env == "Development")
+                {
+                    // Use connection string from file.
+                    options.UseNpgsql(config.GetConnectionString("DefaultConnection"));
+                }
+                else
+                {
+                    // Use AWS connection string
+                    string dbname = Environment.GetEnvironmentVariable("RDS_DB_NAME");
+                    string username = Environment.GetEnvironmentVariable("RDS_USERNAME");
+                    string password = Environment.GetEnvironmentVariable("RDS_PASSWORD");
+                    string hostname = Environment.GetEnvironmentVariable("RDS_HOSTNAME");
+                    string port = Environment.GetEnvironmentVariable("RDS_PORT");
+
+                    string awsConnection = "Server=" + hostname + ";Database=" + dbname + ";User ID=" + username + ";Password=" + password + ";";
+                    options.UseNpgsql(awsConnection);
+                }
+            });
+
+            // Default connection goes to a Docker PostgreSQL localhost server
             services.AddDbContext<IdentityDataContext>(options =>
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
