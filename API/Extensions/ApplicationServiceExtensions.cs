@@ -55,6 +55,7 @@ namespace API.Extensions
                };
            });
 
+            // https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.db.html
             // Default connection goes to a Docker PostgreSQL localhost server
             services.AddDbContext<StoreContext>(options =>
             {

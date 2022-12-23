@@ -63,9 +63,7 @@ namespace API
             app.UseSwaggerDocumentation();
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions{
-                FileProvider= new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Content")), RequestPath="/content"
-            });
+           
 
             app.UseEndpoints(endpoints =>
             {
