@@ -2,6 +2,7 @@
 
 ### ✨ [Demo](http://ecomm3.us-east-1.elasticbeanstalk.com)
 Use seeded logins, e.g. | User: ada@test.com Pass: Pa$$w0rd
+![](https://raw.githubusercontent.com/nessico/pubGwen/master/img/demo.gif)
         
 # Table of contents
 
@@ -27,7 +28,7 @@ Use seeded logins, e.g. | User: ada@test.com Pass: Pa$$w0rd
 - SignalR API for real-time online presence, live chat, and notifications
 - Fluent API and AutoMapper to map table references and relationships
 - Rxjs and tokens in local storage for client persistence along with caching to optimize performance and mapping observables with pipe
-- Redis for in-memory cache to load data faster, deployed inside the AWS EC2 instance
+- Redis for in-memory cache to load data faster, deployed inside the AWS EC2 instance via ssh
 - AWS EC2 linux instance for deployment , AWS RDS for PostgreSQL database, AWS CodeBuild and CodePipeline for CI/CD pipeline 
 - Angular and BootStrap modules for styling, e.g. toastr, ngx-bootstrap
 - PostGreSQL relational database from Entity Framework migration
@@ -53,7 +54,9 @@ Adhered to Microsoft`s Clean Architecture:
 | Core           | contains business models, entities, etc                       | none                                                          |
 
 `I did this to make my app scalable; easier to maintain, read, and update`
-![](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/media/image5-7.png)
+![](https://raw.githubusercontent.com/nessico/pubGwen/master/img/cleanArchitecture.png)
+--
+![](https://raw.githubusercontent.com/nessico/pubGwen/master/img/architectureChart.png)
 
 ## Design Patterns
 
