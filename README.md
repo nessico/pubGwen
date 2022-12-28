@@ -55,7 +55,9 @@ Adhered to Microsoft`s Clean Architecture:
 
 `I did this to make my app scalable; easier to maintain, read, and update`
 ![](https://raw.githubusercontent.com/nessico/pubGwen/master/img/cleanArchitecture.png)
+
 --
+
 ![](https://raw.githubusercontent.com/nessico/pubGwen/master/img/architectureChart.png)
 
 ## Design Patterns
