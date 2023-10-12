@@ -94,6 +94,8 @@ use https://localhost:4200 or https://localhost:5001 in your preferred browser
 - Broken up my larger early commits to atomic commits whenever functionality was added
     - i.e. commit 083a963, feat(API): repository pattern, AutoMapper, extensions; should've been broken into three separate commits
     - I transitioned to atomic-style commits after realizing that larger commits painfully increased debugging time and decreased code readability/maintainability.
+- Could've add unit tests
+- Save images in RDS instead of Cloudinary
 
 ## Author
 
